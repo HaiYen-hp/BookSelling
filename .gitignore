@@ -3,7 +3,7 @@ client/.expo
 *.suo
 *.user
 _ReSharper.*
-APIBookSaling/.vs
-APIBookSaling/APIBookSaling/bin
-APIBookSaling/APIBookSaling/obj
-APIBookSaling/APIBookSaling/packages
+APIBookSale/.vs
+APIBookSale/APIBookSale/bin
+APIBookSale/APIBookSale/obj
+APIBookSale/APIBookSale/packages

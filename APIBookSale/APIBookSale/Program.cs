@@ -1,4 +1,4 @@
-namespace APIBookSaling
+namespace APIBookSale
 {
     public class Program
     {
@@ -13,14 +13,7 @@ namespace APIBookSaling
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
-            {
-                build.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
-            }));
-
-
             var app = builder.Build();
-
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -28,10 +21,9 @@ namespace APIBookSaling
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            app.UseRouting();
-            app.UseCors("MyCors");
 
             app.UseAuthorization();
+
 
             app.MapControllers();
 

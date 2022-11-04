@@ -1,4 +1,4 @@
-namespace APIBookSaling
+namespace APIBookSale
 {
     public class WeatherForecast
     {
