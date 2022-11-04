@@ -1,0 +1,9 @@
+client/node_modules
+client/.expo
+*.suo
+*.user
+_ReSharper.*
+APIBookSaling/.vs
+APIBookSaling/APIBookSaling/bin
+APIBookSaling/APIBookSaling/obj
+APIBookSaling/APIBookSaling/packages
