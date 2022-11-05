@@ -1,9 +1,14 @@
-client/node_modules
-client/.expo
-*.suo
-*.user
-_ReSharper.*
-APIBookSale/.vs
-APIBookSale/APIBookSale/bin
-APIBookSale/APIBookSale/obj
-APIBookSale/APIBookSale/packages
+node_modules/
+.expo/
+dist/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
