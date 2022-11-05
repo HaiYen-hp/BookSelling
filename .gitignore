@@ -1,5 +1,6 @@
-node_modules/
-.expo/
+client/node_modules/
+client/.expo/
+
 dist/
 npm-debug.*
 *.jks
@@ -9,6 +10,12 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+
+#
+APIBookSaling/.vs
+APIBookSaling/APIBookSaling/bin
+APIBookSaling/APIBookSaling/obj
+APIBookSaling/APIBookSaling/packages
 
 # macOS
 .DS_Store
