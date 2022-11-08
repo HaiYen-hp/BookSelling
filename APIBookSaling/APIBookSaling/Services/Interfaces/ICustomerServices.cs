@@ -9,7 +9,7 @@ namespace APIBookSaling.Services.Interfaces
         void CreateCustomer(CreateCustomerDto input);
         Customer FindById(int id);
         int Deleted(int id);
-        void UpdateCustomer(Customer input, int id);
+        void UpdateCustomer(CreateCustomerDto input, int id);
         PageResultDto<List<Customer>> FindAll(FilterDto input);
     }
 }

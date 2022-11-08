@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APIBookSaling.Controllers
 {
-    [Authorize]
-    [AuthenticationFilter(UserTypes.Admin)]
+    //[Authorize]
+    //[AuthenticationFilter(UserTypes.Admin)]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ApiControllerBase
@@ -40,7 +40,6 @@ namespace APIBookSaling.Controllers
             }
         }
 
-        //[Authorize]
         [HttpPost("login")]
         public IActionResult Login(LoginUserDto input)
         {
@@ -68,7 +67,6 @@ namespace APIBookSaling.Controllers
                 return ReturnException(ex);
             }
         }
-        [Authorize]
         [HttpGet("find-user-by-id/{id}")]
         public IActionResult FindByUserId(int id)
         {
@@ -82,7 +80,6 @@ namespace APIBookSaling.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize]
         [HttpGet("find-user")]
         public IActionResult FindAll(FilterDto input)
         {
@@ -96,7 +93,6 @@ namespace APIBookSaling.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize]
         [HttpPut("update-user/{id}")]
         public IActionResult UpdateUser(User input, int id)
         {
@@ -110,7 +106,6 @@ namespace APIBookSaling.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [Authorize]
         // DELETE api/<UserController>/5
         [HttpDelete("delete-user/{id}")]
         public IActionResult DeleteUser(int id)

@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APIBookSaling.Controllers
 {
-    [Authorize]
-    [AuthenticationFilter(UserTypes.Customer)]
+    //[Authorize]
+    //[AuthenticationFilter(UserTypes.Customer)]
     [Route("api/[controller]")]
     [ApiController]
     public class CustomerController : ApiControllerBase
@@ -53,7 +53,6 @@ namespace APIBookSaling.Controllers
             }
         }
 
-        [Authorize]
         // use create FromBody
         [HttpPost("create-customer")]
         public IActionResult CreateCustomer(CreateCustomerDto input)
@@ -70,7 +69,7 @@ namespace APIBookSaling.Controllers
         }
         // PUT api/<UserController>/5
         [HttpPut("update-customer/{id}")]
-        public IActionResult UpdateCustomer(Customer input, int id)
+        public IActionResult UpdateCustomer(CreateCustomerDto input, int id)
         {
             try
             {

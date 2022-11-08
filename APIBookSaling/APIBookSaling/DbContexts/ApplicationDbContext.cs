@@ -47,7 +47,7 @@ namespace APIBookSaling.DbContexts
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.ToTable("ManageUser");
+                entity.ToTable("User");
                 entity.HasKey(e => e.Id);
                 entity.Property(s => s.Id)
                     .ValueGeneratedOnAdd()

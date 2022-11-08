@@ -106,7 +106,7 @@ namespace APIBookSaling.Services.Implements
             var userFind = userQuery.FirstOrDefault(s => s.Id == id);
             if (userFind == null)
             {
-                throw new Exception("khong tim thay tai khoan");
+                throw new UserFriendlyException("khong tim thay tai khoan");
             }
             return userFind;
         }
@@ -135,7 +135,7 @@ namespace APIBookSaling.Services.Implements
             var userFind = userQuery.FirstOrDefault(s => s.Id == id);
             if (userFind == null)
             {
-                throw new Exception("khong tim thay hoc sinh");
+                throw new UserFriendlyException("khong tim thay hoc sinh");
             }
             _dbContext.users.Remove(userFind);
             return 0;
@@ -147,7 +147,7 @@ namespace APIBookSaling.Services.Implements
             var userFind = userQuery.FirstOrDefault(s => s.Id == id);
             if (userFind == null)
             {
-                throw new Exception("khong tim tai khoan");
+                throw new UserFriendlyException("khong tim tai khoan");
             }
             userFind.UserName = input.UserName;
             userFind.Password = input.Password;

@@ -51,7 +51,7 @@ namespace APIBookSaling.Services.Implements
             return 0;
         }
 
-        public void UpdateCustomer(Customer input, int id)
+        public void UpdateCustomer(CreateCustomerDto input, int id)
         {
             var manageQuery = _dbContext.customers.AsQueryable();
             var manageFind = manageQuery.FirstOrDefault(s => s.Id == id);
