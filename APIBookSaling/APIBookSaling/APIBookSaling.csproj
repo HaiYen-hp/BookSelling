@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
     <Folder Include="Services\Implements\" />
     <Folder Include="Services\Interfaces\" />
   </ItemGroup>
