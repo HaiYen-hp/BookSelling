@@ -1,4 +1,6 @@
-﻿namespace APIBookSaling.Page
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace APIBookSaling.Page
 {
     public class FilterDto
     {

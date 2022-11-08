@@ -2,10 +2,11 @@
 using APIBookSaling.Dtos.CustomerDto;
 using APIBookSaling.Entities;
 using APIBookSaling.Page;
+using APIBookSaling.Services.Interfaces;
 
 namespace APIBookSaling.Services.Implements
 {
-    public class CustomerServices
+    public class CustomerServices : ICustomerServices
     {
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _dbContext;
