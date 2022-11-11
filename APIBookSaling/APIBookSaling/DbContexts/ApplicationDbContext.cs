@@ -8,6 +8,8 @@ namespace APIBookSaling.DbContexts
     {
         public DbSet<Customer> customers { get; set; }
         public DbSet<User> users { get; set; }
+        public DbSet<Book> books { get; set; }
+        public DbSet<Cart> carts { get; set; }
 
         public ApplicationDbContext()
         {

@@ -1,10 +1,8 @@
-﻿namespace APIBookSaling.Entities
+﻿namespace APIBookSaling.Dtos.BillDto
 {
-    public class Bill
+    public class CreateBillDto
     {
-        public int Id { get; set; }
         public int IdBook { get; set; }
-        // tổng giá
         public decimal TotalPrice { get; set; }
         // tên quyển sách
         public string BookName { get; set; }
