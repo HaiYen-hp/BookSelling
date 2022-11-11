@@ -35,7 +35,7 @@ namespace APIBookSaling.Services.Implements
             {
                 throw new UserFriendlyException($"Tên tài khoản \"{input.Username}\" đã tồn tại");
             }
-            _dbContext.users.Add(new User()
+            var add = _dbContext.users.Add(new User()
             {
                 UserName = input.Username,
                 Password = CommonUtils.CreateMD5(input.Password),
@@ -43,6 +43,12 @@ namespace APIBookSaling.Services.Implements
                 Phone = input.Phone,
                 UserType = input.UserType,
                 CustomerId = input.CustomerId
+            });
+
+            var idUser = add.Entity.Id;
+            _dbContext.carts.Add(new Cart()
+            {
+                IdUser = idUser,
             });
             _dbContext.SaveChanges();
         }

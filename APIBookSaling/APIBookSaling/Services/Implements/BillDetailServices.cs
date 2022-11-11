@@ -1,64 +1,57 @@
 ﻿using APIBookSaling.DbContexts;
-using APIBookSaling.Dtos.BillDto;
+using APIBookSaling.Dtos.BillDto.BillDetailDto;
 using APIBookSaling.Entities;
-using APIBookSaling.Page;
 using APIBookSaling.Services.Interfaces;
-using APIBookSaling.Utils;
 
 namespace APIBookSaling.Services.Implements
 {
-    public class BillServices : IBillServices
+    public class BillDetailServices : IBillDetailServices
     {
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _dbContext;
         private readonly IHttpContextAccessor _httpContext;
 
-        public BillServices(ILogger<BillServices> logger, ApplicationDbContext dbContext, IHttpContextAccessor httpContext)
+        public BillDetailServices(ILogger<BillDetailServices> logger, ApplicationDbContext dbContext, IHttpContextAccessor httpContext)
         {
             _logger = logger;
             _dbContext = dbContext;
             _httpContext = httpContext;
         }
 
-        public void CreateBill(CreateBillDto input)
+        public void CreateBill(CreateBillDetailDto input)
         {
-            var username = CommonUtils.GetCurrentUsername(_httpContext);
-            _dbContext.bills.Add(new Bill()
+            _dbContext.billDetails.Add(new BillDetail()
             {
-                IdBook = input.IdBook,
+                ListIdBill = input.ListIdBill,
                 TotalPrice = input.TotalPrice,
-                BookName = input.BookName,
-                Quatity = input.Quatity,
-                CreateDate = DateTime.Now,
-                CreateBy = username
             });
             _dbContext.SaveChanges();
         }
 
         public Bill FindById(int id)
         {
-            var billQuery = _dbContext.bills.AsQueryable();
-            var billFind = billQuery.FirstOrDefault(s => s.Id == id);
-            if (billFind == null)
+            var billDetailQuery = _dbContext.bills.AsQueryable();
+            var billDetailFind = billDetailQuery.FirstOrDefault(s => s.Id == id);
+            if (billDetailFind == null)
             {
                 throw new Exception("khong tim thay hoa don");
             }
-            return billFind;
+            return billDetailFind;
         }
 
         public int Deleted(int id)
         {
-            var billQuery = _dbContext.bills.AsQueryable();
-            var billFind = billQuery.FirstOrDefault(s => s.Id == id);
-            if (billFind == null)
+            var billDetailQuery = _dbContext.bills.AsQueryable();
+            var billDetailFind = billDetailQuery.FirstOrDefault(s => s.Id == id);
+            if (billDetailFind == null)
             {
                 throw new Exception("khong tim thay hoa don");
             }
-            _dbContext.bills.Remove(billFind);
+            _dbContext.bills.Remove(billDetailFind);
             return 0;
         }
 
-        public void UpdateBill(CreateBillDto input, int id)
+        public void UpdateBill(CreateBillDetailDto input, int id)
         {
             var billQuery = _dbContext.bills.AsQueryable();
             var billFind = billQuery.FirstOrDefault(s => s.Id == id);

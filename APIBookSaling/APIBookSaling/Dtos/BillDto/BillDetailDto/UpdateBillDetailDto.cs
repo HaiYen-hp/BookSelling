@@ -1,6 +1,7 @@
 ﻿namespace APIBookSaling.Dtos.BillDto.BillDetailDto
 {
-    public class UpdateBillDetailDto
+    public class UpdateBillDetailDto : CreateBillDetailDto
     {
+        public int Id { get; set; }
     }
 }

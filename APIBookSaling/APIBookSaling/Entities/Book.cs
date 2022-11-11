@@ -11,5 +11,7 @@
         public string TypeOfBook { get; set; }
         // gia quyen sach
         public decimal Price { get; set; }
+        //code của sách
+        public string BookCode { get; set; }
     }
 }

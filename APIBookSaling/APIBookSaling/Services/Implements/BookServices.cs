@@ -17,7 +17,7 @@ namespace APIBookSaling.Services.Implements
             _dbContext = dbContext;
         }
 
-        public void CreateCustomer(CreateBookDto input)
+        public void CreateBook(CreateBookDto input)
         {
             _dbContext.books.Add(new Book()
             {
@@ -53,7 +53,7 @@ namespace APIBookSaling.Services.Implements
             return 0;
         }
 
-        public void UpdateCustomer(CreateBookDto input, int id)
+        public void UpdateBook(CreateBookDto input, int id)
         {
             var bookQuery = _dbContext.books.AsQueryable();
             var bookFind = bookQuery.FirstOrDefault(s => s.Id == id);
