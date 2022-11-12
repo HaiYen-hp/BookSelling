@@ -20,17 +20,31 @@ namespace APIBookSaling.Services.Implements
             _httpContext = httpContext;
         }
 
-        public void CreateBill(CreateBillDto input)
+        public void CreateBill(int idCart, CreateBillDto input)
         {
             var username = CommonUtils.GetCurrentUsername(_httpContext);
-            _dbContext.bills.Add(new Bill()
+            var cartFind = _dbContext.carts.FirstOrDefault(x => x.Id == idCart);
+            
+            var listBill = new List<Bill>();
+            foreach(var idBook in cartFind.IdBook)
             {
-                IdBook = input.IdBook,
-                TotalPrice = input.TotalPrice,
-                BookName = input.BookName,
-                Quatity = input.Quatity,
-                CreateDate = DateTime.Now,
-                CreateBy = username
+                var bookFind = _dbContext.books.FirstOrDefault(x => x.Id == idBook.Id);
+                var resultBill = _dbContext.bills.Add(new Bill()
+                {
+                    IdBook = idBook.Id,
+                    BookName = bookFind.BookName,
+                    Quatity = input.Quatity,
+                    TotalPrice = bookFind.Price * input.Quatity,
+                    CreateDate = DateTime.Now,
+                    CreateBy = username
+                });
+                listBill.Add(resultBill.Entity);
+            }
+
+            var billSum = listBill.Select(x => x.TotalPrice).Sum();
+            _dbContext.billDetails.Add(new BillDetail()
+            {
+                TotalPrice = billSum,
             });
             _dbContext.SaveChanges();
         }

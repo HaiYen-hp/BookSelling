@@ -6,7 +6,7 @@ namespace APIBookSaling.Services.Interfaces
 {
     public interface IBillServices
     {
-        void CreateBill(CreateBillDto input);
+        void CreateBill(int idCart, CreateBillDto input);
         Bill FindById(int id);
         int Deleted(int id);
         void UpdateBill(CreateBillDto input, int id);
