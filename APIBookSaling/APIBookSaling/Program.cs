@@ -1,4 +1,5 @@
 using APIBookSaling.DbContexts;
+using APIBookSaling.Dtos.MapperProfiles;
 using APIBookSaling.Services.Implements;
 using APIBookSaling.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -16,7 +17,7 @@ namespace APIBookSaling
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
+            builder.Services.AddAutoMapper(typeof(MapperProfile));
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

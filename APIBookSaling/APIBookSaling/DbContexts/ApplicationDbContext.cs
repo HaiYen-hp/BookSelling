@@ -12,6 +12,7 @@ namespace APIBookSaling.DbContexts
         public DbSet<Cart> carts { get; set; }
         public DbSet<Bill> bills { get; set; }
         public DbSet<BillDetail> billDetails { get; set; }
+        public DbSet<HistoryBill> historyBills { get; set; }
 
         public ApplicationDbContext()
         {

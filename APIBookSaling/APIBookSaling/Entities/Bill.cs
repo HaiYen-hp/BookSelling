@@ -14,5 +14,7 @@
         public DateTime CreateDate { get; set; }
         // người tạo
         public string CreateBy { get; set; }
+
+        public int IdHistoryBill { get; set; }
     }
 }

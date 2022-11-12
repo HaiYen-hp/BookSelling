@@ -23,9 +23,16 @@ namespace APIBookSaling.Services.Implements
         public void CreateBill(int idCart, CreateBillDto input)
         {
             var username = CommonUtils.GetCurrentUsername(_httpContext);
+            // tìm kiếm giỏ hàng
             var cartFind = _dbContext.carts.FirstOrDefault(x => x.Id == idCart);
-            
+
+            var historyBill = _dbContext.historyBills.Add(new HistoryBill()
+            {
+                BillDate = DateTime.Now,
+            });
+
             var listBill = new List<Bill>();
+            // add bill khi thanh toán giỏ hàng
             foreach(var idBook in cartFind.IdBook)
             {
                 var bookFind = _dbContext.books.FirstOrDefault(x => x.Id == idBook.Id);
@@ -36,15 +43,20 @@ namespace APIBookSaling.Services.Implements
                     Quatity = input.Quatity,
                     TotalPrice = bookFind.Price * input.Quatity,
                     CreateDate = DateTime.Now,
-                    CreateBy = username
+                    CreateBy = username,
+                    IdHistoryBill = historyBill.Entity.Id,
+
                 });
                 listBill.Add(resultBill.Entity);
             }
-
+            // tính tổng bill
             var billSum = listBill.Select(x => x.TotalPrice).Sum();
+            // add detailBill và tổng của giỏ hàng
             _dbContext.billDetails.Add(new BillDetail()
             {
                 TotalPrice = billSum,
+                IdCard = idCart,
+                IdHistoryBill = historyBill.Entity.Id,
             });
             _dbContext.SaveChanges();
         }

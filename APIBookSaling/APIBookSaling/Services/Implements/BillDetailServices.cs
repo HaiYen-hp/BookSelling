@@ -23,7 +23,6 @@ namespace APIBookSaling.Services.Implements
         {
             _dbContext.billDetails.Add(new BillDetail()
             {
-                ListIdBill = input.ListIdBill,
                 TotalPrice = input.TotalPrice,
             });
             _dbContext.SaveChanges();
@@ -60,7 +59,6 @@ namespace APIBookSaling.Services.Implements
             {
                 throw new Exception("khong tim thay hoa don");
             }
-            billDetailFind.ListIdBill = input.ListIdBill;
             billDetailFind.TotalPrice = input.TotalPrice;
             _dbContext.SaveChanges();
         }
