@@ -1,10 +1,22 @@
 import { View, Text, StyleSheet, Pressable, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react';
 
+import {Ionicons} from '@expo/vector-icons'
+
 import ButtonBot from '../buttons/ButtonBot'
 
 const SignInScreen = () => {
     const [viewPassword, setViewPassword] = useState(true);
+    const [rightIcon, setRightIcon] = useState('eye');
+
+    const handlePasswordVisibility = () => {
+        if (rightIcon === 'eye') {
+          setRightIcon('eye-off');
+        } else if (rightIcon === 'eye-off') {
+          setRightIcon('eye');
+        }
+    };
+
 
     return (
         <View style={styles.container}>
@@ -22,20 +34,25 @@ const SignInScreen = () => {
             <View style={styles.content}>
                 <TextInput style={styles.input} placeholder='Họ Và Tên'></TextInput>
                 <TextInput style={styles.input} placeholder='Nhập Email'></TextInput>
-                <TextInput style={styles.input} secureTextEntry={viewPassword} placeholder='Nhập Mật Khẩu'></TextInput>
-                <TouchableOpacity onPress={() => {
-                        setViewPassword((prev) => !prev)
-                    }}>
-                        <Text>Show</Text>
 
-                </TouchableOpacity>
-                <TextInput style={styles.input} secureTextEntry={viewPassword} placeholder='Nhập Lại Mật Khẩu'></TextInput>
-                <TouchableOpacity onPress={() => {
-                        setViewPassword((prev) => !prev)
-                    }}>
-                        <Text>Show</Text>
-
+                <View style={styles.inputContainer}>
+                    <TextInput style={[styles.inputField]} secureTextEntry={viewPassword} placeholder='Nhập Mật Khẩu'></TextInput>
+                    <TouchableOpacity onPress={() => {
+                            setViewPassword((prev) => !prev),
+                            handlePasswordVisibility()
+                        }}>
+                        <Ionicons name={rightIcon} size={22} color="#383838" />
                     </TouchableOpacity>
+                </View>
+                <View style={styles.inputContainer}>
+                    <TextInput style={styles.inputField} secureTextEntry={viewPassword} placeholder='Nhập Lại Mật Khẩu'></TextInput>
+                    <TouchableOpacity onPress={() => {
+                            setViewPassword((prev) => !prev)
+                        }}>
+                        <Ionicons name={rightIcon} size={24} color="#383838" />
+                    </TouchableOpacity>
+                </View>
+
                 <View style={styles.forgetPassword}>
                     <Pressable> 
                         <Text style={styles.forgetPasswordText}> Quên mật khẩu ? </Text>
@@ -127,5 +144,23 @@ const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 16,
 
-    }
+    },
+
+    inputContainer: {
+        // backgroundColor: 'red',
+        // width: '100%',
+        borderRadius: 30,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#F0F0F0',
+        padding: 4,
+        margin: 10,
+      },
+      inputField: {
+        padding: 14,
+        fontSize: 14,
+        width: '90%',
+        // backgroundColor: 'pink'
+      }
 });

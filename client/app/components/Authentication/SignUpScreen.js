@@ -1,11 +1,23 @@
 import { View, Text, StyleSheet, Pressable, TextInput, Touchable, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react';
 
+import {Ionicons} from '@expo/vector-icons'
+
 import ButtonBot from '../buttons/ButtonBot'
 
 const SignUpScreen = () => {
 
     const [viewPassword, setViewPassword] = useState(true);
+    const [rightIcon, setRightIcon] = useState('eye');
+
+    const handlePasswordVisibility = () => {
+        if (rightIcon === 'eye') {
+          setRightIcon('eye-off');
+        } else if (rightIcon === 'eye-off') {
+          setRightIcon('eye');
+        }
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -22,16 +34,14 @@ const SignUpScreen = () => {
             <View style={styles.content}>
                 <TextInput style={styles.input} placeholder='Nhập tên đăng nhập'></TextInput>
 
-                <View>
-                    <TextInput style={styles.input} secureTextEntry={viewPassword} placeholder='Password'></TextInput>
+                <View style={styles.inputContainer}>
+                    <TextInput style={[styles.inputField]} secureTextEntry={viewPassword} placeholder='Nhập Mật Khẩu'></TextInput>
                     <TouchableOpacity onPress={() => {
-                        setViewPassword((prev) => !prev)
-                    }}>
-                        <Text>Show</Text>
-
+                            setViewPassword((prev) => !prev),
+                            handlePasswordVisibility()
+                        }}>
+                        <Ionicons name={rightIcon} size={22} color="#383838" />
                     </TouchableOpacity>
-                    {/* <Image resizeMode="contain" source={require('../../assets/icons/line-top.png')}></Image> */}
-
                 </View>
 
 
@@ -128,5 +138,22 @@ const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 16,
 
-    }
+    },
+    inputContainer: {
+        // backgroundColor: 'red',
+        // width: '100%',
+        borderRadius: 30,
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#F0F0F0',
+        padding: 4,
+        margin: 10,
+      },
+      inputField: {
+        padding: 14,
+        fontSize: 14,
+        width: '90%',
+        // backgroundColor: 'pink'
+      }
 });

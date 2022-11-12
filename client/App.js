@@ -8,8 +8,8 @@ import SignInScreen from './app/components/Authentication/SignInScreen';
 export default function App() {
     return (
         <View style={styles.container}>
-            {/* <SignUpScreen/> */}
-            <SignInScreen/>
+            <SignUpScreen/>
+            {/* <SignInScreen/> */}
         </View>
     );
 }
