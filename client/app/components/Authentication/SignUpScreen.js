@@ -16,6 +16,7 @@ const SignUpScreen = () => {
         } else if (rightIcon === 'eye-off') {
           setRightIcon('eye');
         }
+        setViewPassword(!viewPassword);
     };
 
     return (
@@ -37,8 +38,7 @@ const SignUpScreen = () => {
                 <View style={styles.inputContainer}>
                     <TextInput style={[styles.inputField]} secureTextEntry={viewPassword} placeholder='Nhập Mật Khẩu'></TextInput>
                     <TouchableOpacity onPress={() => {
-                            setViewPassword((prev) => !prev),
-                            handlePasswordVisibility()
+                            handlePasswordVisibility();
                         }}>
                         <Ionicons name={rightIcon} size={22} color="#383838" />
                     </TouchableOpacity>

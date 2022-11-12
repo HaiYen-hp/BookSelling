@@ -8,8 +8,8 @@ import SignInScreen from './app/components/Authentication/SignInScreen';
 export default function App() {
     return (
         <View style={styles.container}>
-            <SignUpScreen/>
-            {/* <SignInScreen/> */}
+            {/* <SignUpScreen/> */}
+            <SignInScreen/>
         </View>
     );
 }
@@ -19,6 +19,8 @@ const styles = StyleSheet.create({
     }
 });
 
+
+// MÀN CHÀO MỪNG
 
 // export default function App() {
 //     return (
@@ -60,6 +62,9 @@ const styles = StyleSheet.create({
 //
 //
 //
+
+
+// MÀN LỰA CHỌN ĐĂNG NHẬP/ĐĂNG KÝ
 
 // export default function App() {
 //     return (
