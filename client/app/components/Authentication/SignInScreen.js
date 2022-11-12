@@ -11,10 +11,11 @@ const SignInScreen = () => {
 
     const handlePasswordVisibility = () => {
         if (rightIcon === 'eye') {
-          setRightIcon('eye-off');
+            setRightIcon('eye-off');
         } else if (rightIcon === 'eye-off') {
-          setRightIcon('eye');
+            setRightIcon('eye');
         }
+        setViewPassword(!viewPassword);
     };
 
 
@@ -38,8 +39,7 @@ const SignInScreen = () => {
                 <View style={styles.inputContainer}>
                     <TextInput style={[styles.inputField]} secureTextEntry={viewPassword} placeholder='Nhập Mật Khẩu'></TextInput>
                     <TouchableOpacity onPress={() => {
-                            setViewPassword((prev) => !prev),
-                            handlePasswordVisibility()
+                            handlePasswordVisibility();
                         }}>
                         <Ionicons name={rightIcon} size={22} color="#383838" />
                     </TouchableOpacity>
@@ -47,7 +47,7 @@ const SignInScreen = () => {
                 <View style={styles.inputContainer}>
                     <TextInput style={styles.inputField} secureTextEntry={viewPassword} placeholder='Nhập Lại Mật Khẩu'></TextInput>
                     <TouchableOpacity onPress={() => {
-                            setViewPassword((prev) => !prev)
+                            handlePasswordVisibility();
                         }}>
                         <Ionicons name={rightIcon} size={24} color="#383838" />
                     </TouchableOpacity>
