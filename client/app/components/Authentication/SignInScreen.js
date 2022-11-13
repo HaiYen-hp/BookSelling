@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 import ButtonBot from "../buttons/ButtonBot";
+import BackIcon from "../buttons/BackIcon";
 
 const SignInScreen = () => {
   const [viewPassword, setViewPassword] = useState(true);
@@ -27,6 +28,7 @@ const SignInScreen = () => {
 
   return (
     <View style={styles.container}>
+      <BackIcon/>
       <View style={styles.header}>
         <Text style={styles.headerText}>Đăng Ký</Text>
         <View style={styles.boxHelp}>
@@ -76,13 +78,13 @@ const SignInScreen = () => {
             <Text style={styles.forgetPasswordText}> Quên mật khẩu ? </Text>
           </Pressable>
         </View>
-        <ButtonBot text="ĐĂNG NHẬP"></ButtonBot>
+        <ButtonBot text="ĐĂNG KÝ"></ButtonBot>
       </View>
       <View style={styles.footer}>
         <View style={styles.botNote}>
-          <Text> Chưa tạo tài khoản? </Text>
+          <Text> Bạn Đã Có Tạo Khoản? </Text>
           <Pressable>
-            <Text style={styles.forgetPasswordText}>Đăng Ký Ngay</Text>
+            <Text style={styles.forgetPasswordText}>Đăng Nhập</Text>
           </Pressable>
         </View>
       </View>
@@ -99,8 +101,8 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginTop: 50,
     marginRight: 30,
-    // backgroundColor: 'red'
     justifyContent: "center",
+    // backgroundColor: '#fff'
   },
   header: {
     marginTop: 40,
@@ -133,7 +135,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 30,
     borderWidth: 1,
-    borderColor: "#F0F0F0",
+    borderColor: "#b2b3ad",
   },
   footer: {
     // flex: 1,
@@ -167,8 +169,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "#F0F0F0",
-    padding: 4,
+    borderColor: "#b2b3ad",
+    padding: 5,
     margin: 10,
   },
   inputField: {

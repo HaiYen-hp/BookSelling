@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 import ButtonBot from "../buttons/ButtonBot";
+import BackIcon from "../buttons/BackIcon";
 
 const SignUpScreen = () => {
   const [viewPassword, setViewPassword] = useState(true);
@@ -27,6 +28,7 @@ const SignUpScreen = () => {
 
   return (
     <View style={styles.container}>
+      <BackIcon/>
       <View style={styles.header}>
         <Text style={styles.headerText}>Đăng Nhập</Text>
         <View style={styles.boxHelp}>
@@ -121,7 +123,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 30,
     borderWidth: 1,
-    borderColor: "#F0F0F0",
+    borderColor: "#b2b3ad",
   },
   footer: {
     flex: 1,
@@ -154,8 +156,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "#F0F0F0",
-    padding: 4,
+    borderColor: "#b2b3ad",
+    padding: 5,
     margin: 10,
   },
   inputField: {
