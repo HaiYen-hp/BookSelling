@@ -1,24 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Pressable, ImageBackground } from 'react-native';
-
-import ButtonBot from './app/components/buttons/ButtonBot';
-import SignUpScreen from './app/components/Authentication/SignUpScreen';
-import SignInScreen from './app/components/Authentication/SignInScreen';
+import { StyleSheet, View } from "react-native";
+import Navigation from "./app/components/NavigationScreen/Navigation";
+import { Provider as PaperProvider } from "react-native-paper";
 
 export default function App() {
-    return (
-        <View style={styles.container}>
-            {/* <SignUpScreen/> */}
-            <SignInScreen/>
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <Navigation />
+    </View>
+  );
 }
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    }
+  container: {
+    flex: 1,
+  },
 });
-
 
 // MÀN CHÀO MỪNG
 
@@ -62,7 +57,6 @@ const styles = StyleSheet.create({
 //
 //
 //
-
 
 // MÀN LỰA CHỌN ĐĂNG NHẬP/ĐĂNG KÝ
 
@@ -195,5 +189,4 @@ const styles = StyleSheet.create({
 
 //
 //
-// 
-
+//
