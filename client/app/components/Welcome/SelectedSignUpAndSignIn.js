@@ -1,9 +1,13 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import * as React from "react";
+import BackIcon from "../buttons/BackIcon";
 
 const SelectedScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
+      <View style={{marginTop: 40}}>
+        <BackIcon />
+      </View>
       <View style={styles.iconTop}>
         <Image
           resizeMode="contain"
@@ -66,11 +70,11 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
   },
-
   iconTop: {
     flex: 3,
     alignItems: "flex-end",
     marginRight: -30,
+    marginTop: -65
   },
   content: {
     flex: 4,
