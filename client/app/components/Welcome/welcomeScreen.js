@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#1A9814",
     fontSize: 40,
-    fontFamily: "MonoCasualExtraBlack",
+    fontFamily: 'MonoCasualExtraBlack',
     lineHeight: 55,
     fontWeight: "bold",
     marginTop: 200,

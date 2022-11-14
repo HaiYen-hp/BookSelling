@@ -10,21 +10,20 @@ import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
-
 import ButtonBot from "../buttons/ButtonBot";
 import BackIcon from "../buttons/BackIcon";
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }) => {
   const [viewPassword, setViewPassword] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
- const [loaded] = useFonts({
+  const [loaded] = useFonts({
     SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
     SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
     SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
   });
   if (!loaded) {
     return <AppLoading />;
-  } 
+  }
   const handlePasswordVisibility = () => {
     if (rightIcon === "eye") {
       setRightIcon("eye-off");
@@ -36,7 +35,9 @@ const SignUpScreen = () => {
 
   return (
     <View style={styles.container}>
-      <BackIcon/>
+      <View style={{ marginLeft: 20 }}>
+        <BackIcon navigation={() => navigation.goBack()} />
+      </View>
       <View style={styles.header}>
         <Text style={styles.headerText}>Đăng Nhập</Text>
         <View style={styles.boxHelp}>
@@ -74,8 +75,9 @@ const SignUpScreen = () => {
             <Text style={styles.forgetPasswordText}> Quên mật khẩu ? </Text>
           </Pressable>
         </View>
-        <ButtonBot text="ĐĂNG NHẬP"></ButtonBot>
       </View>
+      <ButtonBot text="ĐĂNG NHẬP"></ButtonBot>
+
       <View style={styles.footer}>
         <View style={styles.botNote}>
           <Text style={{ fontFamily: "SansCasual" }}>
@@ -97,9 +99,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    marginLeft: 30,
+    // marginHorizontal: 30,
     marginTop: 50,
-    marginRight: 30,
+    // marginRight: 30,
     // backgroundColor: 'red'
     // justifyContent: 'center',
   },
@@ -130,13 +132,14 @@ const styles = StyleSheet.create({
   },
   content: {
     borderColor: "#ccc",
+    marginHorizontal: 30,
   },
   input: {
     padding: 20,
-    margin: 10,
+    marginBottom: 20,
     borderRadius: 30,
     borderWidth: 1,
-    borderColor: "#F0F0F0",
+    borderColor: "#b2b3ad",
     fontFamily: "SansCasualMedium",
   },
   footer: {
@@ -171,7 +174,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#b2b3ad",
     padding: 5,
-    margin: 10,
+    // margin: 10,
   },
   inputField: {
     padding: 14,
