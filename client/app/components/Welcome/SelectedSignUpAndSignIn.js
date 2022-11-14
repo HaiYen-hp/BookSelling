@@ -15,9 +15,9 @@ const SelectedScreen = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
-      <View style={{marginTop: 40}}>
-        <BackIcon />
-      </View>
+      {/* <View style={{ marginTop: 42 }}>
+        <BackIcon navigation={() => navigation.goBack()} />
+      </View> */}
       <View style={styles.iconTop}>
         <Image
           resizeMode="contain"
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     flex: 3,
     alignItems: "flex-end",
     marginRight: -30,
-    marginTop: -65
+    marginTop: -65,
   },
   content: {
     flex: 4,
