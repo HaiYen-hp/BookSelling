@@ -1,4 +1,4 @@
-﻿namespace APIBookSaling.Dtos.BookDto
+﻿namespace APIBookSaling.Dtos.BooksDto
 {
     public class UpdateBookDto : CreateBookDto
     {

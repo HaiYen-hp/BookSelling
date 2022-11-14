@@ -1,8 +1,9 @@
 ﻿using APIBookSaling.DbContexts;
-using APIBookSaling.Dtos.BillDto.BillDetailDto;
+using APIBookSaling.Dtos.BillDto.BillDetailsDto;
 using APIBookSaling.Entities;
 using APIBookSaling.Page;
 using APIBookSaling.Services.Interfaces;
+using AutoMapper;
 
 namespace APIBookSaling.Services.Implements
 {
@@ -11,24 +12,17 @@ namespace APIBookSaling.Services.Implements
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _dbContext;
         private readonly IHttpContextAccessor _httpContext;
+        private readonly IMapper _mapper;
 
-        public BillDetailServices(ILogger<BillDetailServices> logger, ApplicationDbContext dbContext, IHttpContextAccessor httpContext)
+        public BillDetailServices(ILogger<BillDetailServices> logger, ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
         {
             _logger = logger;
             _dbContext = dbContext;
             _httpContext = httpContext;
+            _mapper = mapper;
         }
 
-        public void CreateBill(CreateBillDetailDto input)
-        {
-            _dbContext.billDetails.Add(new BillDetail()
-            {
-                TotalPrice = input.TotalPrice,
-            });
-            _dbContext.SaveChanges();
-        }
-
-        public BillDetail FindById(int id)
+        public BillDetailDto FindById(int id)
         {
             var billDetailQuery = _dbContext.billDetails.AsQueryable();
             var billDetailFind = billDetailQuery.FirstOrDefault(s => s.Id == id);
@@ -36,7 +30,8 @@ namespace APIBookSaling.Services.Implements
             {
                 throw new Exception("khong tim thay hoa don");
             }
-            return billDetailFind;
+            var billDetailItem = _mapper.Map<BillDetailDto>(billDetailFind);
+            return billDetailItem;
         }
 
         public int Deleted(int id)
@@ -51,7 +46,7 @@ namespace APIBookSaling.Services.Implements
             return 0;
         }
 
-        public void UpdateBill(CreateBillDetailDto input, int id)
+        public void UpdateBillDetail(CreateBillDetailDto input, int id)
         {
             var billDetailQuery = _dbContext.billDetails.AsQueryable();
             var billDetailFind = billDetailQuery.FirstOrDefault(s => s.Id == id);
@@ -63,7 +58,7 @@ namespace APIBookSaling.Services.Implements
             _dbContext.SaveChanges();
         }
 
-        public PageResultDto<List<BillDetail>> FindAll(FilterDto input)
+        public PageResultDto<BillDetailDto> FindAll(FilterDto input)
         {
             var billDetailQuery = _dbContext.billDetails.AsQueryable();
             //if (input.Keyword != null)
@@ -73,9 +68,10 @@ namespace APIBookSaling.Services.Implements
             int totalItem = billDetailQuery.Count();
 
             billDetailQuery = billDetailQuery.Skip(input.PageSize * (input.PageIndex - 1)).Take(input.PageSize);
-            return new PageResultDto<List<BillDetail>>
+            var billDetailItem = _mapper.Map<BillDetailDto>(billDetailQuery);
+            return new PageResultDto<BillDetailDto>
             {
-                Item = billDetailQuery.ToList(),
+                Item = billDetailItem,
                 TotalItem = totalItem
             };
         }

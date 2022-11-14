@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using APIBookSaling.Dtos.BooksDto;
+using APIBookSaling.Entities;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIBookSaling.Dtos.MapperProfiles
@@ -7,7 +9,7 @@ namespace APIBookSaling.Dtos.MapperProfiles
     {
         public MapperProfile()
         {
-            //CreateMap<>();
+            CreateMap<Book, BookDto>();
         }
     }
 }
