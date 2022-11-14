@@ -1,8 +1,9 @@
 ﻿using APIBookSaling.DbContexts;
-using APIBookSaling.Dtos.BookDto;
+using APIBookSaling.Dtos.BooksDto;
 using APIBookSaling.Entities;
 using APIBookSaling.Page;
 using APIBookSaling.Services.Interfaces;
+using AutoMapper;
 
 namespace APIBookSaling.Services.Implements
 {
@@ -10,11 +11,13 @@ namespace APIBookSaling.Services.Implements
     {
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public BookServices(ILogger<BookServices> logger, ApplicationDbContext dbContext)
+        public BookServices(ILogger<BookServices> logger, ApplicationDbContext dbContext, IMapper mapper)
         {
             _logger = logger;
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public void CreateBook(CreateBookDto input)
@@ -30,7 +33,7 @@ namespace APIBookSaling.Services.Implements
             _dbContext.SaveChanges();
         }
 
-        public Book FindById(int id)
+        public BookDto FindById(int id)
         {
             var bookQuery = _dbContext.books.AsQueryable();
             var bookFind = bookQuery.FirstOrDefault(s => s.Id == id);
@@ -38,7 +41,9 @@ namespace APIBookSaling.Services.Implements
             {
                 throw new Exception("khong tim thay sach");
             }
-            return bookFind;
+            var bookItem= _mapper.Map<BookDto>(bookFind);
+
+            return bookItem;
         }
 
         public int Deleted(int id)
@@ -68,7 +73,7 @@ namespace APIBookSaling.Services.Implements
             _dbContext.SaveChanges();
         }
 
-        public PageResultDto<List<Book>> FindAll(FilterDto input)
+        public PageResultDto<BookDto> FindAll(FilterDto input)
         {
             var bookQuery = _dbContext.books.AsQueryable();
             if (input.Keyword != null)
@@ -78,9 +83,10 @@ namespace APIBookSaling.Services.Implements
             int totalItem = bookQuery.Count();
 
             bookQuery = bookQuery.Skip(input.PageSize * (input.PageIndex - 1)).Take(input.PageSize);
-            return new PageResultDto<List<Book>>
+            var bookItem = _mapper.Map<BookDto>(bookQuery);
+            return new PageResultDto<BookDto>
             {
-                Item = bookQuery.ToList(),
+                Item = bookItem,
                 TotalItem = totalItem
             };
         }
