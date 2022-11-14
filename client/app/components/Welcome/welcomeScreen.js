@@ -2,7 +2,6 @@ import { View, Text, ImageBackground, StyleSheet } from "react-native";
 import ButtonBot from "../buttons/ButtonBot";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
-
 const WelcomeScreen = ({ navigation }) => {
   const [loaded] = useFonts({
     SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#1A9814",
     fontSize: 40,
-    fontFamily: "MonoCasualExtraBlack",
+    fontFamily: 'MonoCasualExtraBlack',
     lineHeight: 55,
     fontWeight: "bold",
     marginTop: 200,

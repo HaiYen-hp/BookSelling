@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+
 function ButtonBot(props) {
   const [loaded] = useFonts({
     SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
