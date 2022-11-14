@@ -7,8 +7,8 @@ import HomePage from "./app/screens/HomePage";
 export default function App() {
   return (
     <View style={styles.container}>
-      <HomePage/>
-      {/* <Navigation /> */}
+      {/* <HomePage/> */}
+      <Navigation />
     </View>
   );
 }
