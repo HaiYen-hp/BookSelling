@@ -1,6 +1,6 @@
 ﻿using APIBookSaling.Entities;
 
-namespace APIBookSaling.Dtos.BillDto.BillDetailDto
+namespace APIBookSaling.Dtos.BillDto.BillDetailsDto
 {
     public class CreateBillDetailDto
     {

@@ -53,7 +53,7 @@ namespace APIBookSaling.Services.Implements
             return 0;
         }
 
-        public void UpdateCustomer(CreateCartDto input, int id)
+        public void UpdateCart(CreateCartDto input, int id)
         {
             var cartQuery = _dbContext.carts.AsQueryable();
             var cartFind = cartQuery.FirstOrDefault(s => s.Id == id);

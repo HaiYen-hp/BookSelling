@@ -66,6 +66,16 @@ namespace APIBookSaling.Services.Implements
             {
                 throw new Exception("khong tim thay sach");
             }
+            // tạo lịch sử thay đổi giá
+            if (bookFind.Price != input.Price)
+            {
+                _dbContext.historyPrices.Add(new HistoryPrice()
+                {
+                    Price = bookFind.Price,
+                    BookId = bookFind.Id,
+                    BookCode = bookFind.BookCode,
+                });
+            }
             bookFind.BookName = input.BookName;
             bookFind.Author = input.Author;
             bookFind.TypeOfBook = input.TypeOfBook;
