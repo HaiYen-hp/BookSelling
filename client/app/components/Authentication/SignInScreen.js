@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-
+import axios from "axios";
 import { Ionicons } from "@expo/vector-icons";
 
 import ButtonBot from "../buttons/ButtonBot";
