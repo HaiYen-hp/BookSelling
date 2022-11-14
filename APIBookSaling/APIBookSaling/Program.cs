@@ -1,4 +1,7 @@
 using APIBookSaling.DbContexts;
+using APIBookSaling.Dtos.MapperProfiles;
+using APIBookSaling.Services.Implements;
+using APIBookSaling.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -14,37 +17,43 @@ namespace APIBookSaling
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            //builder.Services.AddDbContext<ApplicationDbContext>(options => {
-            //    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
-            //});
+            builder.Services.AddAutoMapper(typeof(MapperProfile));
+            builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<IUserServices, UserServices>();
+            builder.Services.AddScoped<ICustomerServices, CustomerServices>();
 
+            builder.Services.AddDbContext<ApplicationDbContext>(options => {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+            });
+
+            // xac thuc dang nhap
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
+                .AddJwtBearer(options =>
                 {
-                    ValidAudience = builder.Configuration["JWT:ValidAudience"],
-                    ValidateAudience = true,
-                    ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-                    ValidateIssuer = true,
-                    ValidateLifetime = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])),
-                    ClockSkew = TimeSpan.Zero // remove delay of token when expire,
-                };
-                options.RequireHttpsMetadata = false;
-            });
-
-            // Add services to the container.
-            builder.Services.AddControllers();
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidAudience = builder.Configuration["JWT:ValidAudience"],
+                        ValidateAudience = true,
+                        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+                        ValidateIssuer = true,
+                        ValidateLifetime = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])),
+                        ClockSkew = TimeSpan.Zero // remove delay of token when expire, 
+                    };
+                    options.RequireHttpsMetadata = false;
+                });
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
                     Version = "v1",
                     Title = "Web API"
@@ -57,7 +66,6 @@ namespace APIBookSaling
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey
                 });
-
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -74,13 +82,6 @@ namespace APIBookSaling
                 });
             });
 
-            // Add Dependency Injection
-            //builder.Services.AddScoped<IUserService, UserService>();
-
-            builder.Services.AddCors(p => p.AddPolicy("MyCors", build =>
-            {
-                build.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
-            }));
 
             var app = builder.Build();
 
@@ -90,9 +91,11 @@ namespace APIBookSaling
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            app.UseRouting();
-            app.UseCors("MyCors");
 
+            app.UseHttpsRedirection();
+
+
+            app.UseAuthentication();  // dung [Authorize] trong controller
             app.UseAuthorization();
 
             app.MapControllers();
