@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import * as React from "react";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import BackIcon from "../buttons/BackIcon";
+
 const SelectedScreen = ({ navigation }) => {
   const [loaded] = useFonts({
     SansCasualBlackItalic: require("../../../assets/fonts/RecursiveSansCslSt-SmBdItalic.ttf"),

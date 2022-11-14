@@ -34,11 +34,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#C8C23C",
     opacity: 0.81,
     marginBottom: 50,
+    marginHorizontal: 30
   },
   textStart: {
     color: "#FFFFFF",
     fontSize: 20,
     fontFamily: "SansCasualBold",
     textAlign: "center",
+    lineHeight: 30,
   },
 });
