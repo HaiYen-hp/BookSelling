@@ -74,8 +74,9 @@ const SignUpScreen = () => {
             <Text style={styles.forgetPasswordText}> Quên mật khẩu ? </Text>
           </Pressable>
         </View>
-        <ButtonBot text="ĐĂNG NHẬP"></ButtonBot>
       </View>
+      <ButtonBot text="ĐĂNG NHẬP"></ButtonBot>
+
       <View style={styles.footer}>
         <View style={styles.botNote}>
           <Text style={{ fontFamily: "SansCasual" }}>
@@ -97,9 +98,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    marginLeft: 30,
+    // marginHorizontal: 30,
     marginTop: 50,
-    marginRight: 30,
+    // marginRight: 30,
     // backgroundColor: 'red'
     // justifyContent: 'center',
   },
@@ -130,13 +131,14 @@ const styles = StyleSheet.create({
   },
   content: {
     borderColor: "#ccc",
+    marginHorizontal: 30
   },
   input: {
     padding: 20,
-    margin: 10,
+    marginBottom: 20,
     borderRadius: 30,
     borderWidth: 1,
-    borderColor: "#F0F0F0",
+    borderColor: "#b2b3ad",
     fontFamily: "SansCasualMedium",
   },
   footer: {
@@ -171,7 +173,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#b2b3ad",
     padding: 5,
-    margin: 10,
+    // margin: 10,
   },
   inputField: {
     padding: 14,

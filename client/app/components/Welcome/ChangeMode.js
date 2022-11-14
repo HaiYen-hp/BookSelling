@@ -8,6 +8,7 @@ import {
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
+
 const ChangeMode = ({ navigation }) => {
   const [loaded] = useFonts({
     SansCasualSemiBold: require("../../../assets/fonts/RecursiveSansCslSt-SemiBd.ttf"),
