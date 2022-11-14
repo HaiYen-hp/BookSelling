@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     marginRight: 70,
     marginTop: 65,
-    marginBottom: 170,
+    marginBottom: 180,
   },
   iconContainer: {
     flexDirection: "column",

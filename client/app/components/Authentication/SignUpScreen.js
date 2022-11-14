@@ -84,7 +84,7 @@ const SignUpScreen = ({ navigation }) => {
             {" "}
             Chưa tạo tài khoản?{" "}
           </Text>
-          <Pressable>
+          <Pressable onPress={() => navigation.navigate("Sign In Screen")}>
             <Text style={styles.forgetPasswordText}>Đăng Ký Ngay</Text>
           </Pressable>
         </View>
