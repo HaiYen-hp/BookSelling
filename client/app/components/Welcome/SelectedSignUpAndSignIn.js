@@ -1,8 +1,16 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import * as React from "react";
-import BackIcon from "../buttons/BackIcon";
-
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 const SelectedScreen = ({ navigation }) => {
+  const [loaded] = useFonts({
+    SansCasualBlackItalic: require("../../../assets/fonts/RecursiveSansCslSt-SmBdItalic.ttf"),
+    SansLinear: require("../../../assets/fonts/RecursiveSansLnrSt-Regular.ttf"),
+    SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
+  });
+  if (!loaded) {
+    return <AppLoading />;
+  }
   return (
     <View style={styles.container}>
       <View style={{marginTop: 40}}>
@@ -87,6 +95,7 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
     textAlign: "center",
     color: "#000",
+    fontFamily: "SansCasualBlackItalic",
   },
 
   detail: {
@@ -95,7 +104,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginTop: 40,
     textAlign: "center",
-    fontFamily: "Recursive",
+    fontFamily: "SansLinear",
   },
 
   boxBnt: {
@@ -120,9 +129,11 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontWeight: "700",
     lineHeight: 22,
+    fontFamily: "SansCasualBold",
   },
   btnTextResister: {
     color: "white",
+    fontFamily: "SansCasualBold",
   },
   iconBot: {
     flex: 3,
