@@ -30,55 +30,55 @@ namespace APIBookSaling.Services.Implements
 
         public Customer FindById(int id)
         {
-            var manageQuery = _dbContext.customers.AsQueryable();
-            var manageFind = manageQuery.FirstOrDefault(s => s.Id == id);
-            if (manageFind == null)
+            var customerQuery = _dbContext.customers.AsQueryable();
+            var customerFind = customerQuery.FirstOrDefault(s => s.Id == id);
+            if (customerFind == null)
             {
                 throw new Exception("khong tim thay hoc sinh");
             }
-            return manageFind;
+            return customerFind;
         }
 
         public int Deleted(int id)
         {
-            var manageQuery = _dbContext.customers.AsQueryable();
-            var manageFind = manageQuery.FirstOrDefault(s => s.Id == id);
-            if (manageFind == null)
+            var customerQuery = _dbContext.customers.AsQueryable();
+            var customerFind = customerQuery.FirstOrDefault(s => s.Id == id);
+            if (customerFind == null)
             {
                 throw new Exception("khong tim thay hoc sinh");
             }
-            _dbContext.customers.Remove(manageFind);
+            _dbContext.customers.Remove(customerFind);
             return 0;
         }
 
         public void UpdateCustomer(CreateCustomerDto input, int id)
         {
-            var manageQuery = _dbContext.customers.AsQueryable();
-            var manageFind = manageQuery.FirstOrDefault(s => s.Id == id);
-            if (manageFind == null)
+            var customerQuery = _dbContext.customers.AsQueryable();
+            var customerFind = customerQuery.FirstOrDefault(s => s.Id == id);
+            if (customerFind == null)
             {
                 throw new Exception("khong tim thay hoc sinh");
             }
-            manageFind.Fullname = input.Fullname;
-            manageFind.DateOfBirth = input.DateOfBirth;
-            manageFind.CCCD = input.CCCD;
-            manageFind.Address = input.Address;
+            customerFind.Fullname = input.Fullname;
+            customerFind.DateOfBirth = input.DateOfBirth;
+            customerFind.CCCD = input.CCCD;
+            customerFind.Address = input.Address;
             _dbContext.SaveChanges();
         }
 
         public PageResultDto<List<Customer>> FindAll(FilterDto input)
         {
-            var manageQuery = _dbContext.customers.AsQueryable();
+            var customerQuery = _dbContext.customers.AsQueryable();
             if (input.Keyword != null)
             {
-                manageQuery = manageQuery.Where(s => s.Fullname != null && s.Fullname.Contains(input.Keyword));
+                customerQuery = customerQuery.Where(s => s.Fullname != null && s.Fullname.Contains(input.Keyword));
             }
-            int totalItem = manageQuery.Count();
+            int totalItem = customerQuery.Count();
 
-            manageQuery = manageQuery.Skip(input.PageSize * (input.PageIndex - 1)).Take(input.PageSize);
+            customerQuery = customerQuery.Skip(input.PageSize * (input.PageIndex - 1)).Take(input.PageSize);
             return new PageResultDto<List<Customer>>
             {
-                Item = manageQuery.ToList(),
+                Item = customerQuery.ToList(),
                 TotalItem = totalItem
             };
         }
