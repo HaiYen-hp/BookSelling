@@ -44,11 +44,12 @@ namespace APIBookSaling.Services.Implements
                 UserType = input.UserType,
                 CustomerId = input.CustomerId
             });
-
+            _dbContext.SaveChanges();
             var idUser = add.Entity.Id;
             _dbContext.carts.Add(new Cart()
             {
                 IdUser = idUser,
+                IdBook = null,
             });
             _dbContext.SaveChanges();
         }
