@@ -10,21 +10,20 @@ import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
-
 import ButtonBot from "../buttons/ButtonBot";
 import BackIcon from "../buttons/BackIcon";
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }) => {
   const [viewPassword, setViewPassword] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
- const [loaded] = useFonts({
+  const [loaded] = useFonts({
     SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
     SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
     SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
   });
   if (!loaded) {
     return <AppLoading />;
-  } 
+  }
   const handlePasswordVisibility = () => {
     if (rightIcon === "eye") {
       setRightIcon("eye-off");
@@ -36,7 +35,9 @@ const SignUpScreen = () => {
 
   return (
     <View style={styles.container}>
-      <BackIcon/>
+      <View style={{ marginLeft: 20 }}>
+        <BackIcon navigation={() => navigation.goBack()} />
+      </View>
       <View style={styles.header}>
         <Text style={styles.headerText}>Đăng Nhập</Text>
         <View style={styles.boxHelp}>
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
   },
   content: {
     borderColor: "#ccc",
-    marginHorizontal: 30
+    marginHorizontal: 30,
   },
   input: {
     padding: 20,

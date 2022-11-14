@@ -8,6 +8,7 @@ import {
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
+import ButtonBot from "../buttons/ButtonBot";
 
 const ChangeMode = ({ navigation }) => {
   const [loaded] = useFonts({
@@ -41,13 +42,17 @@ const ChangeMode = ({ navigation }) => {
             <Text style={styles.iconDescMoon}>Tối</Text>
           </View>
         </View>
-        <View style={styles.btnContainer}>
+        {/* <View style={styles.btnContainer}>
           <Pressable onPress={() => navigation.navigate("Selected Screen")}>
             <View style={styles.btnStart}>
               <Text style={styles.textStart}>TIẾP TỤC</Text>
             </View>
           </Pressable>
-        </View>
+        </View> */}
+        <ButtonBot
+          text="TIẾP TỤC"
+          navigation={() => navigation.navigate("Selected Screen")}
+        ></ButtonBot>
       </ImageBackground>
     </View>
   );
@@ -80,6 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     marginRight: 70,
     marginTop: 65,
+    marginBottom: 170,
   },
   iconContainer: {
     flexDirection: "column",
@@ -107,24 +113,24 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "SansCasualMedium",
   },
-  btnContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  btnStart: {
-    width: 325,
-    height: 80,
-    alignContent: "center",
-    justifyContent: "center",
-    borderRadius: 30,
-    backgroundColor: "#C8C23C",
-    marginTop: 230,
-  },
-  textStart: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "700",
-    textAlign: "center",
-    fontFamily: "SansCasualBold",
-  },
+  // btnContainer: {
+  //   flexDirection: "row",
+  //   justifyContent: "center",
+  // },
+  // btnStart: {
+  //   width: 325,
+  //   height: 80,
+  //   alignContent: "center",
+  //   justifyContent: "center",
+  //   borderRadius: 30,
+  //   backgroundColor: "#C8C23C",
+  //   marginTop: 230,
+  // },
+  // textStart: {
+  //   color: "white",
+  //   fontSize: 20,
+  //   fontWeight: "700",
+  //   textAlign: "center",
+  //   fontFamily: "SansCasualBold",
+  // },
 });

@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import ButtonBot from "../buttons/ButtonBot";
 import BackIcon from "../buttons/BackIcon";
 
-const SignInScreen = () => {
+const SignInScreen = ({ navigation }) => {
   const [viewPassword, setViewPassword] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
 
@@ -35,7 +35,9 @@ const SignInScreen = () => {
   }
   return (
     <View style={styles.container}>
-      <BackIcon/>
+      <View style={{ marginLeft: 20 }}>
+        <BackIcon navigation={() => navigation.goBack()} />
+      </View>
       <View style={styles.header}>
         <Text style={styles.headerText}>Đăng Ký</Text>
         <View style={styles.boxHelp}>
@@ -186,7 +188,7 @@ const styles = StyleSheet.create({
     borderColor: "#b2b3ad",
     padding: 5,
     marginHorizontal: 30,
-    marginVertical: 10
+    marginVertical: 10,
   },
   inputField: {
     padding: 14,
