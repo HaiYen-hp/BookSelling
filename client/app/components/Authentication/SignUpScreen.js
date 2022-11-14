@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
 
 import ButtonBot from "../buttons/ButtonBot";
@@ -15,7 +16,14 @@ import ButtonBot from "../buttons/ButtonBot";
 const SignUpScreen = () => {
   const [viewPassword, setViewPassword] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
-
+ const [loaded] = useFonts({
+    SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
+    SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
+    SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
+  });
+  if (!loaded) {
+    return <AppLoading />;
+  } 
   const handlePasswordVisibility = () => {
     if (rightIcon === "eye") {
       setRightIcon("eye-off");
@@ -68,7 +76,10 @@ const SignUpScreen = () => {
       </View>
       <View style={styles.footer}>
         <View style={styles.botNote}>
-          <Text> Chưa tạo tài khoản? </Text>
+          <Text style={{ fontFamily: "SansCasual" }}>
+            {" "}
+            Chưa tạo tài khoản?{" "}
+          </Text>
           <Pressable>
             <Text style={styles.forgetPasswordText}>Đăng Ký Ngay</Text>
           </Pressable>
@@ -98,6 +109,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 30,
     lineHeight: 36,
+    fontFamily: "SansCasualBold",
   },
   boxHelp: {
     flexDirection: "row",
@@ -109,6 +121,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "400",
     lineHeight: 18,
+    fontFamily: "SansCasual",
   },
   helpLink: {
     color: "#CAC659",
@@ -122,6 +135,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderWidth: 1,
     borderColor: "#F0F0F0",
+    fontFamily: "SansCasualMedium",
   },
   footer: {
     flex: 1,
@@ -141,6 +155,7 @@ const styles = StyleSheet.create({
   },
   forgetPasswordText: {
     color: "#3678DB",
+    fontFamily: "SansCasual",
   },
   botNoteText: {
     fontWeight: "400",
@@ -148,8 +163,6 @@ const styles = StyleSheet.create({
     lineHeight: 16,
   },
   inputContainer: {
-    // backgroundColor: 'red',
-    // width: '100%',
     borderRadius: 30,
     flexDirection: "row",
     alignItems: "center",
@@ -162,6 +175,6 @@ const styles = StyleSheet.create({
     padding: 14,
     fontSize: 14,
     width: "90%",
-    // backgroundColor: 'pink'
+    fontFamily: "SansCasualMedium",
   },
 });
