@@ -25,7 +25,7 @@ namespace APIBookSaling.Utils
 
         public static string GetCurrentUsername(IHttpContextAccessor httpContextAccessor)
         {
-            var usr = httpContextAccessor.HttpContext.User.FindFirst(APIBookSaling.ClaimTypes.Username);
+            var usr = httpContextAccessor.HttpContext?.User.FindFirst(APIBookSaling.ClaimTypes.Username);
             return usr != null ? usr.Value : "";
         }
     }
