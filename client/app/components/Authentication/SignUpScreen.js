@@ -12,8 +12,13 @@ import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
 import ButtonBot from "../buttons/ButtonBot";
 import BackIcon from "../buttons/BackIcon";
+// import { api_login } from "../helper/Api";
+import { api_login } from "../../helper/Api";
+
 
 const SignUpScreen = ({ navigation }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [viewPassword, setViewPassword] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
   const [loaded] = useFonts({
@@ -31,6 +36,31 @@ const SignUpScreen = ({ navigation }) => {
       setRightIcon("eye");
     }
     setViewPassword(!viewPassword);
+  };
+
+  const validateLogin = () => {
+    console.log('username', username);
+    console.log('password', password);
+    // login(username, password);
+    // const check = validLogin(username, password);
+    // if (check.errLength > 0) {
+    //   dispatch(getAlert(check.errMsg));
+    //   setTimeout(() => {
+    //     dispatch(getAlert({}));
+    //   }, 2000);
+    // } else {
+    //   login(username, password);
+    // }
+  };
+
+  const login = (username, password) => {
+    const data = { username, password };
+    api_login( data, (res) => {
+      console.log('res', res);
+      // dispatch(actionSaveUser(res.userData));
+      // dispatch(actionSaveToken(res.token));
+      // navigate("UiTab", { screen: "Classes" });
+    });
   };
 
   return (
@@ -76,7 +106,12 @@ const SignUpScreen = ({ navigation }) => {
           </Pressable>
         </View>
       </View>
-      <ButtonBot text="ĐĂNG NHẬP"></ButtonBot>
+      {/* <ButtonBot text="ĐĂNG NHẬP"></ButtonBot> */}
+      <Pressable onPress={validateLogin}>
+        <View style={styles.btnStart}>
+          <Text style={styles.textStart}>ĐĂNG NHẬP</Text>
+        </View>
+      </Pressable>
 
       <View style={styles.footer}>
         <View style={styles.botNote}>
@@ -181,5 +216,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     width: "90%",
     fontFamily: "SansCasualMedium",
+  },
+  btnStart: {
+    margin: 8,
+    padding: 22,
+    borderRadius: 30,
+    backgroundColor: "#C8C23C",
+    opacity: 0.81,
+    marginBottom: 50,
+    marginHorizontal: 30
+  },
+  textStart: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    fontFamily: "SansCasualBold",
+    textAlign: "center",
+    lineHeight: 30,
   },
 });

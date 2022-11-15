@@ -12,8 +12,72 @@ import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
 import ButtonBot from "../buttons/ButtonBot";
 import BackIcon from "../buttons/BackIcon";
+import axios from "axios";
+import { validRegister } from "../../helper/valid";
+import { api_register } from "../../helper/Api";
+// import { useDispatch, useSelector } from "react-redux";
 
 const SignInScreen = ({ navigation }) => {
+  // const { alert } = useSelector((state) => state);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cfpassword, setCfpassword] = useState("");
+  const userData = { username, email, password, cfpassword };
+  // const dispatch = useDispatch();
+  const resetState = () => {
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setCfpassword("");
+  };
+
+  const validateRegister = () => {
+    const check = validRegister(userData);
+    console.log("UserData: ", userData);
+    register(userData);
+
+    // if (check.errLength > 0) {
+    //   // dispatch(getAlert(check.errMsg));
+    //   setTimeout(() => {
+    //     dispatch(getAlert({}));
+    //   }, 2000);
+    // } else {
+    //   console.log('vao day');
+    //   // register(userData);
+    // }
+  };
+
+  const register = (data) => {
+    api_register( data, (res) => {
+      resetState();
+      // dispatch(actionChangePopupNoti("Đăng ký thành công, chào mừng bạn!"));
+
+      setTimeout(() => {
+        // dispatch(actionChangePopupNoti(""));
+        navigate("Login");
+      }, 1000);
+    });
+  };
+
+  // const login = (username, password) => {
+  //   console.log('vao api login');
+  //   username = "string1";
+  //   password = "string1";
+  //   let config = {
+  //     headers: { "Content-Type": "application/json" },
+  //   };
+  //   const data = { username, password };
+  //   // const res = axios.post(
+  //   //   "http://192.168.1.13:45455/api/User/login", data, config
+  //   // ).then(
+  //   //   res => {
+  //   //     console.log(res.data);
+  //   //   }
+  //   // );
+
+  // };
+
   const [viewPassword, setViewPassword] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
 
@@ -50,14 +114,34 @@ const SignInScreen = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.content}>
-        <TextInput style={styles.input} placeholder="Họ Và Tên"></TextInput>
-        <TextInput style={styles.input} placeholder="Nhập Email"></TextInput>
+        <TextInput 
+          style={styles.input} 
+          placeholder="Tên Tài Khoản"
+          value={username}
+          onChangeText={(value) => {
+            setUsername(value);
+          }}
+        >
+        </TextInput>
+        <TextInput 
+          style={styles.input} 
+          placeholder="Nhập Email"
+          value={email}
+          onChangeText={(value) => {
+            setEmail(value);
+          }}
+          >
+          </TextInput>
 
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.inputField]}
             secureTextEntry={viewPassword}
             placeholder="Nhập Mật Khẩu"
+            value={password}
+            onChangeText={(value) => {
+              setPassword(value);
+            }}
           ></TextInput>
           <TouchableOpacity
             onPress={() => {
@@ -72,6 +156,10 @@ const SignInScreen = ({ navigation }) => {
             style={styles.inputField}
             secureTextEntry={viewPassword}
             placeholder="Nhập Lại Mật Khẩu"
+            value={cfpassword}
+            onChangeText={(value) => {
+              setCfpassword(value);
+            }}
           ></TextInput>
           <TouchableOpacity
             onPress={() => {
@@ -88,7 +176,12 @@ const SignInScreen = ({ navigation }) => {
           </Pressable>
         </View>
       </View>
-      <ButtonBot text="ĐĂNG KÝ"></ButtonBot>
+      {/* <ButtonBot text="ĐĂNG KÝ"></ButtonBot> */}
+      <Pressable onPress={validateRegister}>
+        <View style={styles.btnStart}>
+          <Text style={styles.textStart}>ĐĂNG KÝ</Text>
+        </View>
+      </Pressable>
 
       <View style={styles.footer}>
         <View style={styles.botNote}>
@@ -195,5 +288,21 @@ const styles = StyleSheet.create({
     fontSize: 14,
     width: "90%",
     fontFamily: "SansCasualMedium",
+  },
+  btnStart: {
+    margin: 8,
+    padding: 22,
+    borderRadius: 30,
+    backgroundColor: "#C8C23C",
+    opacity: 0.81,
+    marginBottom: 50,
+    marginHorizontal: 30
+  },
+  textStart: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    fontFamily: "SansCasualBold",
+    textAlign: "center",
+    lineHeight: 30,
   },
 });
