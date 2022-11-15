@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIBookSaling.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221114140807_booksaling")]
-    partial class booksaling
+    [Migration("20221114145022_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

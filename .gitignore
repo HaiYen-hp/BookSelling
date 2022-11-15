@@ -1,5 +1,8 @@
 client/node_modules/
 client/.expo/
+client/.expo-shared/
+client/package-lock.json
+client/package.json
 
 dist/
 npm-debug.*
@@ -16,6 +19,8 @@ APIBookSaling/.vs
 APIBookSaling/APIBookSaling/bin
 APIBookSaling/APIBookSaling/obj
 APIBookSaling/APIBookSaling/packages
+APIBookSaling/APIBookSaling/appsettings.json
 
 # macOS
 .DS_Store
+
