@@ -1,6 +1,8 @@
 import { StyleSheet, View } from "react-native";
 import Navigation from "./app/components/NavigationScreen/Navigation";
-import { Provider as PaperProvider } from "react-native-paper";
+import { Provider } from "react-redux";
+import * as React from "react";
+import store from "./app/redux/store";
 
 import HomePage from "./app/screens/HomePage";
 
@@ -8,7 +10,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* <HomePage/> */}
-      <Navigation />
+      <Provider store={store}>
+      <Navigation/>
+      </Provider>
     </View>
   );
 }

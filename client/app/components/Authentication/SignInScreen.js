@@ -15,16 +15,18 @@ import BackIcon from "../buttons/BackIcon";
 import axios from "axios";
 import { validRegister } from "../../helper/valid";
 import { api_register } from "../../helper/Api";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const SignInScreen = ({ navigation }) => {
   // const { alert } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cfpassword, setCfpassword] = useState("");
   const userData = { username, email, password, cfpassword };
-  // const dispatch = useDispatch();
   const resetState = () => {
     setUsername("");
     setEmail("");
@@ -33,7 +35,7 @@ const SignInScreen = ({ navigation }) => {
   };
 
   const validateRegister = () => {
-    const check = validRegister(userData);
+    // const check = validRegister(userData);
     console.log("UserData: ", userData);
     register(userData);
 
@@ -52,31 +54,13 @@ const SignInScreen = ({ navigation }) => {
     api_register( data, (res) => {
       resetState();
       // dispatch(actionChangePopupNoti("Đăng ký thành công, chào mừng bạn!"));
-
-      setTimeout(() => {
-        // dispatch(actionChangePopupNoti(""));
-        navigate("Login");
-      }, 1000);
+      navigation.navigate("Sign Up Screen")
+      // setTimeout(() => {
+      //   // dispatch(actionChangePopupNoti(""));
+      //   navigate("Login");
+      // }, 1000);
     });
   };
-
-  // const login = (username, password) => {
-  //   console.log('vao api login');
-  //   username = "string1";
-  //   password = "string1";
-  //   let config = {
-  //     headers: { "Content-Type": "application/json" },
-  //   };
-  //   const data = { username, password };
-  //   // const res = axios.post(
-  //   //   "http://192.168.1.13:45455/api/User/login", data, config
-  //   // ).then(
-  //   //   res => {
-  //   //     console.log(res.data);
-  //   //   }
-  //   // );
-
-  // };
 
   const [viewPassword, setViewPassword] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
