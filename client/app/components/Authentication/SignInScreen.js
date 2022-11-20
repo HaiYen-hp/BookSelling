@@ -51,14 +51,14 @@ const SignInScreen = ({ navigation }) => {
   };
 
   const register = (data) => {
-    api_register( data, (res) => {
+    api_register(dispatch, data, (res) => {
       resetState();
-      // dispatch(actionChangePopupNoti("Đăng ký thành công, chào mừng bạn!"));
+      dispatch(actionChangePopupNoti("Đăng ký thành công, chào mừng bạn!"));
       navigation.navigate("Sign Up Screen")
-      // setTimeout(() => {
-      //   // dispatch(actionChangePopupNoti(""));
-      //   navigate("Login");
-      // }, 1000);
+      setTimeout(() => {
+        dispatch(actionChangePopupNoti(""));
+        navigate("Login");
+      }, 1000);
     });
   };
 

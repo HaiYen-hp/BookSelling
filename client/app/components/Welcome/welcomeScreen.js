@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 const WelcomeScreen = ({ navigation }) => {
   const [loaded] = useFonts({
+    // SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
     SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
     MonoCasualExtraBlack: require("../../../assets/fonts/RecursiveMonoCslSt-XBlk.ttf"),
   });

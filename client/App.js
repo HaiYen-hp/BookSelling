@@ -5,14 +5,16 @@ import * as React from "react";
 import store from "./app/redux/store";
 
 import HomePage from "./app/screens/HomePage";
+import AccountInfo from "./app/components/AccountInfo/AccountInfo";
 
 export default function App() {
   return (
     <View style={styles.container}>
+      <AccountInfo/>
       {/* <HomePage/> */}
-      <Provider store={store}>
+      {/* <Provider store={store}>
       <Navigation/>
-      </Provider>
+      </Provider> */}
     </View>
   );
 }
