@@ -4,15 +4,12 @@ import { Provider } from "react-redux";
 import * as React from "react";
 import store from "./app/redux/store";
 
-import Setting from "./app/components/AccountInfo/Setting";
-
 export default function App() {
   return (
     <View style={styles.container}>
-      <Setting/>      
-      {/* <Provider store={store}>
+      <Provider store={store}>
       <Navigation/>
-      </Provider> */}
+      </Provider>
     </View>
   );
 }
