@@ -28,7 +28,9 @@ const TabContent = ({ onPress, lisFooterContent }) => {
       <Pressable style={styles.item} onPress={onPress}>
         <Image style={styles.image} source={item.image} />
         <View style={styles.body}>
-          <Text style={styles.titleItem}>{item.name}</Text>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.titleItem}>{item.name}</Text>
+          </View>
           {/* <View style={styles.starCon}>
             {Array(5)
               .fill(0)
@@ -62,7 +64,7 @@ const TabContent = ({ onPress, lisFooterContent }) => {
       <FlatList
         renderItem={renderItem}
         data={ITEMS}
-        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
         horizontal
         // scrollEnabled={false}
         ListFooterComponent={lisFooterContent}
@@ -87,6 +89,8 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   titleItem: {
+    flex: 1,
+    flexWrap: "wrap",
     fontSize: 16,
     fontFamily: "SansCasualMedium",
   },
@@ -123,7 +127,7 @@ const styles = StyleSheet.create({
   },
   footerItemText: {
     fontSize: 14,
-    color: "gray",
+    color: "#000000",
     fontFamily: "SansCasual",
   },
   footerItemTextDis: {

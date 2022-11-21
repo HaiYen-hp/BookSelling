@@ -18,6 +18,7 @@ import TopIconHomePage from "../components/cards/TopIconHomePage";
 import ListTab from "../components/Tabs/ListTab";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import ListProduct from "../components/Product/ListProduct";
 // const { width, height } = Dimensions.get("screen");
 // const title = ["Phổ biến", "Bán chạy", "Hàng Mới"];
 // const tabs = Object.keys(ITEMS, title).map((i) => ({
@@ -137,7 +138,11 @@ function HomePage() {
             <AntDesign name="right" size={20} color="black" />
           </View>
         </View>
-        <View></View>
+        <ListProduct />
+        <View style={styles.buttonAllContanier}>
+          <Text style={{ fontFamily: "SansCasual" }}>Xem Thêm</Text>
+          <AntDesign name="right" size={20} color="black" />
+        </View>
       </ScrollView>
     </SafeAreaView>
     // {/* <View style={styles.tabView}>
@@ -245,6 +250,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   buttonAllContanier: {
+    justifyContent: "center",
     flexDirection: "row",
     marginEnd: 25,
     alignItems: "center",

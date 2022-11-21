@@ -15,7 +15,7 @@ const ITEMS = [
   },
   {
     id: 3,
-    name: "Tâm lý học",
+    name: "Tâm lý học hành vi",
     price: "114.000 đ",
     discount: "-24%",
     image: require("../../assets/images/tamlyhoc.png"),
