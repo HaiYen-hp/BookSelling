@@ -23,7 +23,7 @@ const ChangeMode = ({ navigation }) => {
     <View styles={styles.container}>
       <ImageBackground
         style={styles.img}
-        source={require("../../../assets/images/alex-lvrs-ZRTd9_Fk6rc-unsplash.jpg")}
+        source={require("../../../assets/images/alex-lvrs-ZRTd9_Fk6rc-unsplash.png")}
       >
         <Text style={styles.textHeader}> Chọn Chế Độ </Text>
         <View style={styles.modeContainerSun}>
