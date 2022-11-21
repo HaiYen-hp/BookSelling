@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Text,
   View,
-  SelectionList,
 } from "react-native";
 import ITEMS from "../../screens/ITEMS";
 import themes from "../../../config/themes";
@@ -17,9 +16,9 @@ const w = Dimensions.get("screen").width;
 
 const TabContent = ({ onPress, lisFooterContent }) => {
   const [loaded] = useFonts({
-    SansCasual: require("../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
-    SansCasualMedium: require("../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
-    SansCasualBold: require("../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
+    SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
+    SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
+    SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
   });
   if (!loaded) {
     return <AppLoading />;
@@ -60,7 +59,7 @@ const TabContent = ({ onPress, lisFooterContent }) => {
   };
   return (
     <View style={styles.itemScroll}>
-      <SelectionList
+      <FlatList
         renderItem={renderItem}
         data={ITEMS}
         showsVerticalScrollIndicator={false}

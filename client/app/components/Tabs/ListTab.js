@@ -24,9 +24,9 @@ const ListTab = ({ onPress, lisFooter }) => {
     setSelected(index);
   };
   const [loaded] = useFonts({
-    SansCasual: require("../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
-    SansCasualMedium: require("../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
-    SansCasualBold: require("../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
+    SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
+    SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
+    SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
   });
   if (!loaded) {
     return <AppLoading />;
