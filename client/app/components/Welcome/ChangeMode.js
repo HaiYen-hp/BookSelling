@@ -23,7 +23,7 @@ const ChangeMode = ({ navigation }) => {
     <View styles={styles.container}>
       <ImageBackground
         style={styles.img}
-        source={require("../../../assets/images/alex-lvrs-ZRTd9_Fk6rc-unsplash.jpg")}
+        source={require("../../../assets/images/alex-lvrs-ZRTd9_Fk6rc-unsplash.png")}
       >
         <Text style={styles.textHeader}> Chọn Chế Độ </Text>
         <View style={styles.modeContainerSun}>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     marginRight: 70,
     marginTop: 65,
-    marginBottom: 170,
+    marginBottom: 180,
   },
   iconContainer: {
     flexDirection: "column",
