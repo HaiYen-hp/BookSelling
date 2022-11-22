@@ -63,10 +63,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-  img: {
-    width: 400,
-    height: 850,
-  },
+  // img: {
+  //   width: 400,
+  //   height: 850,
+  // },
   textHeader: {
     color: "#FFFFFF",
     fontWeight: "600",

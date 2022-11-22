@@ -1,7 +1,6 @@
 import axios from "axios";
 import { actionChangePopupNoti, actionShowLoading } from "../redux/actionCreator";
 import store from "../redux/store";
-
 import { API } from "../Config";
 
 export const URL_API = {
@@ -10,32 +9,38 @@ export const URL_API = {
     UPDATE: "User/update-user"
 };
 
-export const api_login = (data, callback, callback_error) => {
-    // if (dispatch) dispatch(actionShowLoading(true));
-    // let token = data.account_token || store.getState().token || "";
+export const api_login = (dispatch, data, callback, callback_error) => {
+    if (dispatch) dispatch(actionShowLoading(true));
+    let token = data.account_token || store.getState().token || "";
     let config = {
         headers: {"Content-Type": "application/json"},
     };
-    // if (token) {
-    //     config = {
-    //         headers: { "Content-Type": "application/json", Authorization: token },
-    //     }
-    // }
+    if (token) {
+        config = {
+            headers: { "Content-Type": "application/json", Authorization: token },
+        }
+    }
     axios
         .post(API + URL_API.LOGIN, data, config)
         then((response) => {
-            // if (dispatch) dispatch(actionShowLoading(false));
-
+            if (dispatch) dispatch(actionShowLoading(false));
+              console.log(response.data);
             if (response.status === 200) {
               callback(response.data);
             }
+
+            if (response.data.code != 200) {
+              console.log(response.data.message);
+              dispatch(actionChangePopupNoti(response.data.message));
+              //callback_error();
+            }
         })
         .catch((response_error) => {
-            // if (dispatch) dispatch(actionShowLoading(false));
+            if (dispatch) dispatch(actionShowLoading(false));
             console.log(response_error);
             if (response_error.response)
               if (response_error.response && response_error.response.data) {
-                // dispatch(actionChangePopupNoti(response_error.response.data.message));
+                dispatch(actionChangePopupNoti(response_error.response.data.message));
                 callback_error();
               } else {
                 console.log(`error [POST] : ${response_error}`);
@@ -44,7 +49,7 @@ export const api_login = (data, callback, callback_error) => {
 };
 
 export const api_register = (data, callback, callback_error) => {
-    // if (dispatch) dispatch(actionShowLoading(true));
+    if (dispatch) dispatch(actionShowLoading(true));
     let config = {
         headers: { "Content-Type": "application/json" },
     };
@@ -52,21 +57,21 @@ export const api_register = (data, callback, callback_error) => {
     axios
         .post(API + URL_API.REGISTER, data, config)
         then((response) => {
-            // if (dispatch) dispatch(actionShowLoading(false))
-
+            if (dispatch) dispatch(actionShowLoading(false))
+            console.log(response.data);
             if (response.status === 200) {
                 callback(response.data);
             }
         })
         .catch((response_error) => {
-            // if (dispatch) dispatch(actionShowLoading(false));
+            if (dispatch) dispatch(actionShowLoading(false));
             console.log(response_error);
             if (response_error.response)
-            if (response_error.response && response_error.response.data) {
-            //   dispatch(actionChangePopupNoti(response_error.response.data.message));
-              callback_error();
-            } else {
-              console.log(`error [POST] : ${response_error}`);
-            }
+              if (response_error.response && response_error.response.data) {
+                dispatch(actionChangePopupNoti(response_error.response.data.message));
+                callback_error();
+              } else {
+                console.log(`error [POST] : ${response_error}`);
+              }
         });
 }
