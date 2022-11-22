@@ -187,9 +187,9 @@ const SignInScreen = ({ navigation }) => {
         <View style={styles.botNote}>
           <Text style={{ fontFamily: "SansCasual" }}>
             {" "}
-            Chưa tạo tài khoản?{" "}
+            Đã có tài khoản rồi?{" "}
           </Text>
-          <Pressable>
+          <Pressable onPress={() => navigation.navigate("Sign Up Screen")}>
             <Text style={styles.forgetPasswordText}>Đăng Nhập</Text>
           </Pressable>
         </View>
