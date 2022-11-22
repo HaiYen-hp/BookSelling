@@ -8,7 +8,8 @@ import DeitailPage from "./app/components/DetailPage/DetailPage"
 export default function App() {
   return (
     <View style={styles.container}>
-      <HomePage/>
+      {/* <HomePage/> */}
+      <DeitailPage/>
       {/* <Navigation /> */}
     </View>
   );

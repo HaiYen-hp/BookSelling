@@ -4,7 +4,10 @@ import TopIconAllPage from "../cards/TopIconAllPage";
 import AppLoading from "expo-app-loading";
 import { AntDesign } from '@expo/vector-icons'; 
 import { SimpleLineIcons } from '@expo/vector-icons'; 
-import { MaterialIcons } from '@expo/vector-icons'; 
+import { MaterialIcons } from '@expo/vector-icons';
+import ListTabDetail from "../Tabs/ListTabDetail";
+import ListProduct from "../Product/ListProduct";
+import ListImageRow from "../Tabs/ListImageRow";
 
 
 function DetailPage() {
@@ -34,13 +37,13 @@ function DetailPage() {
                         </View>
 
                         <View style = {styles.Imagetest}>
-                            <AntDesign name="staro" size={24}/>
+                            <AntDesign name="staro" size={24} backgroundColor='yellow' color='yellow'/>
                             <AntDesign name="staro" size={24}/>
                             <AntDesign name="staro" size={24}/>
                             <AntDesign name="staro" size={24}/>
                             <AntDesign name="staro" size={24}/>
                             <Text style ={{fontSize:15, marginLeft:20}}>(100 lượt đánh giá) |</Text>
-                            <Text style ={{fontSize:15, }}> Đã bán 2000+</Text>
+                            <Text style ={{fontSize:15}}> Đã bán 2000+</Text>
                         </View>
 
                         <View style = {{flexDirection: 'row'}}>
@@ -55,14 +58,10 @@ function DetailPage() {
                             <Text style = {{paddingLeft: 10}}>Share</Text>
                         </View>
 
-                        <View style = {{flexDirection: 'row', marginTop: 10}}>
-                            <Text style = {{fontSize: 25}}>Chi tiết       </Text>
-                            <Text style = {{fontSize: 25}}>Mô tả          </Text>
-                            <Text style = {{fontSize: 25}}>Đánh giá</Text>
-                        </View>
+                        <ListTabDetail />
 
                         <View style= {{marginTop: 20}}>
-                            <Text style = {{fontSize: 20}}>Danh mục: ...>Sách lịch sử>Thế giới</Text>
+                            <Text style = {{fontSize: 20,}}>Danh mục: ...>Sách lịch sử>Thế giới</Text>
                             <Text style = {{fontSize: 20}}>Công ty sản xuất: Alpha Books</Text>
                             <Text style = {{fontSize: 20}}>Ngày xuất bản: 2021-07-14</Text>
                             <Text style = {{fontSize: 20}}>Dịch giả: Dương Minh Tú</Text>
@@ -86,8 +85,17 @@ function DetailPage() {
                 </View>
 
                 <View style = {{flexDirection: 'row',justifyContent: 'space-between',marginTop:20,marginLeft:'5%', marginRight:'5%'}}>
-                    <Text style={{fontSize:25}}>Sản phẩm tương tự</Text>
+                    <Text style={{fontSize:25,fontFamily: "SansCasualBold"}}>Sản phẩm tương tự</Text>
                     <MaterialIcons name="navigate-next" size={24} color="black" />
+                </View>
+                <ListProduct />
+                <View style={styles.buttonAllContanier}>
+                    <Text style={{ fontFamily: "SansCasual" , fontSize:20}}>Xem Thêm</Text>
+                    <AntDesign name="down" size={24} color="black" />
+                </View>
+                <View style = {{marginTop: 30}}>
+                    <Text style = {{fontSize: 20,fontWeight: "bold",fontFamily: "SansCasualBold"}}>Sản Phẩm Đã Xem</Text>
+                    <ListImageRow/>
                 </View>
             </ScrollView>
         </View>
@@ -120,5 +128,12 @@ const styles = StyleSheet.create({
     {
         width:'90%',
         fontSize: 34,
-    }
+        fontFamily: "SansCasualBold"
+    },
+    buttonAllContanier: {
+        justifyContent: "center",
+        flexDirection: "row",
+        marginEnd: 25,
+        alignItems: "center",
+    },
 });

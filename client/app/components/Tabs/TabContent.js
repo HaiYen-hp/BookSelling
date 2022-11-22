@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   },
   buttonHeart: {
     position: "absolute",
-    right: 15,
+    right: 5,
     top: 1,
   },
   itemScroll: {
