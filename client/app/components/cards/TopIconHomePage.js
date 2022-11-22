@@ -19,7 +19,7 @@ export default TopIconHomePage;
 
 const styles = StyleSheet.create({
     boxIcon: {
-        marginTop: 40,
+        marginTop: 20,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginHorizontal: 30,

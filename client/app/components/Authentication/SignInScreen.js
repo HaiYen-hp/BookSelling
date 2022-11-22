@@ -35,9 +35,10 @@ const SignInScreen = ({ navigation }) => {
   };
 
   const validateRegister = () => {
+    navigation.navigate("HomePage");
     // const check = validRegister(userData);
-    console.log("UserData: ", userData);
-    register(userData);
+    // console.log("UserData: ", userData);
+    // register(userData);
 
     // if (check.errLength > 0) {
     //   // dispatch(getAlert(check.errMsg));
@@ -83,7 +84,7 @@ const SignInScreen = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
-      <View style={{ marginLeft: 20 }}>
+      <View style={{ marginLeft: 20, marginTop:30 }}>
         <BackIcon navigation={() => navigation.goBack()} />
       </View>
       <View style={styles.header}>
