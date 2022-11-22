@@ -31,8 +31,6 @@ function HomePage() {
                     <Image source={require("../../assets/icons/SanPhamNoiBat.png")}></Image>
                 </View>
             </View>
-
-            
         </View>
     );
 }
