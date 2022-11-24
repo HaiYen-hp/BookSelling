@@ -8,21 +8,18 @@ const ITEMLISTS = [
     numberOfReview: "100 lượt đánh giá",
     numberOfSale: "Đã bán 1000",
     image: require("../../assets/images/chrome-capture-2022-10-21.png"),
-    dataDetail: {
-      id: 1,
-      category: "Sách lịch sử",
-      categoryDetail: "Lịch sử thế giới",
-      productCompany: "Alpha Books",
-      releaseDate: "2021-07-14",
-      translator: "Nguyễn Thùy Chung",
-      coverType: "Bìa mềm",
-      numberOfPage: 580,
-      editionCompany: "Nhà xuất bản thế giới",
-      decription: {
-        title: "SAPIENS - LƯỢC SỬ LOÀI NGƯỜI",
-        content:
-          "Cuốn sách Sapiens - Lược sử loài người dành cho: Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người. Những người ngưỡng mộ tác giả của cuốn sách là Yuvai Noah Harari.Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, đủ mọi lĩnh vực khoa học",
-      },
+    category: "Sách lịch sử",
+    categoryDetail: "Lịch sử thế giới",
+    productCompany: "Alpha Books",
+    releaseDate: "2021-07-14",
+    translator: "Nguyễn Thùy Chung",
+    coverType: "Bìa mềm",
+    numberOfPage: 580,
+    editionCompany: "Nhà xuất bản thế giới",
+    decription: {
+      title: "SAPIENS - LƯỢC SỬ LOÀI NGƯỜI",
+      content:
+        "Cuốn sách Sapiens - Lược sử loài người dành cho: Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người. Những người ngưỡng mộ tác giả của cuốn sách là Yuvai Noah Harari.Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, đủ mọi lĩnh vực khoa học",
     },
   },
   {
@@ -34,21 +31,18 @@ const ITEMLISTS = [
     numberOfReview: "100 lượt đánh giá",
     numberOfSale: "Đã bán 1000",
     image: require("../../assets/images/1thoangonhangian.png"),
-    dataDetail: {
-      id: 1,
-      category: "Sách lịch sử",
-      categoryDetail: "Lịch sử thế giới",
-      productCompany: "Alpha Books",
-      releaseDate: "2021-07-14",
-      translator: "Nguyễn Thùy Chung",
-      coverType: "Bìa mềm",
-      numberOfPage: 580,
-      editionCompany: "Nhà xuất bản thế giới",
-      decription: {
-        title: "SAPIENS - LƯỢC SỬ LOÀI NGƯỜI",
-        content:
-          "Cuốn sách Sapiens - Lược sử loài người dành cho: Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người. Những người ngưỡng mộ tác giả của cuốn sách là Yuvai Noah Harari.Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, đủ mọi lĩnh vực khoa học",
-      },
+    category: "Sách ls",
+    categoryDetail: "Lịch sử tg",
+    productCompany: "Books Store",
+    releaseDate: "2021-07-14",
+    translator: "Nguyễn Thùy Chung",
+    coverType: "Bìa mềm",
+    numberOfPage: 580,
+    editionCompany: "Nhà xuất bản thế giới",
+    decription: {
+      title: "SAPIENS - LƯỢC SỬ LOÀI NGƯỜI",
+      content:
+        "Cuốn sách Sapiens - Lược sử loài người dành cho: Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người. Những người ngưỡng mộ tác giả của cuốn sách là Yuvai Noah Harari.Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, đủ mọi lĩnh vực khoa học",
     },
   },
   {
@@ -60,21 +54,18 @@ const ITEMLISTS = [
     numberOfReview: "100 lượt đánh giá",
     numberOfSale: "Đã bán 1000",
     image: require("../../assets/images/anmangtrensongnile.png"),
-    dataDetail: {
-      id: 1,
-      category: "Sách lịch sử",
-      categoryDetail: "Lịch sử thế giới",
-      productCompany: "Alpha Books",
-      releaseDate: "2021-07-14",
-      translator: "Nguyễn Thùy Chung",
-      coverType: "Bìa mềm",
-      numberOfPage: 580,
-      editionCompany: "Nhà xuất bản thế giới",
-      decription: {
-        title: "SAPIENS - LƯỢC SỬ LOÀI NGƯỜI",
-        content:
-          "Cuốn sách Sapiens - Lược sử loài người dành cho: Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người. Những người ngưỡng mộ tác giả của cuốn sách là Yuvai Noah Harari.Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, đủ mọi lĩnh vực khoa học",
-      },
+    category: "Sách lịch sử",
+    categoryDetail: "Lịch sử thế giới",
+    productCompany: "Alpha Books",
+    releaseDate: "2021-07-14",
+    translator: "Nguyễn Thùy Chung",
+    coverType: "Bìa mềm",
+    numberOfPage: 580,
+    editionCompany: "Nhà xuất bản thế giới",
+    decription: {
+      title: "SAPIENS - LƯỢC SỬ LOÀI NGƯỜI",
+      content:
+        "Cuốn sách Sapiens - Lược sử loài người dành cho: Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người. Những người ngưỡng mộ tác giả của cuốn sách là Yuvai Noah Harari.Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, đủ mọi lĩnh vực khoa học",
     },
   },
   {
@@ -86,23 +77,21 @@ const ITEMLISTS = [
     numberOfReview: "100 lượt đánh giá",
     numberOfSale: "Đã bán 1000",
     image: require("../../assets/images/aidagiethoangtube.png"),
-    dataDetail: {
-      id: 1,
-      category: "Sách lịch sử",
-      categoryDetail: "Lịch sử thế giới",
-      productCompany: "Alpha Books",
-      releaseDate: "2021-07-14",
-      translator: "Nguyễn Thùy Chung",
-      coverType: "Bìa mềm",
-      numberOfPage: 580,
-      editionCompany: "Nhà xuất bản thế giới",
-      decription: {
-        title: "SAPIENS - LƯỢC SỬ LOÀI NGƯỜI",
-        content:
-          "Cuốn sách Sapiens - Lược sử loài người dành cho: Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người. Những người ngưỡng mộ tác giả của cuốn sách là Yuvai Noah Harari.Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, đủ mọi lĩnh vực khoa học",
-      },
+    category: "Sách lịch sử",
+    categoryDetail: "Lịch sử thế giới",
+    productCompany: "Alpha Books",
+    releaseDate: "2021-07-14",
+    translator: "Nguyễn Thùy Chung",
+    coverType: "Bìa mềm",
+    numberOfPage: 580,
+    editionCompany: "Nhà xuất bản thế giới",
+    decription: {
+      title: "SAPIENS - LƯỢC SỬ LOÀI NGƯỜI",
+      content:
+        "Cuốn sách Sapiens - Lược sử loài người dành cho: Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người. Những người ngưỡng mộ tác giả của cuốn sách là Yuvai Noah Harari.Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, đủ mọi lĩnh vực khoa học",
     },
   },
+
   {
     id: 5,
     name: "Mã 612: Ai Đã Giết Hoàng Tử Bé",
@@ -112,21 +101,18 @@ const ITEMLISTS = [
     numberOfReview: "100 lượt đánh giá",
     numberOfSale: "Đã bán 1000",
     image: require("../../assets/images/aidagiethoangtube.png"),
-    dataDetail: {
-      id: 1,
-      category: "Sách lịch sử",
-      categoryDetail: "Lịch sử thế giới",
-      productCompany: "Alpha Books",
-      releaseDate: "2021-07-14",
-      translator: "Nguyễn Thùy Chung",
-      coverType: "Bìa mềm",
-      numberOfPage: 580,
-      editionCompany: "Nhà xuất bản thế giới",
-      decription: {
-        title: "SAPIENS - LƯỢC SỬ LOÀI NGƯỜI",
-        content:
-          "Cuốn sách Sapiens - Lược sử loài người dành cho: Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người. Những người ngưỡng mộ tác giả của cuốn sách là Yuvai Noah Harari.Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, đủ mọi lĩnh vực khoa học",
-      },
+    category: "Sách lịch sử",
+    categoryDetail: "Lịch sử thế giới",
+    productCompany: "Alpha Books",
+    releaseDate: "2021-07-14",
+    translator: "Nguyễn Thùy Chung",
+    coverType: "Bìa mềm",
+    numberOfPage: 580,
+    editionCompany: "Nhà xuất bản thế giới",
+    decription: {
+      title: "SAPIENS - LƯỢC SỬ LOÀI NGƯỜI",
+      content:
+        "Cuốn sách Sapiens - Lược sử loài người dành cho: Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người. Những người ngưỡng mộ tác giả của cuốn sách là Yuvai Noah Harari.Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, đủ mọi lĩnh vực khoa học",
     },
   },
 ];

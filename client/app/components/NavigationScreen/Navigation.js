@@ -17,7 +17,6 @@ import ListTab from "../Tabs/ListTab";
 import TabContent from "../Tabs/TabContent";
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
 function MyTabs() {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
@@ -49,25 +48,17 @@ const Navigation = () => {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="Loading" component={Loading} />
+        {/* <Stack.Screen name="Loading" component={Loading} />
         <Stack.Screen name="Welcome Screen" component={WelcomeScreen} />
         <Stack.Screen name="Change Mode" component={ChangeMode} />
         <Stack.Screen name="Selected Screen" component={SelectedScreen} />
         <Stack.Screen name="Sign Up Screen" component={SignUpScreen} />
         <Stack.Screen name="Sign In Screen" component={SignInScreen} />
-<<<<<<< HEAD
         <Stack.Screen name="HomePage" component={MyTabs} />
         <Stack.Screen name="Home" component={MyTabs} />
-        <Stack.Screen name="Profile" component={MyTabs} />
-=======
->>>>>>> 9e8de72e81f474f23f7edab50864c2343b4ed258
+        <Stack.Screen name="Profile" component={MyTabs} /> */}
         <Stack.Screen name="EventsList" component={EventsList} />
         <Stack.Screen name="EventsListDetails" component={EventsListDetails} />
-
-        <Stack.Screen name="HomePage" component={MyTabs} />
-        <Stack.Screen name="Home" component={MyTabs} />
-        <Stack.Screen name="Profile" component={MyTabs} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
