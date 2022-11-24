@@ -16,7 +16,7 @@ import AppLoading from "expo-app-loading";
 
 const w = Dimensions.get("screen").width;
 
-const ListTab = ({ onPress, lisFooter, tabs }) => {
+const ListTab = ({ onPress, lisFooter, tabs, data }) => {
   const [selected, setSelected] = useState(0);
 
   const onScroll = ({ nativeEvent }) => {
@@ -60,9 +60,13 @@ const ListTab = ({ onPress, lisFooter, tabs }) => {
         scrollEventThrottle={0}
         showsHorizontalScrollIndicator={false}
       >
-        <TabContent onPress={onPress} lisFooterContent={lisFooter} data={data}/>
-        <TabContent onPress={onPress} data={data}/>
-        <TabContent onPress={onPress} data={data}/>
+        <TabContent
+          onPress={onPress}
+          lisFooterContent={lisFooter}
+          data={data}
+        />
+        <TabContent onPress={onPress} data={data} />
+        <TabContent onPress={onPress} data={data} />
         {/* <TabContent
           onPress={onPress}
           lisFooter={

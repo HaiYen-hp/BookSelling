@@ -49,7 +49,7 @@ const Navigation = () => {
           headerShown: false,
         }}
       >
-        {/* <Stack.Screen name="Loading" component={Loading} />
+        <Stack.Screen name="Loading" component={Loading} />
         <Stack.Screen name="Welcome Screen" component={WelcomeScreen} />
         <Stack.Screen name="Change Mode" component={ChangeMode} />
         <Stack.Screen name="Selected Screen" component={SelectedScreen} />
@@ -57,7 +57,7 @@ const Navigation = () => {
         <Stack.Screen name="Sign In Screen" component={SignInScreen} />
         <Stack.Screen name="HomePage" component={MyTabs} />
         <Stack.Screen name="Home" component={MyTabs} />
-        <Stack.Screen name="Profile" component={MyTabs} /> */}
+        <Stack.Screen name="Profile" component={MyTabs} />
         <Stack.Screen name="EventsList" component={EventsList} />
         <Stack.Screen name="EventsListDetails" component={EventsListDetails} />
       </Stack.Navigator>
