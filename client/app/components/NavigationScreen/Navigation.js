@@ -55,11 +55,19 @@ const Navigation = () => {
         <Stack.Screen name="Selected Screen" component={SelectedScreen} />
         <Stack.Screen name="Sign Up Screen" component={SignUpScreen} />
         <Stack.Screen name="Sign In Screen" component={SignInScreen} />
+<<<<<<< HEAD
         <Stack.Screen name="HomePage" component={MyTabs} />
         <Stack.Screen name="Home" component={MyTabs} />
         <Stack.Screen name="Profile" component={MyTabs} />
+=======
+>>>>>>> 9e8de72e81f474f23f7edab50864c2343b4ed258
         <Stack.Screen name="EventsList" component={EventsList} />
         <Stack.Screen name="EventsListDetails" component={EventsListDetails} />
+
+        <Stack.Screen name="HomePage" component={MyTabs} />
+        <Stack.Screen name="Home" component={MyTabs} />
+        <Stack.Screen name="Profile" component={MyTabs} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
