@@ -4,12 +4,13 @@ import {
   View,
   ImageBackground,
   Pressable,
+  Dimensions,
 } from "react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
 import ButtonBot from "../buttons/ButtonBot";
-
+const { width, height } = Dimensions.get("screen");
 const ChangeMode = ({ navigation }) => {
   const [loaded] = useFonts({
     SansCasualSemiBold: require("../../../assets/fonts/RecursiveSansCslSt-SemiBd.ttf"),
@@ -113,24 +114,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: "SansCasualMedium",
   },
-  // btnContainer: {
-  //   flexDirection: "row",
-  //   justifyContent: "center",
-  // },
-  // btnStart: {
-  //   width: 325,
-  //   height: 80,
-  //   alignContent: "center",
-  //   justifyContent: "center",
-  //   borderRadius: 30,
-  //   backgroundColor: "#C8C23C",
-  //   marginTop: 230,
-  // },
-  // textStart: {
-  //   color: "white",
-  //   fontSize: 20,
-  //   fontWeight: "700",
-  //   textAlign: "center",
-  //   fontFamily: "SansCasualBold",
-  // },
+  img: {
+    width: width,
+    height: height,
+  },
 });
