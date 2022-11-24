@@ -69,7 +69,7 @@ function HomePage() {
             ></Image>
           </View>
         </View>
-        <ListTab tabs={tabs} data={ITEMS}/>
+        {/* <ListTab tabs={tabs} data={ITEMS}/> */}
         <View style={styles.ideaContanier}>
           <Text style={{ fontFamily: "SansCasualBold", fontSize: 22 }}>
             GỢI Ý
