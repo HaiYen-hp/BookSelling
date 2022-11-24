@@ -15,7 +15,7 @@ const SelectedScreen = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
-      <View style={{ marginTop: 42 }}>
+      <View style={{ marginTop: 50 }}>
         <BackIcon navigation={() => navigation.goBack()} />
       </View>
       <View style={styles.iconTop}>

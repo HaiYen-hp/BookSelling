@@ -8,13 +8,12 @@ import {
   Text,
   View,
 } from "react-native";
-import ITEMS from "../../screens/ITEMS";
 import themes from "../../../config/themes";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 const w = Dimensions.get("screen").width;
 
-const TabContent = ({ onPress, lisFooterContent }) => {
+const TabContent = ({ onPress, lisFooterContent, data }) => {
   const [loaded] = useFonts({
     SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
     SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
@@ -28,33 +27,15 @@ const TabContent = ({ onPress, lisFooterContent }) => {
       <Pressable style={styles.item} onPress={onPress}>
         <Image style={styles.image} source={item.image} />
         <View style={styles.body}>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.titleItem}>{item.name}</Text>
-          </View>
-          {/* <View style={styles.starCon}>
-            {Array(5)
-              .fill(0)
-              .map((_) => (
-                <Image
-                  style={styles.star}
-                  source={require('../assets/icon/star.png')}
-                />
-              ))}
-          </View> */}
+          <Text style={styles.titleItem} numberOfLines={1}>
+            {item.name}
+          </Text>
           <View style={styles.footerCard}>
             <View style={styles.footerItem}>
               <Text style={styles.footerItemText}>{item.price}</Text>
               <Text style={styles.footerItemTextDis}>{item.discount}</Text>
             </View>
           </View>
-          {/* 
-          <Pressable style={styles.buttonHeart}>
-            <Image
-              source={require('../assets/icon/heart.png')}
-              style={styles.iconHeart}
-              resizeMode="contain"
-            />
-          </Pressable> */}
         </View>
       </Pressable>
     );
@@ -63,9 +44,10 @@ const TabContent = ({ onPress, lisFooterContent }) => {
     <View style={styles.itemScroll}>
       <FlatList
         renderItem={renderItem}
-        data={ITEMS}
+        data={data}
         showsHorizontalScrollIndicator={false}
         horizontal
+        // inverted
         // scrollEnabled={false}
         ListFooterComponent={lisFooterContent}
       />
@@ -89,19 +71,19 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   titleItem: {
-    flex: 1,
-    flexWrap: "wrap",
     fontSize: 16,
     fontFamily: "SansCasualMedium",
   },
   item: {
     alignItems: "center",
+    alignContent: "center",
     marginVertical: 20,
   },
   body: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 22,
     flex: 1,
     marginTop: 15,
+    width: w / 2.6,
   },
   line: {
     width: 30,
@@ -114,6 +96,7 @@ const styles = StyleSheet.create({
     width: w / 4,
     height: w / 2.8,
     borderRadius: 10,
+    backgroundColor: "#D3D3D3",
   },
   footerItem: {
     flexDirection: "row",

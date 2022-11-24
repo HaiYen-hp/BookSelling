@@ -25,7 +25,7 @@ const ProductElement = ({ onPress }) => {
   const renderItem = ({ item }) => {
     return (
       <Pressable style={styles.item} onPress={onPress}>
-        <ImageBackground style={styles.image} source={item.image}>
+        <ImageBackground style={styles.image} imageStyle={{ borderRadius: 15}} source={item.image} >
           <Pressable style={styles.buttonHeart}>
             <AntDesign name="heart" size={20} color="#B4B4B4" />
           </Pressable>
@@ -37,7 +37,7 @@ const ProductElement = ({ onPress }) => {
           <View style={styles.reviewContainer}>
             <Text style={styles.bodyItemText}>{item.reviews}</Text>
             <View style={styles.starCon}>
-              <AntDesign name="star" size={12} color='#EEE730'/>
+              <AntDesign name="star" size={12} color="#EEE730" />
             </View>
             <Text style={styles.bodyItemText}>
               {""}|{""}
@@ -69,12 +69,10 @@ export default ProductElement;
 const styles = StyleSheet.create({
   title: {
     fontSize: 17,
-    fontWeight: "600",
     color: "gray",
   },
   starCon: {
     flexDirection: "row",
-    
   },
   star: {
     marginRight: 5,
@@ -88,7 +86,6 @@ const styles = StyleSheet.create({
   item: {
     marginVertical: 15,
     marginHorizontal: 12,
-    
   },
   body: {
     paddingHorizontal: 10,
@@ -108,7 +105,8 @@ const styles = StyleSheet.create({
   image: {
     width: w / 2.3,
     height: w / 1.5,
-    
+    borderRadius: 15,
+    backgroundColor: "#D3D3D3",
   },
   footerItem: {
     flexDirection: "row",
@@ -124,7 +122,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#000000",
     fontFamily: "SansCasual",
-
   },
   footerItemTextDis: {
     fontSize: 14,
