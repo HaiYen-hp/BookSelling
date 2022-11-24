@@ -66,10 +66,11 @@ const Navigation = () => {
         
         <Stack.Screen name="HomePage" component={MyTabs} />
         <Stack.Screen name="Trang chủ" component={MyTabs} />
-        <Stack.Screen name="Giỏ hàng" component={MyTabs} />
+        {/* <Stack.Screen name="Giỏ hàng" component={MyTabs} /> */}
         <Stack.Screen name="Cá nhân" component={MyTabs} />
 
-        
+
+
 
       </Stack.Navigator>
     </NavigationContainer>
