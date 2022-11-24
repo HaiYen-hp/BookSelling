@@ -29,7 +29,7 @@ import ITEMS from "../screens/ITEMS";
 //   ref: React.createRef(),
 // }));
 const tabs = ["Phổ Biến", "Bán Chạy", "Hàng Mới"];
-function HomePage() {
+const HomePage = ({ navigation }) => {
   // const [selectedTab, setSelectedTab] = React.useState(tabs[0]);
   // const scrollX = React.useRef(new Animated.Value(0)).current;
   const [loaded] = useFonts({

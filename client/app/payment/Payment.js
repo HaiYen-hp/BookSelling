@@ -32,55 +32,31 @@ const Payment = ({ navigation }) => {
         }
     ]
 
+    const listPayment = [
+        {
+            name: 'Thẻ ngân hàng',
+            code: 1
+        },
+        {
+            name: 'COD',
+            code: 2
+        }
+    ]
+
     const cartData = [
         {
             img: require("../../assets/images/aidagiethoangtube.png"),
             name: 'Ai đã đặt tên cho em',
             price: '172.000',
-            quantity: '2'
+            quantity: '1'
         },
         {
-            img: require("../../assets/images/aidagiethoangtube.png"),
-            name: 'Ai đã đặt tên cho em',
-            price: '172.000',
+            img: require("../../assets/images/tamlyhoc.png"),
+            name: 'TÂM LÝ HỌC: Nghệ thuật giải mã hành vi',
+            price: '252.000',
             quantity: '2'
         },
-        {
-            img: require("../../assets/images/aidagiethoangtube.png"),
-            name: 'Ai đã đặt tên cho em',
-            price: '172.000',
-            quantity: '2'
-        },
-        {
-            img: require("../../assets/images/aidagiethoangtube.png"),
-            name: 'Ai đã đặt tên cho em',
-            price: '172.000',
-            quantity: '2'
-        },
-        {
-            img: require("../../assets/images/aidagiethoangtube.png"),
-            name: 'Ai đã đặt tên cho em',
-            price: '172.000',
-            quantity: '2'
-        },
-        {
-            img: require("../../assets/images/aidagiethoangtube.png"),
-            name: 'Ai đã đặt tên cho em',
-            price: '172.000',
-            quantity: '2'
-        },
-        {
-            img: require("../../assets/images/aidagiethoangtube.png"),
-            name: 'Ai đã đặt tên cho em',
-            price: '172.000',
-            quantity: '2'
-        },
-        {
-            img: require("../../assets/images/aidagiethoangtube.png"),
-            name: 'Ai đã đặt tên cho em',
-            price: '172.000',
-            quantity: '2'
-        },
+
     ]
     return (
         <View style={styles.container}>
@@ -129,6 +105,25 @@ const Payment = ({ navigation }) => {
                 </View>
             </View>
 
+            <View style={styles.deliver}>
+                <View style={styles.deliverContainer}>
+                    <Text style={styles.deliverTitle}>Chọn phương thức thanh toán</Text>
+                    <View style={styles.selectDelivers}>
+                        {
+                            listPayment.map((deliver) => {
+                                return(
+                                    <View style={styles.deliverOption}>
+                                        <TouchableOpacity style={styles.checkBox}></TouchableOpacity>
+                                        <Text>{deliver.name}</Text>
+                                    </View>
+                                )
+                            })
+                        }
+
+                    </View>
+                </View>
+            </View>
+
          
                 <View style={styles.listItemContainer}>
                     {
@@ -143,13 +138,11 @@ const Payment = ({ navigation }) => {
                                         <View style={styles.description}>
                                             <Text style={styles.title}>{book.name}</Text>
                                             <View>
+                                                <Text>Số lượng: {book.quantity}</Text>
                                                 <Text style={styles.price}>{book.price} đ</Text>
-                          
                                             </View>
                                         </View>
                                     </View>
-                                    
-            
                                 </View>
                             );
                         })
