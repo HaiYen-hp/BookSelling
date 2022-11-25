@@ -8,7 +8,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import ListTabDetail from "../Tabs/ListTabDetail";
 import ListProduct from "../Product/ListProduct";
 import ListImageRow from "../Tabs/ListImageRow";
-
+import BackIcon from "../buttons/BackIcon";
+import TabDetail from "../Tabs/TabDetail"
 
 function DetailPage() {
     const [loaded] = useFonts({
@@ -24,78 +25,103 @@ function DetailPage() {
     return(
         <View style={styles.container}>
             <ScrollView>
-                <TopIconAllPage/>
-
-                <View style = {styles.image}>
-                    <Image style = {{width: '80%', height:'100%'}} source={require("../../../assets/images/NguonCoi.png")}></Image>
+                <View style = {{width: '100%', height: 550}}>
+                    <ImageBackground style = {styles.image} source={require("../../../assets/images/nhocnicolas.png")}>
+                    <View style = {{flexDirection: 'row', justifyContent: 'space-between'}}>
+                        <BackIcon navigation={() => navigation.goBack()} />
+                        <TopIconAllPage/>
+                    </View>
+                    </ImageBackground>
                 </View>
+                {/* <View style = {styles.image}>
+                    <Image style = {{width: '80%', height:'100%'}} source={require("../../../assets/images/NguonCoi.png")}></Image>
+                </View> */}
 
-                <View style = {{borderTopStartRadius: 20,borderTopEndRadius: 20}}>
+                <View style = {styles.DetailOne}>
                     <View style = {{marginLeft:'5%', marginRight:'5%'}}>
-                        <View style = {{}}>
+                        <View>
                             <Text style = {styles.TextImg}>Sapiens Lược Sử Loài Người (Tái Bản)</Text>
                         </View>
 
-                        <View style = {styles.Imagetest}>
-                            <AntDesign name="staro" size={24} backgroundColor='yellow' color='yellow'/>
-                            <AntDesign name="staro" size={24}/>
-                            <AntDesign name="staro" size={24}/>
-                            <AntDesign name="staro" size={24}/>
-                            <AntDesign name="staro" size={24}/>
-                            <Text style ={{fontSize:15, marginLeft:20}}>(100 lượt đánh giá) |</Text>
-                            <Text style ={{fontSize:15}}> Đã bán 2000+</Text>
+                        <View style = {styles.DanhGia}>
+                            <View style={{color:'yellow',flexDirection: 'row',}}>
+                                <AntDesign name="star" size={24} color='#EEE730'/>
+                                <AntDesign name="star" size={24} color='#EEE730'/>
+                                <AntDesign name="star" size={24} color='#EEE730'/>
+                                <AntDesign name="star" size={24} color='#EEE730'/>
+                                <AntDesign name="star" size={24}/>
+                                <Text style ={{fontSize:15, marginLeft:20}}>(100 lượt đánh giá) |</Text>
+                                <Text style ={{fontSize:15}}> Đã bán 2000+</Text>
+                            </View>
                         </View>
 
-                        <View style = {{flexDirection: 'row'}}>
+                        <View style = {{flexDirection: 'row', marginTop: 10}}>
                             <Text style = {{fontSize: 20}}>1.000.0000.000đ</Text>
-                            <Text style = {{fontSize: 20}}>   -36%</Text>
+                            <Text style = {{fontSize: 20, color: 'red'}}>   -36%</Text>
                         </View>
 
-                        <View  style = {{flexDirection: 'row', marginTop: 10}}>
-                            <AntDesign name="hearto" size={24} color="black" />
-                            <Text style = {{paddingRight: 50, paddingLeft: 10}}>Like</Text>
-                            <SimpleLineIcons name="share-alt" size={24}/>
-                            <Text style = {{paddingLeft: 10}}>Share</Text>
+                        <View  style = {{flexDirection: 'row', marginTop: 15}}>
+                            <View style = {{color: 'red',}}>
+                            <AntDesign name="heart" size={25} color="red" />
+                            </View>
+                            <Text style = {{paddingRight: 50, paddingLeft: 10,fontSize: 15}}>Like</Text>
+                            <SimpleLineIcons name="share-alt" size={25}/>
+                            <Text style = {{paddingLeft: 10, fontSize: 15}}>Share</Text>
                         </View>
 
                         <ListTabDetail />
+                    </View>
+                </View>
 
-                        <View style= {{marginTop: 20}}>
-                            <Text style = {{fontSize: 20,}}>Danh mục: ...>Sách lịch sử>Thế giới</Text>
-                            <Text style = {{fontSize: 20}}>Công ty sản xuất: Alpha Books</Text>
-                            <Text style = {{fontSize: 20}}>Ngày xuất bản: 2021-07-14</Text>
-                            <Text style = {{fontSize: 20}}>Dịch giả: Dương Minh Tú</Text>
-                            <Text style = {{fontSize: 20}}>Loại bìa: Bìa cứng</Text>
-                            <Text style = {{fontSize: 20}}>Số trang : 1500</Text>
-                            <Text style = {{fontSize: 20}}>Số trang: Nhà xuất bản toàn cầu</Text>
+                <View style = {styles.DetailTwo}>
+                    <View style = {{marginLeft:'5%', marginRight:'5%', marginTop: 10,marginBottom: 20}}>
+                        <View style = {{justifyContent: 'space-between', flexDirection: 'row',marginBottom: 10}}>
+                            <Text style = {{fontSize: 20, fontFamily: 'SansCasual'}}>Giao hàng đến Q.Đống đa, P.Kim Liên, Hà Nội</Text>
+                            <MaterialIcons name="navigate-next" size={30} color="black" />
+                        </View>
+                        <View style = {{borderRadius: 20, borderColor:'#A68C8C',borderWidth: 2}}>
+                            <View style = {{flexDirection: 'row', fontSize: 20,marginTop: 10,paddingLeft: 20}}>
+                                <Text style = {{color: 'red',fontWeight: "bold", fontSize: 20}}>Nhanh</Text>
+                                <Text style = {{paddingLeft: 10, fontSize: 20, color: 'green'}}>Thứ năm, ngày 8/11</Text>   
+                            </View>
+                            <Text style = {{fontSize: 20, marginBottom: 10, paddingLeft: 20}}>Vận chuyển: 15.000đ</Text>
                         </View>
                     </View>
                 </View>
 
-                <View style = {{marginTop: 20,marginLeft:'5%', marginRight:'5%'}}>
-                    <View style = {{justifyContent: 'space-between', flexDirection: 'row'}}>
-                        <Text style = {{fontSize: 20}}>Giao hàng đến </Text>
-                        <MaterialIcons name="navigate-next" size={24} color="black" />
+                <View style = {{backgroundColor: 'white', marginTop: 20,marginBottom: 20}}>
+                    <View style = {styles.DetailThree}>
+                        <Text style={{fontSize:25,fontFamily: "SansCasualBold"}}>Sản phẩm tương tự</Text>
+                        <MaterialIcons name="navigate-next" size={30} color="black" />
                     </View>
-                    <View style = {{flexDirection: 'row', fontSize: 20}}>
-                        <Text style = {{color: 'red',fontWeight: "bold", fontSize: 20}}>Nhanh</Text>
-                        <Text style = {{paddingLeft: 20, fontSize: 20}}>Thứ năm, ngày 8/11</Text>   
-                    </View>
-                    <Text style = {{fontSize: 20}}>Vận chuyển: 15.000đ</Text>
                 </View>
 
-                <View style = {{flexDirection: 'row',justifyContent: 'space-between',marginTop:20,marginLeft:'5%', marginRight:'5%'}}>
-                    <Text style={{fontSize:25,fontFamily: "SansCasualBold"}}>Sản phẩm tương tự</Text>
-                    <MaterialIcons name="navigate-next" size={24} color="black" />
-                </View>
                 <ListProduct />
+
                 <View style={styles.buttonAllContanier}>
                     <Text style={{ fontFamily: "SansCasual" , fontSize:20}}>Xem Thêm</Text>
                     <AntDesign name="down" size={24} color="black" />
                 </View>
-                <View style = {{marginTop: 30}}>
-                    <Text style = {{fontSize: 20,fontWeight: "bold",fontFamily: "SansCasualBold"}}>Sản Phẩm Đã Xem</Text>
-                    <ListImageRow/>
+
+                <View style = {styles.DetailFour}>
+                        <Text style = {{fontSize: 20,fontWeight: "bold",fontFamily: "SansCasualBold", marginLeft: 10, marginTop: 20}}>Sản Phẩm Đã Xem</Text>
+                        <ListImageRow/>
+                </View>
+
+                <View style = {styles.DetailFive}>
+                    <View style = {{flexDirection: 'row' ,justifyContent: 'space-between',marginLeft:'5%', marginRight:'5%'}}>
+                        <View>
+                            <Text style = {{fontSize: 15}}>Giá trị</Text>
+                            <View style = {{flexDirection: 'row',}}>
+                                <Text style = {{fontSize: 20, fontWeight: "700"}}>1900.000 đ </Text>
+                                <Text style = {{fontSize: 10}}>299.000 đ</Text>
+                            </View>
+                        </View>
+
+                        <View style = {styles.ButtonBuy}>
+                            <Text style= {{alignItems: 'center'}}>CHỌN MUA</Text>
+                        </View>
+                    </View>
                 </View>
             </ScrollView>
         </View>
@@ -109,19 +135,16 @@ const styles = StyleSheet.create({
     
     container: {
         flex: 1,
+        backgroundColor:'#D3D3D3',
     },
     image: {
-        marginTop: 30,
-        height:300,
+        height:'100%',
         width:'100%',
-        backgroundColor:'#818181',
-        alignItems: 'center',
     },
-    Imagetest:
+    DanhGia:
     {
         backgroundColor: 'white',
         width:'100%',
-        flexDirection: 'row',
         marginTop: 10
     },
     TextImg:
@@ -135,5 +158,50 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginEnd: 25,
         alignItems: "center",
+        marginTop: 25
+    },
+    DetailOne:
+    {
+        borderTopStartRadius: 30,
+        borderTopEndRadius: 30, 
+        backgroundColor:'white',
+        width:'100%',
+    },
+    DetailTwo:
+    {
+        backgroundColor: 'white',
+        marginTop: 20,
+    },
+    DetailThree:
+    {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop:20,
+        marginLeft:'5%',
+        marginRight:'5%',
+        marginBottom: 20
+    },
+    DetailFour:
+    {
+        width: '100%',
+        backgroundColor: 'white',
+        justifyContent: 'space-around',
+        marginTop: 20
+    },
+    ButtonBuy:
+    {
+        justifyContent: 'center',
+         backgroundColor: '#CAC659',
+         alignItems: 'center', 
+         width: '40%', height:'100%',
+         borderRadius: 15,
+    },
+    DetailFive:
+    {
+        width: '100%',
+        height: 90,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        marginTop: 20
     },
 });

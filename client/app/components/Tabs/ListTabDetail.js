@@ -1,33 +1,38 @@
 import React, { useState } from "react";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   Dimensions,
-  FlatList,
-  Image,
   Pressable,
-  ScrollView,
   StyleSheet,
   Text,
   View,
+  ScrollView,
 } from "react-native";
 import themes from "../../../config/themes";
-import TabContent from "./TabContent.js";
+import TabDetail from "./TabDetail";
+import TabDescription from "./TabDescription";
+import Tabreviews from "./Tabreviews";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 const w = Dimensions.get("screen").width;
-const tabs = ["Phổ Biến", "Bán Chạy", "Hàng Mới"];
-const ListTabDetail = ({ onPress, lisFooter }) => {
+const tabs = ["Chi Tiết", "Mô tả", "Đánh giá"];
+const ListTabDetail = ({ onPress }) => {
   const [selected, setSelected] = useState(0);
 
   const onScroll = ({ nativeEvent }) => {
     const index = Math.round(nativeEvent.contentOffset.x / (w - 20));
-
     setSelected(index);
   };
+
   const [loaded] = useFonts({
     SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
     SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
     SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
   });
+
+  const Tab = createNativeStackNavigator();
+  
   if (!loaded) {
     return <AppLoading />;
   }
@@ -36,13 +41,13 @@ const ListTabDetail = ({ onPress, lisFooter }) => {
       <View style={styles.header}>
         {tabs.map((e, i) => (
           <Pressable onPress={() => setSelected(i)}>
+            
             <View style={styles.textContainer}>
               <Text
                 style={[
                   styles.title,
                   selected == i && { color: themes.colors.mainText },
-                ]}
-              >
+                ]}>
                 {e}
               </Text>
             </View>
@@ -50,6 +55,17 @@ const ListTabDetail = ({ onPress, lisFooter }) => {
           </Pressable>
         ))}
       </View>
+        <ScrollView
+          horizontal
+          pagingEnabled
+          snapToAlignment="center"
+          onScroll={onScroll}
+          decelerationRate="fast">
+            
+            <TabDetail />
+            <TabDescription onPress={onPress} />
+            <Tabreviews onPress={onPress} />
+        </ScrollView>
     </View>
   );
 };
@@ -57,8 +73,11 @@ const ListTabDetail = ({ onPress, lisFooter }) => {
 export default ListTabDetail;
 
 const styles = StyleSheet.create({
+  container:
+  {
+  },
   title: {
-    fontSize: 17,
+    fontSize: 25,
     fontFamily: "SansCasualBold",
     color: "gray",
   },
@@ -69,13 +88,14 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   line: {
-    width: 80,
-    height: 5,
+    width: 90,
+    height: 8,
     backgroundColor: themes.colors.main,
     alignSelf: "center",
     marginTop: 4,
+    borderRadius: 5
   },
   textContainer: {
-    marginHorizontal: 20,
+    marginHorizontal: 15,
   },
 });

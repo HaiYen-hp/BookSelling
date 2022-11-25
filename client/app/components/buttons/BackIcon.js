@@ -19,14 +19,16 @@ export default BackIcon;
 
 const styles = StyleSheet.create({
   backIcon: {
+    marginTop: 40,
     flexDirection: "row",
     width: 40,
     height: 40,
     borderRadius: 60,
-    margin: 10,
+    margin: '15%',
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#e6e3da",
+    backgroundColor: "white",
+    opacity: 0.7
   },
   icon: {
     // backgroundColor: "#e6e3da",

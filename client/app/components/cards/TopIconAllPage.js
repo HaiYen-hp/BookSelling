@@ -5,8 +5,12 @@ function TopIconHomePage() {
     return(
         <View style={styles.boxIcon}>
             <View style={styles.iconRight}>
-                <AntDesign style={{ marginRight: 12}} name="shoppingcart" size={26} color="black" />
-                <Entypo name="dots-three-vertical" size={26} color="black" />
+                <View style = {styles.IconCart}>
+                    <AntDesign name="shoppingcart" size={26} color="black" />
+                </View>
+                <View style={styles.IconOpstion}>
+                    <Entypo name="dots-three-vertical" size={26} color="black" />
+                </View>
             </View>
         </View>
     );
@@ -19,11 +23,30 @@ const styles = StyleSheet.create({
         marginTop: 40,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: 30,
+        right: '28%'
     },
     iconRight:{
         flexDirection: 'row',
         position: 'absolute',
-        right: 0
-    }
+        opacity: 0.7
+    },
+    IconCart:
+    {
+        width: 45,
+        height: 45,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+    },
+    IconOpstion:
+    {
+        width: 45,
+        height: 45,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+        marginLeft: 8
+    },
 });

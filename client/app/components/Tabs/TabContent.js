@@ -8,12 +8,12 @@ import {
   Text,
   View,
 } from "react-native";
-import ITEMS from "../../screens/ITEMS";
+import ITEMSLIST from "../../screens/ITEMLIST";
 import themes from "../../../config/themes";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 const w = Dimensions.get("screen").width;
-
+const NUM_OF_LINES = 1;
 const TabContent = ({ onPress, lisFooterContent }) => {
   const [loaded] = useFonts({
     SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
@@ -28,9 +28,7 @@ const TabContent = ({ onPress, lisFooterContent }) => {
       <Pressable style={styles.item} onPress={onPress}>
         <Image style={styles.image} source={item.image} />
         <View style={styles.body}>
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.titleItem}>{item.name}</Text>
-          </View>
+            <Text style={styles.titleItem}  numberOfLines={2} ellipsizeMode='tail'>{item.name} </Text>
           {/* <View style={styles.starCon}>
             {Array(5)
               .fill(0)
@@ -47,7 +45,7 @@ const TabContent = ({ onPress, lisFooterContent }) => {
               <Text style={styles.footerItemTextDis}>{item.discount}</Text>
             </View>
           </View>
-          {/* 
+{/*           
           <Pressable style={styles.buttonHeart}>
             <Image
               source={require('../assets/icon/heart.png')}
@@ -63,7 +61,7 @@ const TabContent = ({ onPress, lisFooterContent }) => {
     <View style={styles.itemScroll}>
       <FlatList
         renderItem={renderItem}
-        data={ITEMS}
+        data={ITEMSLIST}
         showsHorizontalScrollIndicator={false}
         horizontal
         // scrollEnabled={false}
@@ -89,17 +87,16 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   titleItem: {
-    flex: 1,
-    flexWrap: "wrap",
     fontSize: 16,
     fontFamily: "SansCasualMedium",
+    flexWrap: "wrap",
   },
   item: {
     alignItems: "center",
     marginVertical: 20,
   },
   body: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     flex: 1,
     marginTop: 15,
   },
@@ -113,7 +110,7 @@ const styles = StyleSheet.create({
   image: {
     width: w / 4,
     height: w / 2.8,
-    borderRadius: 10,
+    justifyContent: 'space-around',
   },
   footerItem: {
     flexDirection: "row",

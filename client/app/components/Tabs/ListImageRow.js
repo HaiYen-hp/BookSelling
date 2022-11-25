@@ -32,7 +32,7 @@ const ListTab = ({ onPress, lisFooter }) => {
     return <AppLoading />;
   }
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.header}>
       </View>
       <ScrollView
