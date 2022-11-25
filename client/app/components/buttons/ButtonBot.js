@@ -6,8 +6,16 @@ import {
   Pressable,
   ImageBackground,
 } from "react-native";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 function ButtonBot(props) {
+  const [loaded] = useFonts({
+    SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
+  });
+  if (!loaded) {
+    return <AppLoading />;
+  }
   return (
     <Pressable onPress={props.navigation}>
       <View style={styles.btnStart}>
@@ -25,15 +33,15 @@ const styles = StyleSheet.create({
     padding: 22,
     borderRadius: 30,
     backgroundColor: "#C8C23C",
+    opacity: 0.81,
     marginBottom: 50,
-    // marginLeft: 30,
-    // marginRight: 30,
+    marginHorizontal: 30
   },
   textStart: {
-    color: "white",
+    color: "#FFFFFF",
     fontSize: 20,
-    lineHeight: 24,
-    fontWeight: "700",
+    fontFamily: "SansCasualBold",
     textAlign: "center",
+    lineHeight: 30,
   },
 });

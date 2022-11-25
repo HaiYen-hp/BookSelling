@@ -5,15 +5,56 @@ import {
   Pressable,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
-
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
-
-import ButtonBot from "../buttons/ButtonBot";
 import BackIcon from "../buttons/BackIcon";
+import axios from "axios";
+import {REGISTER} from "../../shared/Api"
 
-const SignInScreen = () => {
+const SignInScreen = ({ navigation }) => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cfpassword, setCfpassword] = useState("");
+  const userData = { username, email, password, cfpassword };
+  const resetState = () => {
+    setUsername("");
+    setEmail("");
+    setPassword("");
+    setCfpassword("");
+  };
+
+  const clikOnRegister = () => {
+
+    if (username == "" || email == "" || password == "" || cfpassword == "") {
+      Alert.alert("Thông báo", "Thông tin đăng kí phải nhập đầy đủ!")
+    }
+    else if (password !== cfpassword) {
+      Alert.alert("Thông báo", "Mật khẩu nhập lại không trùng khớp!")
+    }
+    else {
+      axios({
+        url: REGISTER,
+        method: 'POST',
+        data: {
+          username: username,
+          email: email,
+          phone: '0123',
+          password: password
+        }
+      }).then(result => {
+        console.log("thành công");
+        navigation.navigate('Sign Up Screen');
+      }).catch((err) => {
+        console.log("Thông báo", err.response.data);
+      });
+    }
+  }
+
   const [viewPassword, setViewPassword] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
 
@@ -25,10 +66,19 @@ const SignInScreen = () => {
     }
     setViewPassword(!viewPassword);
   };
-
+  const [loaded] = useFonts({
+    SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
+    SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
+    SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
+  });
+  if (!loaded) {
+    return <AppLoading />;
+  }
   return (
     <View style={styles.container}>
-      <BackIcon/>
+      <View style={{ marginLeft: 20, marginTop:30 }}>
+        <BackIcon navigation={() => navigation.goBack()} />
+      </View>
       <View style={styles.header}>
         <Text style={styles.headerText}>Đăng Ký</Text>
         <View style={styles.boxHelp}>
@@ -41,14 +91,34 @@ const SignInScreen = () => {
         </View>
       </View>
       <View style={styles.content}>
-        <TextInput style={styles.input} placeholder="Họ Và Tên"></TextInput>
-        <TextInput style={styles.input} placeholder="Nhập Email"></TextInput>
+        <TextInput 
+          style={styles.input} 
+          placeholder="Tên Tài Khoản"
+          value={username}
+          onChangeText={(value) => {
+            setUsername(value);
+          }}
+        >
+        </TextInput>
+        <TextInput 
+          style={styles.input} 
+          placeholder="Nhập Email"
+          value={email}
+          onChangeText={(value) => {
+            setEmail(value);
+          }}
+          >
+          </TextInput>
 
         <View style={styles.inputContainer}>
           <TextInput
             style={[styles.inputField]}
             secureTextEntry={viewPassword}
             placeholder="Nhập Mật Khẩu"
+            value={password}
+            onChangeText={(value) => {
+              setPassword(value);
+            }}
           ></TextInput>
           <TouchableOpacity
             onPress={() => {
@@ -63,6 +133,10 @@ const SignInScreen = () => {
             style={styles.inputField}
             secureTextEntry={viewPassword}
             placeholder="Nhập Lại Mật Khẩu"
+            value={cfpassword}
+            onChangeText={(value) => {
+              setCfpassword(value);
+            }}
           ></TextInput>
           <TouchableOpacity
             onPress={() => {
@@ -78,12 +152,21 @@ const SignInScreen = () => {
             <Text style={styles.forgetPasswordText}> Quên mật khẩu ? </Text>
           </Pressable>
         </View>
-        <ButtonBot text="ĐĂNG KÝ"></ButtonBot>
       </View>
+      {/* <ButtonBot text="ĐĂNG KÝ"></ButtonBot> */}
+      <Pressable onPress={clikOnRegister}>
+        <View style={styles.btnStart}>
+          <Text style={styles.textStart}>ĐĂNG KÝ</Text>
+        </View>
+      </Pressable>
+
       <View style={styles.footer}>
         <View style={styles.botNote}>
-          <Text> Bạn Đã Có Tạo Khoản? </Text>
-          <Pressable>
+          <Text style={{ fontFamily: "SansCasual" }}>
+            {" "}
+            Đã có tài khoản rồi?{" "}
+          </Text>
+          <Pressable onPress={() => navigation.navigate("Sign Up Screen")}>
             <Text style={styles.forgetPasswordText}>Đăng Nhập</Text>
           </Pressable>
         </View>
@@ -98,9 +181,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    marginLeft: 30,
     marginTop: 50,
-    marginRight: 30,
     justifyContent: "center",
     // backgroundColor: '#fff'
   },
@@ -112,6 +193,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 30,
     lineHeight: 36,
+    fontFamily: "SansCasualBold",
   },
   boxHelp: {
     flexDirection: "row",
@@ -123,6 +205,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "400",
     lineHeight: 18,
+    fontFamily: "SansCasual",
   },
   helpLink: {
     color: "#CAC659",
@@ -132,10 +215,12 @@ const styles = StyleSheet.create({
   },
   input: {
     padding: 20,
-    margin: 10,
+    marginHorizontal: 30,
+    marginBottom: 20,
     borderRadius: 30,
     borderWidth: 1,
     borderColor: "#b2b3ad",
+    fontFamily: "SansCasualMedium",
   },
   footer: {
     // flex: 1,
@@ -155,6 +240,7 @@ const styles = StyleSheet.create({
   },
   forgetPasswordText: {
     color: "#3678DB",
+    fontFamily: "SansCasual",
   },
   botNoteText: {
     fontWeight: "400",
@@ -171,12 +257,29 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#b2b3ad",
     padding: 5,
-    margin: 10,
+    marginHorizontal: 30,
+    marginVertical: 10,
   },
   inputField: {
     padding: 14,
     fontSize: 14,
     width: "90%",
-    // backgroundColor: 'pink'
+    fontFamily: "SansCasualMedium",
+  },
+  btnStart: {
+    margin: 8,
+    padding: 22,
+    borderRadius: 30,
+    backgroundColor: "#C8C23C",
+    opacity: 0.81,
+    marginBottom: 50,
+    marginHorizontal: 30
+  },
+  textStart: {
+    color: "#FFFFFF",
+    fontSize: 20,
+    fontFamily: "SansCasualBold",
+    textAlign: "center",
+    lineHeight: 30,
   },
 });

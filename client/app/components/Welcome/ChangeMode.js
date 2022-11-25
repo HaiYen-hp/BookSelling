@@ -4,14 +4,27 @@ import {
   View,
   ImageBackground,
   Pressable,
+  Dimensions,
 } from "react-native";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 import { Fontisto, Ionicons } from "@expo/vector-icons";
+import ButtonBot from "../buttons/ButtonBot";
+const { width, height } = Dimensions.get("screen");
 const ChangeMode = ({ navigation }) => {
+  const [loaded] = useFonts({
+    SansCasualSemiBold: require("../../../assets/fonts/RecursiveSansCslSt-SemiBd.ttf"),
+    SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
+    SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
+  });
+  if (!loaded) {
+    return <AppLoading />;
+  }
   return (
     <View styles={styles.container}>
       <ImageBackground
         style={styles.img}
-        source={require("../../../assets/images/alex-lvrs-ZRTd9_Fk6rc-unsplash.jpg")}
+        source={require("../../../assets/images/alex-lvrs-ZRTd9_Fk6rc-unsplash.png")}
       >
         <Text style={styles.textHeader}> Chọn Chế Độ </Text>
         <View style={styles.modeContainerSun}>
@@ -30,13 +43,17 @@ const ChangeMode = ({ navigation }) => {
             <Text style={styles.iconDescMoon}>Tối</Text>
           </View>
         </View>
-        <View style={styles.btnContainer}>
+        {/* <View style={styles.btnContainer}>
           <Pressable onPress={() => navigation.navigate("Selected Screen")}>
             <View style={styles.btnStart}>
               <Text style={styles.textStart}>TIẾP TỤC</Text>
             </View>
           </Pressable>
-        </View>
+        </View> */}
+        <ButtonBot
+          text="TIẾP TỤC"
+          navigation={() => navigation.navigate("Selected Screen")}
+        ></ButtonBot>
       </ImageBackground>
     </View>
   );
@@ -47,16 +64,17 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-  img: {
-    width: 400,
-    height: 800,
-  },
+  // img: {
+  //   width: 400,
+  //   height: 850,
+  // },
   textHeader: {
     color: "#FFFFFF",
     fontWeight: "600",
-    fontSize: 24,
+    fontSize: 20,
     marginTop: 95,
     textAlign: "center",
+    fontFamily: "SansCasualSemiBold",
   },
   modeContainerSun: {
     flexDirection: "row",
@@ -67,7 +85,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     marginRight: 70,
-    marginTop: 35,
+    marginTop: 65,
+    marginBottom: 180,
   },
   iconContainer: {
     flexDirection: "column",
@@ -86,30 +105,17 @@ const styles = StyleSheet.create({
     color: "#FBFBFB",
     fontWeight: "500",
     fontSize: 18,
+    fontFamily: "SansCasualMedium",
   },
   iconDescMoon: {
     textAlign: "center",
     color: "#000000",
     fontWeight: "500",
     fontSize: 18,
+    fontFamily: "SansCasualMedium",
   },
-  btnContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-  btnStart: {
-    width: 325,
-    height: 80,
-    justifyContent: "center",
-    borderRadius: 30,
-    backgroundColor: "#C8C23C",
-    marginTop: 200,
-  },
-  textStart: {
-    color: "white",
-    fontSize: 20,
-    lineHeight: 24,
-    fontWeight: "700",
-    textAlign: "center",
+  img: {
+    width: width,
+    height: height,
   },
 });

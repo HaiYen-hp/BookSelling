@@ -22,5 +22,11 @@ namespace APIBookSaling.Utils
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+
+        public static string GetCurrentUsername(IHttpContextAccessor httpContextAccessor)
+        {
+            var usr = httpContextAccessor.HttpContext?.User.FindFirst(APIBookSaling.ClaimTypes.Username);
+            return usr != null ? usr.Value : "";
+        }
     }
 }
