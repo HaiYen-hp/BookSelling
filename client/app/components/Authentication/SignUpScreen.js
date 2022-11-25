@@ -41,6 +41,7 @@ const SignUpScreen = ({ navigation }) => {
   const validateLogin = () => {
     console.log('username', username);
     console.log('password', password);
+    navigation.navigate("HomePage");
     // login(username, password);
     // const check = validLogin(username, password);
     // if (check.errLength > 0) {
@@ -56,10 +57,10 @@ const SignUpScreen = ({ navigation }) => {
   const login = (username, password) => {
     const data = { username, password };
     api_login( data, (res) => {
-      console.log('res', res);
+      // console.log('res', res);
       // dispatch(actionSaveUser(res.userData));
       // dispatch(actionSaveToken(res.token));
-      // navigate("UiTab", { screen: "Classes" });
+      // navigation.navigate("HomePage");
     });
   };
 

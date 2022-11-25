@@ -19,6 +19,7 @@ import ListTab from "../components/Tabs/ListTab";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ListProduct from "../components/Product/ListProduct";
+import ITEMS from "../screens/ITEMS";
 // const { width, height } = Dimensions.get("screen");
 // const title = ["Phổ biến", "Bán chạy", "Hàng Mới"];
 // const tabs = Object.keys(ITEMS, title).map((i) => ({
@@ -27,67 +28,7 @@ import ListProduct from "../components/Product/ListProduct";
 //   source: ITEMS,
 //   ref: React.createRef(),
 // }));
-// const Tab = React.forwardRef(({ item }, ref) => {
-//   return (
-//     <View ref={ref}>
-//       <Text style={styles.textTitle}>{item.title}</Text>
-//     </View>
-//   );
-// });
-// const Indicator = ({ measures, scrollX }) => {
-//   const inputRange = data.map((_, i) => i * width);
-//   const indicatorWidth = scrollX.interpolate({
-//     inputRange,
-//     outputRange: measures.map((measure) => measure.width),
-//   });
-//   const translateX = scrollX.interpolate({
-//     inputRange,
-//     outputRange: measures.map((measure) => measure.x),
-//   });
-//   return (
-//     <Animated.View
-//       styles={{
-//         position: "absolute",
-//         height: 5,
-//         backgroundColor: "#E7E25B",
-//         borderRadius: 20,
-//         width: indicatorWidth,
-//         transform: [{ translateX }],
-//       }}
-//     />
-//   );
-// };
-// const Tabs = ({ data, scrollX }) => {
-//   const [measures, setMeasures] = React.useState([]);
-//   const containerRef = React.useRef();
-//   React.useEffect(() => {
-//     let m = [];
-//     data.forEach((item) => {
-//       item.ref.current.measureLayout(
-//         containerRef.current,
-//         (x, y, width, height) => {
-//           m.push({ x, y, width, height });
-//           if (m.length === data.length) {
-//             setMeasures(m);
-//           }
-//         }
-//       );
-//     });
-//   }, []);
-
-//   return (
-//     <View style={styles.tabContainer}>
-//       <View style={styles.tab} ref={containerRef}>
-//         {data.map((item) => {
-//           return <Tab key={item.key} item={item} ref={item.ref} />;
-//         })}
-//       </View>
-//       {measures.length > 0 && (
-//         <Indicator measures={measures} scrollX={scrollX} />
-//       )}
-//     </View>
-//   );
-// };
+const tabs = ["Phổ Biến", "Bán Chạy", "Hàng Mới"];
 function HomePage() {
   // const [selectedTab, setSelectedTab] = React.useState(tabs[0]);
   // const scrollX = React.useRef(new Animated.Value(0)).current;
@@ -128,7 +69,7 @@ function HomePage() {
             ></Image>
           </View>
         </View>
-        <ListTab />
+        {/* <ListTab tabs={tabs} data={ITEMS}/> */}
         <View style={styles.ideaContanier}>
           <Text style={{ fontFamily: "SansCasualBold", fontSize: 22 }}>
             GỢI Ý
@@ -141,7 +82,7 @@ function HomePage() {
         <ListProduct />
         <View style={styles.buttonAllContanier}>
           <Text style={{ fontFamily: "SansCasual" }}>Xem Thêm</Text>
-          <AntDesign name="right" size={20} color="black" />
+          <AntDesign name="down" size={20} color="black" />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -250,6 +191,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   buttonAllContanier: {
+    marginLeft: 40,
     justifyContent: "center",
     flexDirection: "row",
     marginEnd: 25,

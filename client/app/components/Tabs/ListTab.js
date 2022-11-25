@@ -13,9 +13,10 @@ import themes from "../../../config/themes";
 import TabContent from "./TabContent.js";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+
 const w = Dimensions.get("screen").width;
-const tabs = ["Phổ Biến", "Bán Chạy", "Hàng Mới"];
-const ListTab = ({ onPress, lisFooter }) => {
+
+const ListTab = ({ onPress, lisFooter, tabs }) => {
   const [selected, setSelected] = useState(0);
 
   const onScroll = ({ nativeEvent }) => {
@@ -59,9 +60,9 @@ const ListTab = ({ onPress, lisFooter }) => {
         scrollEventThrottle={0}
         showsHorizontalScrollIndicator={false}
       >
-        <TabContent onPress={onPress} lisFooterContent={lisFooter} />
-        <TabContent onPress={onPress} />
-        <TabContent onPress={onPress} />
+        <TabContent onPress={onPress} lisFooterContent={lisFooter} data={data}/>
+        <TabContent onPress={onPress} data={data}/>
+        <TabContent onPress={onPress} data={data}/>
         {/* <TabContent
           onPress={onPress}
           lisFooter={
