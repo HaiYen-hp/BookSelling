@@ -43,13 +43,14 @@ const SignInScreen = ({ navigation }) => {
         data: {
           username: username,
           email: email,
+          phone: '0123',
           password: password
         }
       }).then(result => {
         console.log("thành công");
-        navigation.navigate('Login');
+        navigation.navigate('Sign Up Screen');
       }).catch((err) => {
-        Alert.alert("Thông báo", err.response.data.message);
+        console.log("Thông báo", err.response.data);
       });
     }
   }
