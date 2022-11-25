@@ -5,13 +5,15 @@ import {
   Pressable,
   TextInput,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
 import BackIcon from "../buttons/BackIcon";
-
+import { LOGIN } from "../../shared/Api";
+import axios from "axios";
 
 const SignUpScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -36,19 +38,25 @@ const SignUpScreen = ({ navigation }) => {
   };
 
   const validateLogin = () => {
-    console.log('username', username);
-    console.log('password', password);
-    navigation.navigate("HomePage");
-  };
-
-  const login = (username, password) => {
-    const data = { username, password };
-    api_login( data, (res) => {
-      // console.log('res', res);
-      // dispatch(actionSaveUser(res.userData));
-      // dispatch(actionSaveToken(res.token));
-      // navigation.navigate("HomePage");
-    });
+    if (username == "" || password == "") {
+      Alert.alert("Thông báo", "Thông tin đăng nhap phải nhập đầy đủ!")
+    }
+    else {
+      axios({
+        url: LOGIN,
+        method: 'POST',
+        data: {
+          username: username,
+          password: password
+        }
+      }).then(result => {
+        console.log("thành công");
+        navigation.navigate('HomePage');
+      }).catch((err) => {
+        Alert.alert("Thông báo", "Thông tin tài khoản không chính xác")
+        console.log("Thông báo", err.response.data);
+      });
+    }
   };
 
   return (
@@ -71,6 +79,10 @@ const SignUpScreen = ({ navigation }) => {
         <TextInput
           style={styles.input}
           placeholder="Nhập tên đăng nhập"
+          value={username}
+          onChangeText={(value) => {
+            setUsername(value);
+          }}
         ></TextInput>
 
         <View style={styles.inputContainer}>
@@ -78,6 +90,10 @@ const SignUpScreen = ({ navigation }) => {
             style={[styles.inputField]}
             secureTextEntry={viewPassword}
             placeholder="Nhập Mật Khẩu"
+            value={password}
+            onChangeText={(value) => {
+              setPassword(value);
+            }}
           ></TextInput>
           <TouchableOpacity
             onPress={() => {
