@@ -13,12 +13,10 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import AccountInfo from "../AccountInfo/AccountInfo";
 import Setting from "../AccountInfo/Setting";
 import Cart from "../cart/Cart";
-import Payment from "../../payment/Payment";
-
+import Payment from "../payment/Payment";
 import EventsList from "../../screens/EventsList";
 import EventsListDetails from "../../screens/EventsListDetails";
-import ListTab from "../Tabs/ListTab";
-import TabContent from "../Tabs/TabContent";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 

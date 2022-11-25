@@ -45,13 +45,13 @@ const Payment = ({ navigation }) => {
 
     const cartData = [
         {
-            img: require("../../assets/images/aidagiethoangtube.png"),
+            img: require("../../../assets/images/aidagiethoangtube.png"),
             name: 'Ai đã đặt tên cho em',
             price: '172.000',
             quantity: '1'
         },
         {
-            img: require("../../assets/images/tamlyhoc.png"),
+            img: require("../../../assets/images/tamlyhoc.png"),
             name: 'TÂM LÝ HỌC: Nghệ thuật giải mã hành vi',
             price: '252.000',
             quantity: '2'
