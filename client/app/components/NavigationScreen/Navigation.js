@@ -67,7 +67,7 @@ const Navigation = () => {
         <Stack.Screen name="Trang chủ" component={MyTabs} />
         {/* <Stack.Screen name="Giỏ hàng" component={MyTabs} /> */}
         <Stack.Screen name="Cá nhân" component={MyTabs} />
-        <Stack.Screen name="Cá nhân" component={DetailPage} />
+        <Stack.Screen name="DetailPage" component={DetailPage} />
 
       </Stack.Navigator>
     </NavigationContainer>
