@@ -1,6 +1,5 @@
 import { StyleSheet, View } from "react-native";
 import Navigation from "./app/components/NavigationScreen/Navigation";
-import { Provider } from "react-redux";
 import * as React from "react";
 import store from "./app/redux/store";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -54,12 +53,7 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <HomePage/> */}
-      {/* <DeitailPage/> */}
-      {/* <Navigation /> */}
-      <Provider store={store}>
         <Navigation />
-      </Provider>
     </View>
   );
 }
