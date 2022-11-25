@@ -10,10 +10,7 @@ import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
-import ButtonBot from "../buttons/ButtonBot";
 import BackIcon from "../buttons/BackIcon";
-// import { api_login } from "../helper/Api";
-import { api_login } from "../../helper/Api";
 
 
 const SignUpScreen = ({ navigation }) => {
@@ -42,16 +39,6 @@ const SignUpScreen = ({ navigation }) => {
     console.log('username', username);
     console.log('password', password);
     navigation.navigate("HomePage");
-    // login(username, password);
-    // const check = validLogin(username, password);
-    // if (check.errLength > 0) {
-    //   dispatch(getAlert(check.errMsg));
-    //   setTimeout(() => {
-    //     dispatch(getAlert({}));
-    //   }, 2000);
-    // } else {
-    //   login(username, password);
-    // }
   };
 
   const login = (username, password) => {

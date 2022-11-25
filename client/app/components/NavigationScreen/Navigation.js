@@ -11,32 +11,33 @@ import HomePage from "../../screens/HomePage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import AccountInfo from "../AccountInfo/AccountInfo";
+import Setting from "../AccountInfo/Setting";
+import Cart from "../cart/Cart";
+import Payment from "../payment/Payment";
 import EventsList from "../../screens/EventsList";
 import EventsListDetails from "../../screens/EventsListDetails";
-import ListTab from "../Tabs/ListTab";
-import TabContent from "../Tabs/TabContent";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <Tab.Screen
-        name="home"
-        component={HomePage}
-        options={{
-          tabBarIcon: () => <AntDesign name="home" size={24} color="black" />,
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={AccountInfo}
-        options={{
-          tabBarIcon: () => (
-            <Ionicons name="ios-person-outline" size={24} color="black" />
-          ),
-        }}
-      />
+    <Tab.Navigator screenOptions={{headerShown: false}}>
+      <Tab.Screen name="Trang chủ" component={HomePage} options={{
+        tabBarIcon: () => (
+          <AntDesign name="home" size={24} color="black"/>
+        )
+      }}/>
+      {/* <Tab.Screen name="Giỏ hàng" component={Cart} options={{
+        tabBarIcon: () => (
+          <AntDesign name="shoppingcart" size={24} color="black" />
+        )
+      }}/> */}
+      <Tab.Screen name="Cá nhân" component={AccountInfo} options={{
+        tabBarIcon: () => (
+          <Ionicons name="ios-person-outline" size={24} color="black"/>
+        )
+      }}/>
     </Tab.Navigator>
   );
 }
@@ -55,12 +56,19 @@ const Navigation = () => {
         <Stack.Screen name="Selected Screen" component={SelectedScreen} />
         <Stack.Screen name="Sign Up Screen" component={SignUpScreen} />
         <Stack.Screen name="Sign In Screen" component={SignInScreen} />
+        <Stack.Screen name="Setting" component={Setting} />
+        <Stack.Screen name="Cart" component={Cart} />
+        <Stack.Screen name="Payment" component={Payment} />
         <Stack.Screen name="EventsList" component={EventsList} />
         <Stack.Screen name="EventsListDetails" component={EventsListDetails} />
-
+        
         <Stack.Screen name="HomePage" component={MyTabs} />
-        <Stack.Screen name="Home" component={MyTabs} />
-        <Stack.Screen name="Profile" component={MyTabs} />
+        <Stack.Screen name="Trang chủ" component={MyTabs} />
+        {/* <Stack.Screen name="Giỏ hàng" component={MyTabs} /> */}
+        <Stack.Screen name="Cá nhân" component={MyTabs} />
+
+
+
 
       </Stack.Navigator>
     </NavigationContainer>

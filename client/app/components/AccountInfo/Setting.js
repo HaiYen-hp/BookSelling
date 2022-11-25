@@ -3,17 +3,10 @@ import {
     Text,
     StyleSheet,
     Pressable,
-    Image
 } from "react-native";
 import { 
-    Ionicons, 
     Feather, 
-    MaterialCommunityIcons , 
     Entypo, 
-    FontAwesome5,
-    AntDesign,
-    Octicons,
-    FontAwesome
 } from '@expo/vector-icons';
 
 import ButtonBot from "../buttons/ButtonBot";
@@ -23,7 +16,7 @@ const Setting = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.headerContent}>
-                    <Pressable>
+                    <Pressable onPress={() => navigation.goBack()}>
                         <Feather name="arrow-left" size={30} color="#CAC659" />
                     </Pressable>
                     <Text style={styles.headerText}>Thiết lập tài khoản</Text>
@@ -120,9 +113,10 @@ const Setting = ({ navigation }) => {
             </View>
 
             <View style={{ marginTop: 20}}>
+
                 <ButtonBot
                     text="ĐĂNG XUẤT"
-                    // navigation={() => navigation.navigate("Sign Up Screen")}
+                    navigation={() => navigation.navigate("Sign Up Screen")}
                 ></ButtonBot>
             </View>
 
