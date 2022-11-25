@@ -16,6 +16,7 @@ import Cart from "../cart/Cart";
 import Payment from "../payment/Payment";
 import EventsList from "../../screens/EventsList";
 import EventsListDetails from "../../screens/EventsListDetails";
+import DetailPage from "../DetailPage/DetailPage";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -66,9 +67,7 @@ const Navigation = () => {
         <Stack.Screen name="Trang chủ" component={MyTabs} />
         {/* <Stack.Screen name="Giỏ hàng" component={MyTabs} /> */}
         <Stack.Screen name="Cá nhân" component={MyTabs} />
-
-
-
+        <Stack.Screen name="Cá nhân" component={DetailPage} />
 
       </Stack.Navigator>
     </NavigationContainer>

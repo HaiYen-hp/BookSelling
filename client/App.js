@@ -1,7 +1,6 @@
 import { StyleSheet, View } from "react-native";
 import Navigation from "./app/components/NavigationScreen/Navigation";
 import * as React from "react";
-import store from "./app/redux/store";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import HomePage from "./app/screens/HomePage";
