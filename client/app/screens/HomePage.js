@@ -2,17 +2,12 @@ import {
   View,
   StyleSheet,
   Text,
-  Dimensions,
-  FlatList,
-  Animated,
-  ImageBackground,
   Image,
-  TouchableOpacity,
-  ScrollView,
   Pressable,
+  ScrollView,
 } from "react-native";
 // import { Colors } from "react-native/Libraries/NewAppScreen";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import TopIconHomePage from "../components/cards/TopIconHomePage";
@@ -31,7 +26,7 @@ import Navigation from "../components/NavigationScreen/Navigation";
 //   ref: React.createRef(),
 // }));
 const tabs = ["Phổ Biến", "Bán Chạy", "Hàng Mới"];
-function HomePage({ navigation }) {
+const HomePage = ({ navigation }) => {
   // const [selectedTab, setSelectedTab] = React.useState(tabs[0]);
   // const scrollX = React.useRef(new Animated.Value(0)).current;
   const [loaded] = useFonts({
@@ -51,7 +46,20 @@ function HomePage({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false} scrollEventThrottle={0}>
-        <TopIconHomePage />
+        {/* <TopIconHomePage /> */}
+        <View style={styles.boxIcon}>
+            <View style={styles.searchIcon}>
+                <AntDesign name="search1" size={26} color="black" />
+            </View>
+            <View style={styles.iconRight}>
+                <Pressable onPress={() => navigation.navigate("Cart")}>
+                    <AntDesign style={{ marginRight: 12}} name="shoppingcart" size={26} color="black" />
+                </Pressable>
+                <Pressable>
+                    <Entypo name="dots-three-vertical" size={26} color="black" />
+                </Pressable>
+            </View>
+        </View>
         <View style={styles.header}>
           <View style={styles.textBox}>
             <Text style={[styles.headerText, styles.featureProduct]}>
@@ -154,6 +162,19 @@ const styles = StyleSheet.create({
     marginEnd: 25,
     alignItems: "center",
   },
+  boxIcon: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 30,
+},
+searchIcon: {
+
+},
+iconRight:{
+    flexDirection: 'row',
+    alignItems: 'flex-end'
+}
   // tabView: {
   //   marginLeft: 26,
   //   marginTop: 18,

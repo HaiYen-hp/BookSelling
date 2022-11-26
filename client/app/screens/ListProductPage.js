@@ -58,6 +58,9 @@ function ListProductPage({ navigation }) {
 }
 export default ListProductPage;
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column'
+  },
   tabContainer: {
     flexDirection: "row",
     marginTop: 70,

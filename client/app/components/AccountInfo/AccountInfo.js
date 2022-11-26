@@ -23,16 +23,22 @@ const AccountInfo = ({ navigation }) => {
             <View style={styles.header}>
                 <View style={styles.headerContent}>
                     <View style={styles.headerIcon}>
-                        <Ionicons style={styles.icon} name="settings-outline" size={26} color="white" />
-                        <Feather style={styles.icon} name="shopping-cart" size={26} color="white" />
+                        <Pressable onPress={() => navigation.navigate("Setting")}>
+                            <Ionicons style={styles.icon} name="settings-outline" size={26} color="white" />
+                        </Pressable>
+                        <Pressable onPress={() => navigation.navigate("Cart")}>
+                            <Feather style={styles.icon} name="shopping-cart" size={26} color="white" />
+                        </Pressable>
                     </View>
                     <View style={styles.headerInfo}>
-                        <View style={styles.avatar}> 
-                            <Image
-                                style={styles.avatarImage}
-                                source={require("../../../assets/images/blank-profile-picture.png") }
-                            />
-                        </View>
+                        <Pressable onPress={() => navigation.navigate("EditProfile")}>
+                            <View style={styles.avatar}> 
+                                <Image
+                                    style={styles.avatarImage}
+                                    source={require("../../../assets/images/blank-profile-picture.png") }
+                                />
+                            </View>
+                        </Pressable>
                         <View style={styles.info}>
                             <Text style={styles.name}>Admin</Text>
                             <View style={styles.rank}>
