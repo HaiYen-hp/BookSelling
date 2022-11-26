@@ -22,7 +22,7 @@ import SearchingTab from "../Tabs/SearchingTab";
 import ProductElement from "../Product/ProductElement";
 import ProductElementVer2 from "../Product/ProductElementVer2";
 import DetailPage from "../DetailPage/DetailPage";
-
+import EditProfile from "../AccountInfo/EditProfile";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -82,6 +82,8 @@ const Navigation = () => {
         <Stack.Screen name="Cart" component={Cart} />
         <Stack.Screen name="Payment" component={Payment} />
         <Stack.Screen name="DetailPage" component={DetailPage} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
+
         
         <Stack.Screen name="HomePage" component={MyTabs} />
         <Stack.Screen name="Trang chủ" component={MyTabs} />
