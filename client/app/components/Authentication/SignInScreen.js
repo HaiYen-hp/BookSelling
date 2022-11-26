@@ -5,23 +5,17 @@ import {
   Pressable,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Ionicons } from "@expo/vector-icons";
-import ButtonBot from "../buttons/ButtonBot";
 import BackIcon from "../buttons/BackIcon";
 import axios from "axios";
-import { validRegister } from "../../helper/valid";
-import { api_register } from "../../helper/Api";
-import { useDispatch, useSelector } from "react-redux";
+import {REGISTER} from "../../shared/Api"
 
 const SignInScreen = ({ navigation }) => {
-  // const { alert } = useSelector((state) => state);
-
-  const dispatch = useDispatch();
-
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,34 +28,32 @@ const SignInScreen = ({ navigation }) => {
     setCfpassword("");
   };
 
-  const validateRegister = () => {
-    navigation.navigate("HomePage");
-    // const check = validRegister(userData);
-    // console.log("UserData: ", userData);
-    // register(userData);
+  const clikOnRegister = () => {
 
-    // if (check.errLength > 0) {
-    //   // dispatch(getAlert(check.errMsg));
-    //   setTimeout(() => {
-    //     dispatch(getAlert({}));
-    //   }, 2000);
-    // } else {
-    //   console.log('vao day');
-    //   // register(userData);
-    // }
-  };
-
-  const register = (data) => {
-    api_register(dispatch, data, (res) => {
-      resetState();
-      dispatch(actionChangePopupNoti("Đăng ký thành công, chào mừng bạn!"));
-      navigation.navigate("Sign Up Screen");
-      setTimeout(() => {
-        dispatch(actionChangePopupNoti(""));
-        navigate("Login");
-      }, 1000);
-    });
-  };
+    if (username == "" || email == "" || password == "" || cfpassword == "") {
+      Alert.alert("Thông báo", "Thông tin đăng kí phải nhập đầy đủ!")
+    }
+    else if (password !== cfpassword) {
+      Alert.alert("Thông báo", "Mật khẩu nhập lại không trùng khớp!")
+    }
+    else {
+      axios({
+        url: REGISTER,
+        method: 'POST',
+        data: {
+          username: username,
+          email: email,
+          phone: '0123',
+          password: password
+        }
+      }).then(result => {
+        console.log("thành công");
+        navigation.navigate('Sign Up Screen');
+      }).catch((err) => {
+        console.log("Thông báo", err.response.data);
+      });
+    }
+  }
 
   const [viewPassword, setViewPassword] = useState(true);
   const [rightIcon, setRightIcon] = useState("eye");
@@ -160,7 +152,7 @@ const SignInScreen = ({ navigation }) => {
         </View>
       </View>
       {/* <ButtonBot text="ĐĂNG KÝ"></ButtonBot> */}
-      <Pressable onPress={validateRegister}>
+      <Pressable onPress={clikOnRegister}>
         <View style={styles.btnStart}>
           <Text style={styles.textStart}>ĐĂNG KÝ</Text>
         </View>
