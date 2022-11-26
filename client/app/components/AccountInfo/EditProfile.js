@@ -34,7 +34,9 @@ const EditProfile = ({ navigation }) => {
                             style={styles.avatarImage}
                             source={require("../../../assets/images/blank-profile-picture.png") }
                         >
-                            <Text style={styles.avatarText}>Sửa</Text>
+                            <View style={styles.viewText}>
+                                <Text style={styles.avatarText}>Sửa</Text>
+                            </View>
                         </ImageBackground>
                     </View>
 
@@ -45,87 +47,46 @@ const EditProfile = ({ navigation }) => {
             </View>
 
             <View style={styles.contentBox}>
-                <Text style={styles.contentHeader}>Tài khoản</Text>
                 <View style={styles.block}>
                     <Pressable style={ [ styles.customerInfo, styles.customerInfoBlock ]}>
                         <View style={[ styles.customerInfo, styles.customerInfoLeft ]}>
-                            <Text style={styles.customerInfoText}>Tài khoản & Bảo mật</Text>
+                            <Text style={styles.customerInfoText}>Tên</Text>
                         </View>
                         <View style={[ styles.customerInfo, styles.customerInfoRight ]}>
+                            <Text>Admin</Text>
                             <Entypo name="chevron-small-right" size={26} color="black" />
                         </View>
                     </Pressable>
 
                     <Pressable style={ [ styles.customerInfo, styles.customerInfoBlock ]}>
                         <View style={[ styles.customerInfo, styles.customerInfoLeft ]}>
-                            <Text style={styles.customerInfoText}>Địa Chỉ</Text>
+                            <Text style={styles.customerInfoText}>Bio</Text>
                         </View>
                         <View style={[ styles.customerInfo, styles.customerInfoRight ]}>
-                            <Entypo name="chevron-small-right" size={26} color="black" />
-                        </View>
-                    </Pressable>
-
-                    <Pressable style={ [ styles.customerInfo, styles.customerInfoBlock ]}>
-                        <View style={[ styles.customerInfo, styles.customerInfoLeft ]}>
-                            <Text style={styles.customerInfoText}>Tài khoản / Thẻ ngân hàng</Text>
-                        </View>
-                        <View style={[ styles.customerInfo, styles.customerInfoRight ]}>
-                            <Entypo name="chevron-small-right" size={26} color="black" />
-                        </View>
-                    </Pressable>
-                    <Pressable style={ [ styles.customerInfo, styles.customerInfoBlock ]}>
-                        <View style={[ styles.customerInfo, styles.customerInfoLeft ]}>
-                            <Text style={styles.customerInfoText}>Ngôn ngữ / Language</Text>
-                        </View>
-                        <View style={[ styles.customerInfo, styles.customerInfoRight ]}>
+                            <Text>Thiết lập ngay</Text>
                             <Entypo name="chevron-small-right" size={26} color="black" />
                         </View>
                     </Pressable>
                 </View>
             </View>
 
-            <View style={styles.contentBox}>
-                <Text style={styles.contentHeader}>Hỗ trợ</Text>
+            <View style={[ styles.contentBox, styles.mt30 ]}>
                 <View style={styles.block}>
                     <Pressable style={ [ styles.customerInfo, styles.customerInfoBlock ]}>
                         <View style={[ styles.customerInfo, styles.customerInfoLeft ]}>
-                            <Text style={styles.customerInfoText}>Trung tâm hỗ trợ</Text>
+                            <Text style={styles.customerInfoText}>Giới tính</Text>
                         </View>
                         <View style={[ styles.customerInfo, styles.customerInfoRight ]}>
-                            <Entypo name="chevron-small-right" size={26} color="black" />
-                        </View>
-                    </Pressable>
-
-                    <Pressable style={ [ styles.customerInfo, styles.customerInfoBlock ]}>
-                        <View style={[ styles.customerInfo, styles.customerInfoLeft ]}>
-                            <Text style={styles.customerInfoText}>Tiêu chuẩn cộng đồng</Text>
-                        </View>
-                        <View style={[ styles.customerInfo, styles.customerInfoRight ]}>
-                            <Entypo name="chevron-small-right" size={26} color="black" />
-                        </View>
-                    </Pressable>
-
-                    <Pressable style={ [ styles.customerInfo, styles.customerInfoBlock ]}>
-                        <View style={[ styles.customerInfo, styles.customerInfoLeft ]}>
-                            <Text style={styles.customerInfoText}>Điều khoản</Text>
-                        </View>
-                        <View style={[ styles.customerInfo, styles.customerInfoRight ]}>
+                            <Text>Khác</Text>
                             <Entypo name="chevron-small-right" size={26} color="black" />
                         </View>
                     </Pressable>
                     <Pressable style={ [ styles.customerInfo, styles.customerInfoBlock ]}>
                         <View style={[ styles.customerInfo, styles.customerInfoLeft ]}>
-                            <Text style={styles.customerInfoText}>Giới thiệu</Text>
+                            <Text style={styles.customerInfoText}>Ngày sinh</Text>
                         </View>
                         <View style={[ styles.customerInfo, styles.customerInfoRight ]}>
-                            <Entypo name="chevron-small-right" size={26} color="black" />
-                        </View>
-                    </Pressable>
-                    <Pressable style={ [ styles.customerInfo, styles.customerInfoBlock ]}>
-                        <View style={[ styles.customerInfo, styles.customerInfoLeft ]}>
-                            <Text style={styles.customerInfoText}>Yêu cầu xóa tài khoản</Text>
-                        </View>
-                        <View style={[ styles.customerInfo, styles.customerInfoRight ]}>
+                            <Text>15-09-2001</Text>
                             <Entypo name="chevron-small-right" size={26} color="black" />
                         </View>
                     </Pressable>
@@ -172,12 +133,13 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         resizeMode: 'center',
     },
-    avatarText: {
+    viewText: {
         marginTop: 60,
-        width: '100%',
-        backgroundColor: '#ccc',
+        backgroundColor: '#3b3b3b',
+        alignItems: 'center'
+    },
+    avatarText: {
         color: '#fff',
-        alignSelf: 'center'
     },
     avatarBot: {
         height: 24,
@@ -186,7 +148,10 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     contentBox: {
-        marginHorizontal: 20
+        marginHorizontal: 20,
+    },
+    mt30: {
+        marginTop: 30,
     },
     contentHeader: {
         marginTop: 16,
