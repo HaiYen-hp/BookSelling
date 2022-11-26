@@ -9,6 +9,7 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
+  Pressable,
 } from "react-native";
 // import { Colors } from "react-native/Libraries/NewAppScreen";
 import { AntDesign } from "@expo/vector-icons";
@@ -16,12 +17,13 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import TopIconHomePage from "../components/cards/TopIconHomePage";
 import ListTab from "../components/Tabs/ListTab";
+import ProductElement from "../components/Product/ProductElement";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ListProduct from "../components/Product/ListProduct";
 import ITEMS from "../screens/ITEMS";
+import Navigation from "../components/NavigationScreen/Navigation";
 // const { width, height } = Dimensions.get("screen");
-// const title = ["Phổ biến", "Bán chạy", "Hàng Mới"];
+
 // const tabs = Object.keys(ITEMS, title).map((i) => ({
 //   key: i,
 //   title: title[i],
@@ -29,7 +31,7 @@ import ITEMS from "../screens/ITEMS";
 //   ref: React.createRef(),
 // }));
 const tabs = ["Phổ Biến", "Bán Chạy", "Hàng Mới"];
-function HomePage() {
+function HomePage({ navigation }) {
   // const [selectedTab, setSelectedTab] = React.useState(tabs[0]);
   // const scrollX = React.useRef(new Animated.Value(0)).current;
   const [loaded] = useFonts({
@@ -69,71 +71,26 @@ function HomePage() {
             ></Image>
           </View>
         </View>
-        {/* <ListTab tabs={tabs} data={ITEMS}/> */}
+        <ListTab tabs={tabs} data={ITEMS} />
         <View style={styles.ideaContanier}>
           <Text style={{ fontFamily: "SansCasualBold", fontSize: 22 }}>
             GỢI Ý
           </Text>
-          <View style={styles.buttonAllContanier}>
+          <Pressable
+            style={styles.buttonAllContanier}
+            onPress={() => navigation.navigate("ListProductsPage")}
+          >
             <Text style={{ fontFamily: "SansCasual" }}>Xem Tất Cả</Text>
             <AntDesign name="right" size={20} color="black" />
-          </View>
+          </Pressable>
         </View>
-        <ListProduct />
+        <ProductElement />
         <View style={styles.buttonAllContanier}>
           <Text style={{ fontFamily: "SansCasual" }}>Xem Thêm</Text>
           <AntDesign name="down" size={20} color="black" />
         </View>
       </ScrollView>
     </SafeAreaView>
-    // {/* <View style={styles.tabView}>
-    //   <Animated.FlatList
-    //     data={tabs}
-    //     keyExtractor={(item, index) => `${item}-${index}`}
-    //     showsHorizontalScrollIndicator={false}
-    //     horizontal
-    //     pagingEnabled
-    //     onScroll={Animated.event(
-    //       [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-    //       { useNativeDriver: false }
-    //     )}
-    //     bounces={false}
-    //     renderItem={({ item }) => {
-    //       return (
-    //         <View />
-    //           <Tabs scrollX={scrollX} data={item} />
-    //           <View style={{ height: "20%" }}>
-    //             <FlatList
-    //               data={items.source}
-    //               keyExtractor={(item) => item.id}
-    //               horizontal
-    //               showsHorizontalScrollIndicator={false}
-    //               renderItem={({ item }) => {
-    //                 return (
-    //                   <View>
-    //                     <ImageBackground
-    //                       source={item.image}
-    //                       style={styles.img}
-    //                     />
-    //                     <Text>{item.name}</Text>
-    //                     <View style={{ flexDirection: "row" }}>
-    //                       <Text>
-    //                         {" "}
-    //                         {item.price}
-    //                         {"  "}
-    //                         {item.discount}
-    //                       </Text>
-    //                     </View>
-    //                   </View>
-    //                 );
-    //               }}
-    //             />
-    //           </View>
-    //       );
-    //     }}
-    //   />
-    //   <Tabs scrollX={scrollX} data={tabs} />
-    //   </View> */}
   );
 }
 export default HomePage;

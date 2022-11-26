@@ -15,7 +15,7 @@ import AppLoading from "expo-app-loading";
 import TabDetail from "./TabDetail";
 const w = Dimensions.get("screen").width;
 
-const ListTabHPDetail = ({ onPress, lisFooter, tabs, data }) => {
+const ListTabHPDetail = ({ onPress, lisFooter, tabs, data, index }) => {
   const [selected, setSelected] = useState(0);
 
   const onScroll = ({ nativeEvent }) => {

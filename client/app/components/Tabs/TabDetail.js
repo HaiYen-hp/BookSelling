@@ -27,7 +27,7 @@ const TabDetail = ({ data }) => {
     <View style={styles.itemScroll}>
       {data.map((item) => {
         return (
-          <View key={item.id.toString()} style={styles.itemContainer}>
+          <View key={item.id} style={styles.itemContainer}>
             <View
               style={{
                 flexDirection: "row",

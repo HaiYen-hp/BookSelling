@@ -8,12 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomePage from "./app/screens/HomePage";
 import { createStackNavigator } from "@react-navigation/stack";
 import AccountInfo from "./app/components/AccountInfo/AccountInfo";
-// import SignInScreen from "./app/components/Authentication/SignInScreen";
-// import SignUpScreen from "./app/components/Authentication/SignUpScreen";
-// import Loading from "./app/components/Welcome/Loading";
-// import WelcomeScreen from "./app/components/Welcome/welcomeScreen";
-// import ChangeMode from "./app/components/Welcome/ChangeMode";
-// import SelectedScreen from "./app/components/Welcome/SelectedSignUpAndSignIn";
+import ListProductPage from "./app/screens/ListProductPage";
 import EventsList from "./app/screens/EventsList";
 
 import { Ionicons, AntDesign } from "@expo/vector-icons";
