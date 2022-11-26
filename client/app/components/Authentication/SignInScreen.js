@@ -76,7 +76,7 @@ const SignInScreen = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
-      <View style={{ marginLeft: 20, marginTop:30 }}>
+      <View style={{ marginLeft: 20, marginTop: 30 }}>
         <BackIcon navigation={() => navigation.goBack()} />
       </View>
       <View style={styles.header}>
@@ -91,24 +91,22 @@ const SignInScreen = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.content}>
-        <TextInput 
-          style={styles.input} 
+        <TextInput
+          style={styles.input}
           placeholder="Tên Tài Khoản"
           value={username}
           onChangeText={(value) => {
             setUsername(value);
           }}
-        >
-        </TextInput>
-        <TextInput 
-          style={styles.input} 
+        ></TextInput>
+        <TextInput
+          style={styles.input}
           placeholder="Nhập Email"
           value={email}
           onChangeText={(value) => {
             setEmail(value);
           }}
-          >
-          </TextInput>
+        ></TextInput>
 
         <View style={styles.inputContainer}>
           <TextInput
@@ -273,7 +271,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#C8C23C",
     opacity: 0.81,
     marginBottom: 50,
-    marginHorizontal: 30
+    marginHorizontal: 30,
   },
   textStart: {
     color: "#FFFFFF",

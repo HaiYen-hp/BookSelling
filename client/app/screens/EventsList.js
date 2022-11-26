@@ -10,11 +10,13 @@ import {
   Animated,
   TouchableOpacity,
 } from "react-native";
+import { SharedElement } from "react-native-shared-element";
+
 import { useFonts } from "expo-font";
 import { AntDesign } from "@expo/vector-icons";
 import AppLoading from "expo-app-loading";
+const { width, height } = Dimensions.get("screen");
 
-const { width } = Dimensions.get("screen");
 import ITEMLISTS from "./ITEMLISTS";
 import {
   FlingGestureHandler,
@@ -124,7 +126,7 @@ export default function EventsList({ navigation }) {
             data={data}
             horizontal
             inverted
-            keyExtractor={(_, index) => String(index)}
+            keyExtractor={(item) => item.id}
             contentContainerStyle={{
               flex: 1,
               justifyContent: "center",
@@ -177,15 +179,41 @@ export default function EventsList({ navigation }) {
                       });
                     }}
                   >
-                    <Image
-                      source={item.image}
-                      style={{ width: ITEM_WIDTH, height: ITEM_HEIGHT }}
-                    />
+                    <SharedElement id={`item.${item.key}.image`}>
+                      <Image
+                        source={item.image}
+                        style={{
+                          width: ITEM_WIDTH,
+                          height: ITEM_HEIGHT,
+                          borderRadius: 14,
+                        }}
+                      />
+                    </SharedElement>
                   </TouchableOpacity>
                 </Animated.View>
               );
             }}
           />
+          <SharedElement
+            id="general.bg"
+            style={[
+              StyleSheet.absoluteFillObject,
+              {
+                transform: [{ translateY: height }],
+              },
+            ]}
+          >
+            <View
+              style={[
+                StyleSheet.absoluteFillObject,
+                {
+                  backgroundColor: "#FAFAFA",
+                  top: height * 0.65,
+                  borderRadius: 16,
+                },
+              ]}
+            />
+          </SharedElement>
         </SafeAreaView>
       </FlingGestureHandler>
     </FlingGestureHandler>

@@ -6,6 +6,7 @@ import {
   Pressable,
   ImageBackground,
   Dimensions,
+  ScrollView,
 } from "react-native";
 import { useFonts } from "expo-font";
 import { AntDesign } from "@expo/vector-icons";
@@ -25,7 +26,11 @@ const ProductElement = ({ onPress }) => {
   const renderItem = ({ item }) => {
     return (
       <Pressable style={styles.item} onPress={onPress}>
-        <ImageBackground style={styles.image} imageStyle={{ borderRadius: 15}} source={item.image} >
+        <ImageBackground
+          style={styles.image}
+          imageStyle={{ borderRadius: 15 }}
+          source={item.image}
+        >
           <Pressable style={styles.buttonHeart}>
             <AntDesign name="heart" size={20} color="#B4B4B4" />
           </Pressable>
@@ -55,14 +60,16 @@ const ProductElement = ({ onPress }) => {
     );
   };
   return (
-    <FlatList
-      data={ITEMLIST}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-      numColumns={2}
-      showsHorizontalScrollIndicator={false}
-      key={(item) => item.id}
-    />
+    <ScrollView decelerationRate="fast" scrollEventThrottle={0}>
+      <FlatList
+        data={ITEMLIST}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+        showsHorizontalScrollIndicator={false}
+        key={(item) => item.id}
+      />
+    </ScrollView>
   );
 };
 export default ProductElement;
