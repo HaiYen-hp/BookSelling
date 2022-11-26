@@ -17,6 +17,10 @@ import Payment from "../payment/Payment";
 import EventsList from "../../screens/EventsList";
 import EventsListDetails from "../../screens/EventsListDetails";
 import DetailPage from "../DetailPage/DetailPage";
+import EditProfile from "../AccountInfo/EditProfile";
+
+
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -62,6 +66,8 @@ const Navigation = () => {
         <Stack.Screen name="EventsList" component={EventsList} />
         <Stack.Screen name="EventsListDetails" component={EventsListDetails} />
         <Stack.Screen name="DetailPage" component={DetailPage} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
+
         
         <Stack.Screen name="HomePage" component={MyTabs} />
         <Stack.Screen name="Trang chủ" component={MyTabs} />

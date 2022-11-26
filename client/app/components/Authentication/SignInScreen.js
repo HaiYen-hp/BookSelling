@@ -28,7 +28,7 @@ const SignInScreen = ({ navigation }) => {
     setCfpassword("");
   };
 
-  const clikOnRegister = () => {
+  const clickOnRegister = () => {
 
     if (username == "" || email == "" || password == "" || cfpassword == "") {
       Alert.alert("Thông báo", "Thông tin đăng kí phải nhập đầy đủ!")
@@ -154,7 +154,7 @@ const SignInScreen = ({ navigation }) => {
         </View>
       </View>
       {/* <ButtonBot text="ĐĂNG KÝ"></ButtonBot> */}
-      <Pressable onPress={clikOnRegister}>
+      <Pressable onPress={clickOnRegister}>
         <View style={styles.btnStart}>
           <Text style={styles.textStart}>ĐĂNG KÝ</Text>
         </View>

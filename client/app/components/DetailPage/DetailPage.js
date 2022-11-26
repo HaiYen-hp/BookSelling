@@ -106,8 +106,8 @@ function DetailPage() {
                         <Text style = {{fontSize: 20,fontWeight: "bold",fontFamily: "SansCasualBold", marginLeft: 10, marginTop: 20}}>Sản Phẩm Đã Xem</Text>
                         <ListImageRow/>
                 </View>
-
-                <View style = {styles.DetailFive}>
+            </ScrollView>
+            <View style = {styles.DetailFive}>
                     <View style = {{flexDirection: 'row' ,justifyContent: 'space-between',marginLeft:'5%', marginRight:'5%'}}>
                         <View>
                             <Text style = {{fontSize: 15}}>Giá trị</Text>
@@ -121,8 +121,7 @@ function DetailPage() {
                             <Text style= {{alignItems: 'center'}}>CHỌN MUA</Text>
                         </View>
                     </View>
-                </View>
-            </ScrollView>
+            </View>
         </View>
     );
 }
@@ -185,7 +184,7 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: 'white',
         justifyContent: 'space-around',
-        marginTop: 20
+        marginVertical: 20
     },
     ButtonBuy:
     {
@@ -201,6 +200,5 @@ const styles = StyleSheet.create({
         height: 90,
         backgroundColor: 'white',
         justifyContent: 'center',
-        marginTop: 20
     },
 });
