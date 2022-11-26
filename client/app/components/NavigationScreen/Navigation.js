@@ -17,7 +17,7 @@ import EventsListDetails from "../../screens/EventsListDetails";
 import ListProductPage from "../../screens/ListProductPage";
 import SearchingTab from "../Tabs/SearchingTab";
 import ProductElement from "../Product/ProductElement";
-import ProductElementVer2 from "../Product/ProductElementVer2";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 function MyTabs() {
@@ -74,10 +74,6 @@ const Navigation = () => {
         <Stack.Screen name="ListProductsPage" component={ListProductPage} />
         <Stack.Screen name="SearchingTab" component={SearchingTab} />
         <Stack.Screen name="ProductElement" component={ProductElement} />
-        <Stack.Screen
-          name="ProductElementVer2"
-          component={ProductElementVer2}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );

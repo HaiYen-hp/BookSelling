@@ -13,8 +13,10 @@ import { AntDesign } from "@expo/vector-icons";
 import AppLoading from "expo-app-loading";
 import ITEMLIST from "../../screens/ITEMLIST";
 import themes from "../../../config/themes";
+import { useState } from "react";
 const w = Dimensions.get("screen").width;
 const ProductElement = ({ onPress }) => {
+  const [color, setColor] = useState("#B4B4B4");
   const [loaded] = useFonts({
     SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
     SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
@@ -32,7 +34,12 @@ const ProductElement = ({ onPress }) => {
           source={item.image}
         >
           <Pressable style={styles.buttonHeart}>
-            <AntDesign name="heart" size={20} color="#B4B4B4" />
+            <AntDesign
+              name="heart"
+              size={20}
+              color={color}
+              onPress={() => setColor("red", )}
+            />
           </Pressable>
         </ImageBackground>
         <View style={styles.body}>
@@ -60,7 +67,11 @@ const ProductElement = ({ onPress }) => {
     );
   };
   return (
-    <ScrollView decelerationRate="fast" scrollEventThrottle={0}>
+    <ScrollView
+      decelerationRate="fast"
+      scrollEventThrottle={0}
+      style={{ marginBottom: 170 }}
+    >
       <FlatList
         data={ITEMLIST}
         renderItem={renderItem}
