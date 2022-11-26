@@ -1,41 +1,82 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text,Pressable, useWindowDimensions } from "react-native";
+import React from "react";
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
-const TabDetail = ({ onPress }) => {
-    const layout = useWindowDimensions();
-    const [loaded] = useFonts({
-        SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
-        SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
-        SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
-    });
-    if (!loaded) {
+import { AntDesign } from "@expo/vector-icons";
+const w = Dimensions.get("screen").width;
+
+const TabDetail = ({ data }) => {
+  const [loaded] = useFonts({
+    SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
+    SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
+    SansCasualBold: require("../../../assets/fonts/RecursiveSansCslSt-Bold.ttf"),
+  });
+  if (!loaded) {
     return <AppLoading />;
-    }
-    return(
-        
-    <Pressable onPress={onPress}>
-        <View style= {{marginTop: 25, marginBottom: 30,width: layout.width * 0.9}}>
-            <View style = {{ justifyContent: 'center'}}>
-                <Text style = {styles.Detail}>Danh mục: ...- Sách lịch sử - Thế giới</Text>
-                    <Text style = {styles.Detail}>Công ty sản xuất: Alpha Books</Text>
-                    <Text style = {styles.Detail}>Ngày xuất bản: 2021-07-14</Text>
-                    <Text style = {styles.Detail}>Dịch giả: Dương Minh Tú</Text>
-                    <Text style = {styles.Detail}>Loại bìa: Bìa cứng</Text>
-                    <Text style = {styles.Detail}>Số trang : 1500</Text>
-                    <Text style = {styles.Detail}>Số trang: Nhà xuất bản toàn cầu</Text>
-                </View>
+  }
+
+  return (
+    <View style={styles.itemScroll}>
+      {data.map((item) => {
+        return (
+          <View key={item.id} style={styles.itemContainer}>
+            <View
+              style={{
+                flexDirection: "row",
+                alignContent: "center",
+                marginBottom: 9,
+              }}
+            >
+              <Text style={styles.textCa}>Danh mục: ...</Text>
+              <AntDesign name="right" size={14} color="black" />
+              <Text style={styles.textCa}>{item.category}</Text>
+              <AntDesign name="right" size={14} color="black" />
+              <Text style={styles.textCa}>{item.categoryDetail}</Text>
             </View>
-    </Pressable>
-    );
+            <Text style={styles.textItem}>
+              Công ty sản xuất: {item.productCompany}
+            </Text>
+            <Text style={styles.textItem}>
+              Ngày xuất bản: {item.releaseDate}
+            </Text>
+            <Text style={styles.textItem}>Dịch giả: {item.translator}</Text>
+            <Text style={styles.textItem}>Loại bìa: {item.coverType}</Text>
+            <Text style={styles.textItem}>Số trang: {item.numberOfPage}</Text>
+            <Text style={styles.textItem}>
+              Nhà xuất bản: {item.editionCompany}
+            </Text>
+          </View>
+        );
+      })}
+    </View>
+  );
 };
+
 export default TabDetail;
 
 const styles = StyleSheet.create({
-    Detail:
-    {
-        fontSize: 20,
-        paddingBottom: 10,
-        fontFamily: 'SansCasual'
-    }
+  itemScroll: {
+    width: w,
+  },
+  itemContainer: {
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  textCa: {
+    fontFamily: "SansCasual",
+    fontSize: 15,
+  },
+  textItem: {
+    fontFamily: "SansCasual",
+    fontSize: 15,
+    marginVertical: 5,
+  },
 });

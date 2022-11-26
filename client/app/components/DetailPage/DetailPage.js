@@ -6,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons'; 
 import { MaterialIcons } from '@expo/vector-icons';
 import ListTabDetail from "../Tabs/ListTabDetail";
-import ListProduct from "../Product/ListProduct";
+import ProductElement from "../Product/ProductElement";
 import ListImageRow from "../Tabs/ListImageRow";
 import BackIcon from "../buttons/BackIcon";
 
@@ -68,7 +68,7 @@ function DetailPage() {
                             <Text style = {{paddingLeft: 10, fontSize: 15}}>Share</Text>
                         </View>
 
-                        <ListTabDetail />
+                        {/* <ListTabDetail /> */}
                     </View>
                 </View>
 
@@ -95,7 +95,7 @@ function DetailPage() {
                     </View>
                 </View>
 
-                <ListProduct />
+                <ProductElement />
 
                 <View style={styles.buttonAllContanier}>
                     <Text style={{ fontFamily: "SansCasual" , fontSize:20}}>Xem Thêm</Text>

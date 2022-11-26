@@ -23,17 +23,15 @@ const TopIconHomePage = ({ navigation }) => {
 export default TopIconHomePage;
 
 const styles = StyleSheet.create({
-    boxIcon: {
-        marginTop: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginHorizontal: 30,
-    },
-    searchIcon: {
-
-    },
-    iconRight:{
-        flexDirection: 'row',
-        alignItems: 'flex-end'
-    }
+  boxIcon: {
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 30,
+  },
+  searchIcon: {},
+  iconRight: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+  },
 });
