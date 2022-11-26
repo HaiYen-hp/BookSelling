@@ -16,24 +16,29 @@ function ListProductPage({ navigation }) {
     }
   };
   return (
-    <View style={styles.tabContainer}>
-      <SearchingTab />
-      <Ionicons
-        name={icon}
-        size={27}
-        color="black"
-        style={{ marginLeft: 10, opacity: 0.6 }}
-        // onPress={() =>
-        //   handleIconPress &&
-        //   (icon == "ios-list-outline" ? setIcon("ios-grid-outline") : setIcon("ios-list-outline"))
-        // }
-      />
-      <ProductElement />
+    <View style={styles.container}>
+      <View style={styles.tabContainer}>
+        <SearchingTab />
+        <Ionicons
+          name={icon}
+          size={27}
+          color="black"
+          style={{ marginLeft: 10, opacity: 0.6 }}
+          // onPress={() =>
+          //   handleIconPress &&
+          //   (icon == "ios-list-outline" ? setIcon("ios-grid-outline") : setIcon("ios-list-outline"))
+          // }
+        />
+        <ProductElement />
+      </View>
     </View>
   );
 }
 export default ListProductPage;
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column'
+  },
   tabContainer: {
     flexDirection: "row",
     marginTop: 70,

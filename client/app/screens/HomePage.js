@@ -2,14 +2,9 @@ import {
   View,
   StyleSheet,
   Text,
-  Dimensions,
-  FlatList,
-  Animated,
-  ImageBackground,
   Image,
   Pressable,
   ScrollView,
-  Pressable,
 } from "react-native";
 // import { Colors } from "react-native/Libraries/NewAppScreen";
 import { AntDesign, Entypo } from "@expo/vector-icons";
