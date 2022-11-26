@@ -1,4 +1,7 @@
-﻿using System.Security.Cryptography;
+﻿using log4net.Core;
+using System.Security.Claims;
+using System.Security.Cryptography;
+using System.ServiceModel;
 using System.Text;
 
 namespace APIBookSaling.Utils
@@ -27,6 +30,19 @@ namespace APIBookSaling.Utils
         {
             var usr = httpContextAccessor.HttpContext?.User.FindFirst(APIBookSaling.ClaimTypes.Username);
             return usr != null ? usr.Value : "";
+        }
+
+        public static int GetCurrentUserId(IHttpContextAccessor httpContextAccessor)
+        {
+            var claims = httpContextAccessor.HttpContext?.User?.Identity as ClaimsIdentity;
+            var claim = claims?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            if (claim == null)
+            {
+                throw new FaultException(new FaultReason($"Tài khoản không chứa claim \"{System.Security.Claims.ClaimTypes.NameIdentifier}\""),
+                    new FaultCode(((int)ErrorCode.GenericFailure).ToString()), "");
+            }
+            int userId = int.Parse(claim.Value);
+            return userId;
         }
     }
 }

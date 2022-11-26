@@ -18,15 +18,18 @@ namespace APIBookSaling.Services.Implements
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _dbContext;
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContext;
 
         public UserServices(
             ILogger<CustomerServices> logger,
             ApplicationDbContext dbContext,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IHttpContextAccessor httpContext)
         {
             _logger = logger;
             _dbContext = dbContext;
             _configuration = configuration;
+            _httpContext = httpContext;
         }
 
         public void Create(CreateUserDto input)
@@ -162,6 +165,24 @@ namespace APIBookSaling.Services.Implements
             userFind.Phone = input.Phone;
             userFind.UserType = input.UserType;
             _dbContext.SaveChanges();
+        }
+
+        public User GetMyInfo()
+        {
+            var userid = CommonUtils.GetCurrentUserId(_httpContext);
+            var userQuery = _dbContext.users.AsQueryable();
+            var user = userQuery.FirstOrDefault(s => s.Id == userid);
+
+            var result = new User
+            {
+                UserName = user.UserName,
+                Password = user.Password,
+                Email = user.Email,
+                Phone = user.Phone,
+                UserType = user.UserType,
+                CustomerId = user.CustomerId
+            };
+            return result;
         }
     }
 }
