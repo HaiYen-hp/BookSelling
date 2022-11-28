@@ -23,6 +23,7 @@ import ProductElement from "../Product/ProductElement";
 import ProductElementVer2 from "../Product/ProductElementVer2";
 import DetailPage from "../DetailPage/DetailPage";
 import EditProfile from "../AccountInfo/EditProfile";
+import Deliver from "../OrderDeliver/Deliver";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -83,6 +84,7 @@ const Navigation = () => {
         <Stack.Screen name="Payment" component={Payment} />
         <Stack.Screen name="DetailPage" component={DetailPage} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
+        <Stack.Screen name="Deliver" component={Deliver} />
 
         
         <Stack.Screen name="HomePage" component={MyTabs} />
