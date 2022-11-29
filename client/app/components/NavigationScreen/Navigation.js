@@ -84,15 +84,10 @@ const Navigation = () => {
         <Stack.Screen name="DetailPage" component={DetailPage} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
 
-        
         <Stack.Screen name="HomePage" component={MyTabs} />
         <Stack.Screen name="Trang chủ" component={MyTabs} />
         <Stack.Screen name="EventsList" component={MyTabs} />
         <Stack.Screen name="Cá nhân" component={MyTabs} />
-
-
-
-
       </Stack.Navigator>
     </NavigationContainer>
   );
