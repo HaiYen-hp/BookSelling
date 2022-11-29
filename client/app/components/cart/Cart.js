@@ -4,10 +4,11 @@ import {
     TextInput,
     StyleSheet,
     Pressable,
-    Image
+    Image,
+    Alert
 } from "react-native";
-import { 
-    Feather, 
+import {
+    Feather,
     FontAwesome5,
     Entypo,
     FontAwesome,
@@ -16,58 +17,80 @@ import {
 } from '@expo/vector-icons';
 import React, { useState } from "react";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-const cartData = [
-    {
-        img: require("../../../assets/images/aidagiethoangtube.png"),
-        name: 'Ai đã đặt tên cho em',
-        price: '172.000',
-        quantity: '2'
-    },
-    {
-        img: require("../../../assets/images/aidagiethoangtube.png"),
-        name: 'Ai đã đặt tên cho em',
-        price: '172.000',
-        quantity: '2'
-    },
-    {
-        img: require("../../../assets/images/aidagiethoangtube.png"),
-        name: 'Ai đã đặt tên cho em',
-        price: '172.000',
-        quantity: '2'
-    },
-    {
-        img: require("../../../assets/images/aidagiethoangtube.png"),
-        name: 'Ai đã đặt tên cho em',
-        price: '172.000',
-        quantity: '2'
-    },
-    {
-        img: require("../../../assets/images/aidagiethoangtube.png"),
-        name: 'Ai đã đặt tên cho em',
-        price: '172.000',
-        quantity: '2'
-    },
-    {
-        img: require("../../../assets/images/aidagiethoangtube.png"),
-        name: 'Ai đã đặt tên cho em',
-        price: '172.000',
-        quantity: '2'
-    },
-    {
-        img: require("../../../assets/images/aidagiethoangtube.png"),
-        name: 'Ai đã đặt tên cho em',
-        price: '172.000',
-        quantity: '2'
-    },
-    {
-        img: require("../../../assets/images/aidagiethoangtube.png"),
-        name: 'Ai đã đặt tên cho em',
-        price: '172.000',
-        quantity: '2'
-    },
-]
+
 const Cart = ({ navigation }) => {
-    return ( 
+
+    const cartData = [
+        {
+            id: 1,
+            img: require("../../../assets/images/aidagiethoangtube.png"),
+            name: 'Ai đã đặt tên cho em',
+            price: '172.000',
+            quantity: 1
+        },
+        {
+            id: 2,
+            img: require("../../../assets/images/aidagiethoangtube.png"),
+            name: 'Ai đã đặt tên cho em',
+            price: '172.000',
+            quantity: 1
+        },
+        {
+            id: 3,
+            img: require("../../../assets/images/aidagiethoangtube.png"),
+            name: 'Ai đã đặt tên cho em',
+            price: '172.000',
+            quantity: 1
+        },
+        {
+            id: 4,
+            img: require("../../../assets/images/aidagiethoangtube.png"),
+            name: 'Ai đã đặt tên cho em',
+            price: '172.000',
+            quantity: 1
+        },
+        {
+            id: 5,
+            img: require("../../../assets/images/aidagiethoangtube.png"),
+            name: 'Ai đã đặt tên cho em',
+            price: '172.000',
+            quantity: 1
+        },
+        {
+            id: 6,
+            img: require("../../../assets/images/aidagiethoangtube.png"),
+            name: 'Ai đã đặt tên cho em',
+            price: '172.000',
+            quantity: 1
+        },
+        {
+            id: 7,
+            img: require("../../../assets/images/aidagiethoangtube.png"),
+            name: 'Ai đã đặt tên cho em',
+            price: '172.000',
+            quantity: 1
+        },
+        {
+            id: 8,
+            img: require("../../../assets/images/aidagiethoangtube.png"),
+            name: 'Ai đã đặt tên cho em',
+            price: '172.000',
+            quantity: 1
+        },
+    ]
+
+    const cartDataNew = cartData.map((book) => {
+        book.isCheck = false
+        return book;
+    })
+    const [checkboxBC, setCheckboxBC] = useState('#FFF')
+
+    function Test() {
+        if (checkboxBC == "#fff") {
+            setCheckboxBC("#CAC659")
+        } else setCheckboxBC("#fff")
+    }
+    return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.headerContent}>
@@ -91,26 +114,31 @@ const Cart = ({ navigation }) => {
             <View style={styles.total}>
                 <View style={styles.totalDetail}>
                     <View style={styles.listCheckBox}>
-                        <TouchableOpacity style={styles.checkBox}></TouchableOpacity>
+                        <Pressable onPress={Test}>
+                            <View style={[styles.checkBox, {backgroundColor: checkboxBC}]}>
+                                {/* <AntDesign name="checksquare" size={16}  /> */}
+                            </View>
+                        </Pressable>
                         <Text>Tất cả (3 sản phẩm)</Text>
                     </View>
+
                     <View style={styles.deleteItem}>
                         <FontAwesome name="trash-o" size={24} color="black" />
                     </View>
                 </View>
             </View>
 
-          <ScrollView>
-            <View style={styles.listItemContainer}>
+            <ScrollView>
+                <View style={styles.listItemContainer}>
                     {
                         cartData.map((book) => {
-                            return(
+                            return (
                                 <View style={styles.itemContainer}>
                                     <View style={styles.overviewItem}>
-                                        <TouchableOpacity style={styles.checkBox}></TouchableOpacity>
+                                        <Pressable style={[styles.checkBox, { backgroundColor: checkboxBC }]}></Pressable>
                                         <Image
                                             style={styles.itemImage}
-                                            source={book.img }
+                                            source={book.img}
                                         />
                                         <View style={styles.description}>
                                             <Text style={styles.title}>{book.name}</Text>
@@ -133,28 +161,28 @@ const Cart = ({ navigation }) => {
                                             <FontAwesome name="trash-o" size={24} color="black" />
                                         </View>
                                     </View>
-                                    
-            
+
+
                                 </View>
                             );
                         })
                     }
-                
+
                 </View>
-          </ScrollView>
-          <View style={styles.bottom}>
+            </ScrollView>
+            <View style={styles.bottom}>
                 <View style={styles.salesContainer}>
                     <View style={styles.salesDescription}>
                         <MaterialCommunityIcons name="ticket-percent-outline" size={24} color="#CAC659" />
-                        <Text style={{ marginLeft:10}}>Shop khuyến mãi</Text>
+                        <Text style={{ marginLeft: 10 }}>Shop khuyến mãi</Text>
                     </View>
                     <View style={styles.inputCode}>
-                        <TextInput 
+                        <TextInput
                             placeholder="Nhập mã giảm giá">
                         </TextInput>
                         <Entypo style={styles.rankName} name="chevron-small-right" size={24} color="#ccc" />
 
-                        
+
                     </View>
                 </View>
 
@@ -169,7 +197,7 @@ const Cart = ({ navigation }) => {
                         </Pressable>
                     </View>
                 </View>
-          </View>
+            </View>
         </View>
     )
 };
@@ -177,7 +205,7 @@ const Cart = ({ navigation }) => {
 
 export default Cart;
 
-const styles = StyleSheet.create({ 
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "column",
@@ -249,6 +277,7 @@ const styles = StyleSheet.create({
     checkBox: {
         width: 20,
         height: 20,
+        borderRadius: 100,
         borderWidth: 2,
         borderColor: '#ccc',
         marginRight: 10
@@ -326,7 +355,7 @@ const styles = StyleSheet.create({
         height: 120,
         backgroundColor: '#fff'
     },
-    salesContainer:{
+    salesContainer: {
         flexDirection: 'row',
         paddingLeft: 20,
         paddingRight: 12,

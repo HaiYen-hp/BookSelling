@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     selectDelivers: {
         paddingHorizontal: 20,
         paddingTop: 12,
-        backgroundColor: '#eae8bf',
+        backgroundColor: '#f1f0dd',
         borderColor: '#CAC659',
         borderWidth: 2,
         borderRadius: 28,
@@ -289,6 +289,7 @@ const styles = StyleSheet.create({
     checkBox: {
         width: 20,
         height: 20,
+        borderRadius: 100,
         borderWidth: 2,
         borderColor: '#ccc',
         marginRight: 10
