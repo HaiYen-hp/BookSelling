@@ -20,7 +20,7 @@ import EventsListDetails from "../../screens/EventsListDetails";
 import ListProductPage from "../../screens/ListProductPage";
 import SearchingTab from "../Tabs/SearchingTab";
 import ProductElement from "../Product/ProductElement";
-import ProductElementVer2 from "../Product/ProductElementVer2";
+
 import DetailPage from "../DetailPage/DetailPage";
 import EditProfile from "../AccountInfo/EditProfile";
 import Deliver from "../OrderDeliver/Deliver";
@@ -67,6 +67,11 @@ const Navigation = () => {
           headerShown: false,
         }}
       >
+        <Stack.Screen name="HomePage" component={MyTabs} />
+        <Stack.Screen name="Trang chủ" component={MyTabs} />
+        <Stack.Screen name="EventsList" component={MyTabs} />
+        <Stack.Screen name="Cá nhân" component={MyTabs} />
+
         {/* <Stack.Screen name="Loading" component={Loading} />
         <Stack.Screen name="Welcome Screen" component={WelcomeScreen} />
         <Stack.Screen name="Change Mode" component={ChangeMode} />
@@ -74,10 +79,7 @@ const Navigation = () => {
         <Stack.Screen name="Sign Up Screen" component={SignUpScreen} />
         <Stack.Screen name="Sign In Screen" component={SignInScreen} /> */}
 
-        <Stack.Screen name="HomePage" component={MyTabs} />
-        <Stack.Screen name="Trang chủ" component={MyTabs} />
-        <Stack.Screen name="EventsList" component={MyTabs} />
-        <Stack.Screen name="Cá nhân" component={MyTabs} />
+
 
         <Stack.Screen name="EventsListDetails" component={EventsListDetails} />
         <Stack.Screen name="ListProductsPage" component={ListProductPage} />
