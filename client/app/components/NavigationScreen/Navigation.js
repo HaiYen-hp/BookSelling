@@ -20,7 +20,7 @@ import EventsListDetails from "../../screens/EventsListDetails";
 import ListProductPage from "../../screens/ListProductPage";
 import SearchingTab from "../Tabs/SearchingTab";
 import ProductElement from "../Product/ProductElement";
-import ProductElementVer2 from "../Product/ProductElementVer2";
+
 import DetailPage from "../DetailPage/DetailPage";
 import EditProfile from "../AccountInfo/EditProfile";
 
@@ -84,15 +84,10 @@ const Navigation = () => {
         <Stack.Screen name="DetailPage" component={DetailPage} />
         <Stack.Screen name="EditProfile" component={EditProfile} />
 
-        
         <Stack.Screen name="HomePage" component={MyTabs} />
         <Stack.Screen name="Trang chủ" component={MyTabs} />
         <Stack.Screen name="EventsList" component={MyTabs} />
         <Stack.Screen name="Cá nhân" component={MyTabs} />
-
-
-
-
       </Stack.Navigator>
     </NavigationContainer>
   );
