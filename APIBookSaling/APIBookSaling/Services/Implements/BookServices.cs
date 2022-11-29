@@ -12,25 +12,38 @@ namespace APIBookSaling.Services.Implements
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public BookServices(ILogger<BookServices> logger, ApplicationDbContext dbContext, IMapper mapper)
+        public BookServices(ILogger<BookServices> logger, ApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration)
         {
             _logger = logger;
             _dbContext = dbContext;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
-        public void CreateBook(CreateBookDto input)
+        public BookDto CreateBook(FileUpLoad fileObj, BookDto input)
         {
-            _dbContext.books.Add(new Book()
+            if (fileObj.file.Length > 0)
             {
-                BookName = input.BookName,
-                Author = input.Author,
-                TypeOfBook = input.TypeOfBook,
-                Price = input.Price,
-                BookCode = input.BookCode,
-            });
+                using (var ms = new MemoryStream())
+                {
+                    fileObj.file.CopyToAsync(ms);
+                    var fileBytes = ms.ToArray();
+                    
+                    _dbContext.books.Add(new Book()
+                    {
+                        BookName = input.BookName,
+                        Author = input.Author,
+                        TypeOfBook = input.TypeOfBook,
+                        BookCode = input.BookCode,
+                        Price = input.Price,
+                        Image = fileBytes,
+                });
+                }
+            }
             _dbContext.SaveChanges();
+            return input;
         }
 
         public BookDto FindById(int id)
@@ -99,6 +112,17 @@ namespace APIBookSaling.Services.Implements
                 Item = bookItem,
                 TotalItem = totalItem
             };
+        }
+
+
+        public byte[] GetImage(string sBase64String)
+        {
+            byte[] bytes = null;
+            if (!string.IsNullOrEmpty(sBase64String))
+            {
+                bytes = Convert.FromBase64String(sBase64String);
+            }
+            return bytes;
         }
     }
 }

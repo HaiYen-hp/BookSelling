@@ -43,7 +43,6 @@ namespace APIBookSaling.Services.Implements
                 UserName = input.Username,
                 Password = CommonUtils.CreateMD5(input.Password),
                 Email = input.Email,
-                Phone = input.Phone,
                 UserType = input.UserType,
                 CustomerId = input.CustomerId
             });
@@ -162,7 +161,6 @@ namespace APIBookSaling.Services.Implements
             userFind.UserName = input.UserName;
             userFind.Password = input.Password;
             userFind.Email = input.Email;
-            userFind.Phone = input.Phone;
             userFind.UserType = input.UserType;
             _dbContext.SaveChanges();
         }
@@ -175,10 +173,10 @@ namespace APIBookSaling.Services.Implements
 
             var result = new User
             {
+                Id = userid,
                 UserName = user.UserName,
                 Password = user.Password,
                 Email = user.Email,
-                Phone = user.Phone,
                 UserType = user.UserType,
                 CustomerId = user.CustomerId
             };

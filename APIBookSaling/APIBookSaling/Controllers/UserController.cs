@@ -80,12 +80,28 @@ namespace APIBookSaling.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpGet("find-user")]
-        public IActionResult FindAll(FilterDto input)
+        public IActionResult FindAll([FromQuery] FilterDto input)
         {
             try
             {
                 var user = _userService.FindAll(input);
+                return Ok();
+            }
+            catch (UserFriendlyException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpGet("get-info-user")]
+        public IActionResult GetMyInfo()
+        {
+            try
+            {
+                var user = _userService.GetMyInfo();
                 return Ok(user);
             }
             catch (UserFriendlyException ex)
@@ -93,6 +109,7 @@ namespace APIBookSaling.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpPut("update-user/{id}")]
         public IActionResult UpdateUser(User input, int id)
         {

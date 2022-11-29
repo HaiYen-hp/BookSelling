@@ -13,5 +13,6 @@ namespace APIBookSaling.Services.Interfaces
         PageResultDto<List<User>> FindAll(FilterDto input);
         public int Deleted(int id);
         public void UpdateUser(User input, int id);
+        public User GetMyInfo();
     }
 }

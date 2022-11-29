@@ -1,6 +1,7 @@
 ﻿using APIBookSaling.Constants;
 using APIBookSaling.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace APIBookSaling.DbContexts
 {
@@ -73,15 +74,59 @@ namespace APIBookSaling.DbContexts
                     .HasColumnType("nvarchar(100)")
                     .IsRequired();
 
-                entity.Property(e => e.Phone)
-                    .HasColumnType("nvarchar(100)")
-                    .IsRequired();
-
                 entity.Property(e => e.UserType)
                     .HasDefaultValue(UserTypes.Customer)
                     .IsRequired();
 
                 entity.Property(e => e.CustomerId)
+                    .IsRequired();
+
+            });
+
+            modelBuilder.Entity<HistoryPrice>(entity =>
+            {
+                entity.ToTable("HistoryPrice");
+                entity.HasKey(e => e.Id);
+                entity.Property(s => s.Id)
+                    .ValueGeneratedOnAdd()
+                    .IsRequired();
+
+                entity.Property(e => e.Price)
+                    .IsRequired();
+
+                entity.Property(e => e.BookCode)
+                    .HasColumnType("nvarchar(500)")
+                    .IsRequired();
+
+                entity.Property(e => e.BookId)
+                    .HasColumnType("nvarchar(500)")
+                    .IsRequired();
+            });
+
+            modelBuilder.Entity<Book>(entity =>
+            {
+                entity.ToTable("Book");
+                entity.HasKey(e => e.Id);
+                entity.Property(s => s.Id)
+                    .ValueGeneratedOnAdd()
+                    .IsRequired();
+
+                entity.Property(e => e.BookName)
+                    .IsRequired();
+
+                entity.Property(e => e.Author)
+                    .IsRequired();
+
+                entity.Property(e => e.TypeOfBook)
+                    .IsRequired();
+
+                entity.Property(e => e.Price)
+                    .IsRequired();
+
+                entity.Property(e => e.BookCode)
+                    .IsRequired();
+
+                entity.Property(e => e.Image)
                     .IsRequired();
             });
         }

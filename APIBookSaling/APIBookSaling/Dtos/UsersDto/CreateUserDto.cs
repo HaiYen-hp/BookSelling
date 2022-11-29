@@ -16,7 +16,6 @@
             set => _password = value?.Trim();
         }
         public string Email { get; set; }
-        public string Phone { get; set; }
         public int UserType { get; set; }
         public int CustomerId { get; set; }
     }

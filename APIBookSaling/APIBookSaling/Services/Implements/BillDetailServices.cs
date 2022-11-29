@@ -28,7 +28,7 @@ namespace APIBookSaling.Services.Implements
             var billDetailFind = billDetailQuery.FirstOrDefault(s => s.Id == id);
             if (billDetailFind == null)
             {
-                throw new Exception("khong tim thay hoa don");
+                throw new Exception("khong tim thay chi tiet hoa don");
             }
             var billDetailItem = _mapper.Map<BillDetailDto>(billDetailFind);
             return billDetailItem;
@@ -40,7 +40,7 @@ namespace APIBookSaling.Services.Implements
             var billDetailFind = billDetailQuery.FirstOrDefault(s => s.Id == id);
             if (billDetailFind == null)
             {
-                throw new Exception("khong tim thay hoa don");
+                throw new Exception("khong tim thay chi tiet hoa don");
             }
             _dbContext.billDetails.Remove(billDetailFind);
             return 0;
@@ -52,7 +52,7 @@ namespace APIBookSaling.Services.Implements
             var billDetailFind = billDetailQuery.FirstOrDefault(s => s.Id == id);
             if (billDetailFind == null)
             {
-                throw new Exception("khong tim thay hoa don");
+                throw new Exception("khong tim thay chi tiet hoa don");
             }
             billDetailFind.TotalPrice = input.TotalPrice;
             _dbContext.SaveChanges();

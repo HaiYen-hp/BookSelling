@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public int IdBook { get; set; }
         // tổng giá
-        public decimal TotalPrice { get; set; }
+        public float TotalPrice { get; set; }
         // tên quyển sách
         public string BookName { get; set; }
         // số lượng

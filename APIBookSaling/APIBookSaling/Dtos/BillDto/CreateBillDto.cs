@@ -3,7 +3,7 @@
     public class CreateBillDto
     {
         public int IdBook { get; set; }
-        public decimal TotalPrice { get; set; }
+        public float TotalPrice { get; set; }
         // tên quyển sách
         public string BookName { get; set; }
         // số lượng

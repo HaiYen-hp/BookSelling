@@ -2,7 +2,6 @@
 {
     public class CreateBookDto
     {
-        public int Id { get; set; }
         // ten quyen sach
         public string BookName { get; set; }
         // tac gia
@@ -10,7 +9,8 @@
         // the loai sach
         public string TypeOfBook { get; set; }
         // gia quyen sach
-        public decimal Price { get; set; }
+        public float Price { get; set; }
         public string BookCode { get; set; }
+        public byte[] Image { get; set; }
     }
 }

@@ -6,7 +6,7 @@ namespace APIBookSaling.Services.Interfaces
 {
     public interface IBookServices
     {
-        void CreateBook(CreateBookDto input);
+        BookDto CreateBook(FileUpLoad fileObj, BookDto input);
         BookDto FindById(int id);
         int Deleted(int id);
         void UpdateBook(CreateBookDto input, int id);

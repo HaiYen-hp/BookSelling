@@ -1,8 +1,11 @@
 ﻿using APIBookSaling.Dtos.BooksDto;
+using APIBookSaling.Entities;
 using APIBookSaling.Exceptions;
 using APIBookSaling.Page;
 using APIBookSaling.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace APIBookSaling.Controllers
 {
@@ -10,7 +13,7 @@ namespace APIBookSaling.Controllers
     [ApiController]
     public class BookController : ApiControllerBase
     {
-        private readonly IBookServices _bookServices;
+        private readonly IBookServices _bookServices = null;
 
         public BookController(
         IBookServices bookServices,
@@ -19,21 +22,23 @@ namespace APIBookSaling.Controllers
             _bookServices = bookServices;
         }
         // GET api/<UserController>/5
-        [HttpGet("find-customer/{id}")]
+        [HttpGet("find-book/{id}")]
         public IActionResult FindByIdSubject(int id)
         {
             try
             {
-                var user = _bookServices.FindById(id);
-                return Ok(user);
+                var book = _bookServices.FindById(id);
+                book.Image = _bookServices.GetImage(Convert.ToBase64String(book.Image));
+                return Ok(book);
             }
             catch (UserFriendlyException ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("find-customer")]
-        public IActionResult FindAll(FilterDto input)
+
+        [HttpGet("find-book")]
+        public IActionResult FindAll([FromQuery] FilterDto input)
         {
             try
             {
@@ -46,22 +51,8 @@ namespace APIBookSaling.Controllers
             }
         }
 
-        // use create FromBody
-        [HttpPost("create-customer")]
-        public IActionResult CreateCustomer(CreateBookDto input)
-        {
-            try
-            {
-                _bookServices.CreateBook(input);
-                return Ok();
-            }
-            catch (UserFriendlyException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
         // PUT api/<UserController>/5
-        [HttpPut("update-customer/{id}")]
+        [HttpPut("update-book/{id}")]
         public IActionResult UpdateCustomer(CreateBookDto input, int id)
         {
             try
@@ -76,13 +67,28 @@ namespace APIBookSaling.Controllers
         }
 
         // DELETE api/<UserController>/5
-        [HttpDelete("delete-customer/{id}")]
+        [HttpDelete("delete-book/{id}")]
         public IActionResult DeleteCustomer(int id)
         {
             try
             {
                 _bookServices.Deleted(id);
 
+                return Ok();
+            }
+            catch (UserFriendlyException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // use create FromBody
+        [HttpPost("create-book")]
+        public IActionResult CreateBook([FromQuery] FileUpLoad fileObj,[FromQuery] BookDto input)
+        {
+            try
+            {
+                _bookServices.CreateBook(fileObj, input);
                 return Ok();
             }
             catch (UserFriendlyException ex)

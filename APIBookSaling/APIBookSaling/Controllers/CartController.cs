@@ -19,7 +19,7 @@ namespace APIBookSaling.Controllers
             _cartServices = cartServices;
         }
         // GET api/<UserController>/5
-        [HttpGet("find-customer/{id}")]
+        [HttpGet("find-cart/{id}")]
         public IActionResult FindByIdSubject(int id)
         {
             try
@@ -32,7 +32,7 @@ namespace APIBookSaling.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("find-customer")]
+        [HttpGet("find-cart")]
         public IActionResult FindAll(FilterDto input)
         {
             try
@@ -47,7 +47,7 @@ namespace APIBookSaling.Controllers
         }
 
         // use create FromBody
-        [HttpPost("create-customer")]
+        [HttpPost("create-cart")]
         public IActionResult CreateCustomer(CreateCartDto input)
         {
             try
@@ -61,7 +61,7 @@ namespace APIBookSaling.Controllers
             }
         }
         // PUT api/<UserController>/5
-        [HttpPut("update-customer/{id}")]
+        [HttpPut("update-cart/{id}")]
         public IActionResult UpdateCustomer(CreateCartDto input, int id)
         {
             try
@@ -76,7 +76,7 @@ namespace APIBookSaling.Controllers
         }
 
         // DELETE api/<UserController>/5
-        [HttpDelete("delete-customer/{id}")]
+        [HttpDelete("delete-cart/{id}")]
         public IActionResult DeleteCustomer(int id)
         {
             try
