@@ -44,14 +44,12 @@ namespace APIBookSaling.Services.Implements
                 Password = CommonUtils.CreateMD5(input.Password),
                 Email = input.Email,
                 UserType = input.UserType,
-                CustomerId = input.CustomerId
             });
             _dbContext.SaveChanges();
             var idUser = add.Entity.Id;
             _dbContext.carts.Add(new Cart()
             {
                 IdUser = idUser,
-                IdBook = null,
             });
             _dbContext.SaveChanges();
         }
@@ -147,6 +145,7 @@ namespace APIBookSaling.Services.Implements
                 throw new UserFriendlyException("khong tim thay hoc sinh");
             }
             _dbContext.users.Remove(userFind);
+            _dbContext.SaveChanges();
             return 0;
         }
 
@@ -178,7 +177,6 @@ namespace APIBookSaling.Services.Implements
                 Password = user.Password,
                 Email = user.Email,
                 UserType = user.UserType,
-                CustomerId = user.CustomerId
             };
             return result;
         }

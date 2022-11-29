@@ -10,6 +10,7 @@ namespace APIBookSaling.Services.Interfaces
         BookDto FindById(int id);
         int Deleted(int id);
         void UpdateBook(CreateBookDto input, int id);
-        PageResultDto<BookDto> FindAll(FilterDto input);
+        PageResultDto<List<BookDto>> FindAll(FilterDto input);
+        byte[] GetImage(string sBase64String);
     }
 }

@@ -2,6 +2,7 @@
 {
     public class BookDto
     {
+        public int Id { get; set; }
         // ten quyen sach
         public string BookName { get; set; }
         // tac gia

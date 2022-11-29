@@ -7,10 +7,10 @@ namespace APIBookSaling.DbContexts
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Customer> customers { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<Book> books { get; set; }
         public DbSet<Cart> carts { get; set; }
+        public DbSet<CardBook> cardBook { get; set; }
         public DbSet<Bill> bills { get; set; }
         public DbSet<BillDetail> billDetails { get; set; }
         public DbSet<HistoryBill> historyBills { get; set; }
@@ -27,30 +27,6 @@ namespace APIBookSaling.DbContexts
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>(entity =>
-            {
-                entity.ToTable("Customer");
-                entity.HasKey(e => e.Id);
-                entity.Property(s => s.Id)
-                    .ValueGeneratedOnAdd()
-                    .IsRequired();
-
-                entity.Property(e => e.Fullname)
-                    .HasColumnType("nvarchar(100)")
-                    .IsRequired();
-
-                entity.Property(e => e.DateOfBirth)
-                    .HasColumnType("date")
-                    .IsRequired();
-
-                entity.Property(e => e.CCCD)
-                    .HasColumnType("nvarchar(100)")
-                    .IsRequired();
-
-                entity.Property(e => e.Address)
-                    .HasColumnType("nvarchar(100)")
-                    .IsRequired();
-            });
 
             modelBuilder.Entity<User>(entity =>
             {
@@ -76,9 +52,6 @@ namespace APIBookSaling.DbContexts
 
                 entity.Property(e => e.UserType)
                     .HasDefaultValue(UserTypes.Customer)
-                    .IsRequired();
-
-                entity.Property(e => e.CustomerId)
                     .IsRequired();
 
             });

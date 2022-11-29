@@ -28,7 +28,7 @@ namespace APIBookSaling.Controllers
             try
             {
                 var book = _bookServices.FindById(id);
-                book.Image = _bookServices.GetImage(Convert.ToBase64String(book.Image));
+                //book.Image = _bookServices.GetImage(Convert.ToBase64String(book.Image));
                 return Ok(book);
             }
             catch (UserFriendlyException ex)

@@ -14,5 +14,6 @@
         //code của sách
         public string BookCode { get; set; }
         public byte[] Image { get; set; }
+
     }
 }

@@ -3,6 +3,7 @@
     public class Bill
     {
         public int Id { get; set; }
+        public int BillDetailId { get; set; }
         public int IdBook { get; set; }
         // tổng giá
         public float TotalPrice { get; set; }
@@ -14,7 +15,5 @@
         public DateTime CreateDate { get; set; }
         // người tạo
         public string CreateBy { get; set; }
-
-        public int IdHistoryBill { get; set; }
     }
 }

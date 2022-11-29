@@ -1,8 +1,10 @@
 ﻿using APIBookSaling.DbContexts;
+using APIBookSaling.Dtos.BooksDto;
 using APIBookSaling.Dtos.CartsDto;
 using APIBookSaling.Entities;
 using APIBookSaling.Page;
 using APIBookSaling.Services.Interfaces;
+using APIBookSaling.Utils;
 using AutoMapper;
 
 namespace APIBookSaling.Services.Implements
@@ -12,32 +14,35 @@ namespace APIBookSaling.Services.Implements
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        public CartServices(ILogger<CartServices> logger, ApplicationDbContext dbContext, IMapper mapper)
+        private readonly IHttpContextAccessor _httpContext;
+
+        public CartServices(ILogger<CartServices> logger, ApplicationDbContext dbContext, IMapper mapper, IHttpContextAccessor httpContext)
         {
             _logger = logger;
             _dbContext = dbContext;
             _mapper = mapper;
+            _httpContext = httpContext;
         }
 
-        public void CreateCart(CreateCartDto input)
+        public CartDto FindById()
         {
-            _dbContext.carts.Add(new Cart()
-            {
-                IdBook = input.IdBook,
-            });
-            _dbContext.SaveChanges();
-        }
-
-        public CartDto FindById(int id)
-        {
+            var userid = CommonUtils.GetCurrentUserId(_httpContext);
             var cartQuery = _dbContext.carts.AsQueryable();
-            var cartFind = cartQuery.FirstOrDefault(s => s.Id == id);
+            var cardBookFind = _dbContext.cardBook.AsQueryable();
+            var cartFind = cartQuery.FirstOrDefault(s => s.IdUser == userid);
             if (cartFind == null)
             {
-                throw new Exception("khong tim thay hoc sinh");
+                throw new Exception("khong tim thay gio hang");
             }
+            foreach (var cardBook in cardBookFind)
+            {
+                var bookFind = _dbContext.books.FirstOrDefault(x => x.Id == cardBook.IdBook);
+            }
+            cartFind.Add(new Cart()
+            {
+                IdBook = bookFind
+            });
             var CartItem = _mapper.Map<CartDto>(cartFind);
-
             return CartItem;
         }
 
@@ -47,31 +52,43 @@ namespace APIBookSaling.Services.Implements
             var cartFind = cartQuery.FirstOrDefault(s => s.Id == id);
             if (cartFind == null)
             {
-                throw new Exception("khong tim thay hoc sinh");
+                throw new Exception("khong tim thay gio hang");
             }
             _dbContext.carts.Remove(cartFind);
+            _dbContext.SaveChanges();
             return 0;
         }
 
-        public void UpdateCart(CreateCartDto input, int id)
+        public void UpdateCart(List<int> idBook)
         {
+            var userid = CommonUtils.GetCurrentUserId(_httpContext);
             var cartQuery = _dbContext.carts.AsQueryable();
-            var cartFind = cartQuery.FirstOrDefault(s => s.Id == id);
+            var bookQuery = _dbContext.books.AsQueryable();
+
+            var cartFind = cartQuery.FirstOrDefault(s => s.IdUser == userid);
             if (cartFind == null)
             {
-                throw new Exception("khong tim thay hoc sinh");
+                throw new Exception("khong tim thay gio hang");
             }
-            cartFind.IdBook = input.IdBook;
+            foreach(var item in idBook)
+            {
+                var bookFind = bookQuery.FirstOrDefault(x => x.Id == item);
+                _dbContext.cardBook.Add(new CardBook()
+                {
+                    IdCard = cartFind.Id,
+                    IdBook = bookFind.Id,
+                });
+            }
             _dbContext.SaveChanges();
         }
 
         public PageResultDto<CartDto> FindAll(FilterDto input)
         {
-            var cartQuery = _dbContext.customers.AsQueryable();
-            if (input.Keyword != null)
-            {
-                cartQuery = cartQuery.Where(s => s.Fullname != null && s.Fullname.Contains(input.Keyword));
-            }
+            var cartQuery = _dbContext.carts.AsQueryable();
+            //if (input.Keyword != null)
+            //{
+            //    cartQuery = cartQuery.Where(s => s. != null && s.Fullname.Contains(input.Keyword));
+            //}
             int totalItem = cartQuery.Count();
 
             cartQuery = cartQuery.Skip(input.PageSize * (input.PageIndex - 1)).Take(input.PageSize);

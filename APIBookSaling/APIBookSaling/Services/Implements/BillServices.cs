@@ -20,7 +20,7 @@ namespace APIBookSaling.Services.Implements
             _httpContext = httpContext;
         }
 
-        public void CreateBill(int idCart, CreateBillDto input)
+        public void CreateBill(int idCart, CreateBillDto input, List<int> ListIdBook)
         {
             var username = CommonUtils.GetCurrentUsername(_httpContext);
             // tìm kiếm giỏ hàng
@@ -32,23 +32,26 @@ namespace APIBookSaling.Services.Implements
             });
 
             var listBill = new List<Bill>();
-            // add bill khi thanh toán giỏ hàng
-            foreach(var idBook in cartFind.IdBook)
+            // với mỗi id trong giỏ hàng được tích
+            foreach (var IdBook in ListIdBook)
             {
-                var bookFind = _dbContext.books.FirstOrDefault(x => x.Id == idBook.Id);
-                var resultBill = _dbContext.bills.Add(new Bill()
-                {
-                    IdBook = idBook.Id,
-                    BookName = bookFind.BookName,
-                    Quatity = input.Quatity,
-                    TotalPrice = bookFind.Price * input.Quatity,
-                    CreateDate = DateTime.Now,
-                    CreateBy = username,
-                    IdHistoryBill = historyBill.Entity.Id,
-
-                });
-                listBill.Add(resultBill.Entity);
+                // add bill khi thanh toán giỏ hàng
+                    var bookFind = _dbContext.books.FirstOrDefault(x => x.Id == IdBook);
+                    var resultBill = _dbContext.bills.Add(new Bill()
+                    {
+                        IdBook = IdBook,
+                        BookName = bookFind.BookName,
+                        Quatity = input.Quatity,
+                        TotalPrice = bookFind.Price * input.Quatity,
+                        CreateDate = DateTime.Now,
+                        CreateBy = username,
+                        IdHistoryBill = historyBill.Entity.Id,
+                    });
+                    listBill.Add(resultBill.Entity);
+                var cardBookFind = _dbContext.cardBook.FirstOrDefault(x => x.IdBook == IdBook);
+                _dbContext.cardBook.Remove(cardBookFind);
             }
+
             // tính tổng bill
             var billSum = listBill.Select(x => x.TotalPrice).Sum();
             // add detailBill và tổng của giỏ hàng
@@ -81,9 +84,9 @@ namespace APIBookSaling.Services.Implements
                 throw new Exception("khong tim thay hoa don");
             }
             _dbContext.bills.Remove(billFind);
+            _dbContext.SaveChanges();
             return 0;
         }
-
         public void UpdateBill(CreateBillDto input, int id)
         {
             var billQuery = _dbContext.bills.AsQueryable();
@@ -100,7 +103,6 @@ namespace APIBookSaling.Services.Implements
             billFind.CreateBy = input.CreateBy;
             _dbContext.SaveChanges();
         }
-
         public PageResultDto<List<Bill>> FindAll(FilterDto input)
         {
             var billQuery = _dbContext.bills.AsQueryable();

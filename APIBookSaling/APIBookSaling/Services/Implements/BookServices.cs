@@ -30,7 +30,7 @@ namespace APIBookSaling.Services.Implements
                 {
                     fileObj.file.CopyToAsync(ms);
                     var fileBytes = ms.ToArray();
-                    
+
                     _dbContext.books.Add(new Book()
                     {
                         BookName = input.BookName,
@@ -39,7 +39,7 @@ namespace APIBookSaling.Services.Implements
                         BookCode = input.BookCode,
                         Price = input.Price,
                         Image = fileBytes,
-                });
+                    });
                 }
             }
             _dbContext.SaveChanges();
@@ -68,6 +68,7 @@ namespace APIBookSaling.Services.Implements
                 throw new Exception("khong tim thay sach");
             }
             _dbContext.books.Remove(bookFind);
+            _dbContext.SaveChanges();
             return 0;
         }
 
@@ -96,7 +97,7 @@ namespace APIBookSaling.Services.Implements
             _dbContext.SaveChanges();
         }
 
-        public PageResultDto<BookDto> FindAll(FilterDto input)
+        public PageResultDto<List<BookDto>> FindAll(FilterDto input)
         {
             var bookQuery = _dbContext.books.AsQueryable();
             if (input.Keyword != null)
@@ -105,11 +106,25 @@ namespace APIBookSaling.Services.Implements
             }
             int totalItem = bookQuery.Count();
 
+            var restul = new List<BookDto>();
+
             bookQuery = bookQuery.Skip(input.PageSize * (input.PageIndex - 1)).Take(input.PageSize);
-            var bookItem = _mapper.Map<BookDto>(bookQuery);
-            return new PageResultDto<BookDto>
+            foreach(var item in bookQuery)
             {
-                Item = bookItem,
+                restul.Add(new BookDto() {
+                    Id = item.Id,
+                    BookName = item.BookName,
+                    Author = item.Author,
+                    TypeOfBook = item.TypeOfBook,
+                    Price = item.Price,
+                    BookCode = item.BookCode,
+                    Image = item.Image,
+                });
+            };
+            
+            return new PageResultDto<List<BookDto>>
+            {
+                Item = restul,
                 TotalItem = totalItem
             };
         }

@@ -43,6 +43,7 @@ namespace APIBookSaling.Services.Implements
                 throw new Exception("khong tim thay chi tiet hoa don");
             }
             _dbContext.billDetails.Remove(billDetailFind);
+            _dbContext.SaveChanges();
             return 0;
         }
 
