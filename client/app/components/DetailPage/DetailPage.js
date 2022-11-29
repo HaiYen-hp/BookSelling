@@ -16,6 +16,7 @@ import ListTabDetail from "../Tabs/ListTabDetail";
 import ProductElement from "../Product/ProductElement";
 import ListImageRow from "../Tabs/ListImageRow";
 import BackIcon from "../buttons/BackIcon";
+import { useState } from "react";
 
 function DetailPage({ navigation }) {
   const [loaded] = useFonts({

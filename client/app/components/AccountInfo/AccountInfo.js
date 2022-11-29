@@ -53,7 +53,7 @@ const AccountInfo = ({ navigation }) => {
 
             <View style={styles.block}>
                 <View style={styles.donMua}> 
-                    <Pressable>
+                    <Pressable onPress={() => navigation.navigate("Deliver")}>
                         <View style={styles.donMuaHeader}>
                             <View style={styles.donMuaHeaderLeft}>
                                 <MaterialCommunityIcons name="clipboard-text-outline" size={22} color="#05a" />

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
 import { TabView, SceneMap } from 'react-native-tab-view';
 
 const FirstRoute = () => (
@@ -10,23 +10,9 @@ const SecondRoute = () => (
   <View style={{ flex: 1, backgroundColor: '#673ab7' }} />
 );
 
-const ChoXacNhan = () => (
-    <View>
-
-    </View>
-);
-
-const ChoLayHang = () => (
-    <View>
-
-    </View>
-);
-
 const renderScene = SceneMap({
   first: FirstRoute,
   second: SecondRoute,
-  third: ChoXacNhan,
-  fourth: ChoLayHang,
 });
 
 export default function Deliver() {
@@ -36,27 +22,14 @@ export default function Deliver() {
   const [routes] = React.useState([
     { key: 'first', title: 'First' },
     { key: 'second', title: 'Second' },
-    { key: 'third', title: 'ChoXacNhan' },
-    { key: 'fourth', title: 'ChoLayHang' },
   ]);
 
   return (
-    <View style={styles.container}>
-        <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
-        />
-    </View>
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width }}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 50,
-      backgroundColor: '#ccc'
-    },
-  });
-  
