@@ -32,9 +32,6 @@ function DetailPage() {
                     </View>
                     </ImageBackground>
                 </View>
-                {/* <View style = {styles.image}>
-                    <Image style = {{width: '80%', height:'100%'}} source={require("../../../assets/images/NguonCoi.png")}></Image>
-                </View> */}
 
                 <View style = {styles.DetailOne}>
                     <View style = {{marginLeft:'5%', marginRight:'5%'}}>

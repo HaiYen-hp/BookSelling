@@ -52,14 +52,14 @@ function ListProductPage({ navigation }) {
         </View>
         <Text style={styles.text}>Lọc</Text>
       </View>
-      <ProductElement />
+      <ProductElement onPress={() => navigation.navigate("DetailPage")} />
     </View>
   );
 }
 export default ListProductPage;
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column'
+    flexDirection: "column",
   },
   tabContainer: {
     flexDirection: "row",

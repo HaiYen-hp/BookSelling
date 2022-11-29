@@ -48,17 +48,22 @@ const HomePage = ({ navigation }) => {
       <ScrollView showsVerticalScrollIndicator={false} scrollEventThrottle={0}>
         {/* <TopIconHomePage /> */}
         <View style={styles.boxIcon}>
-            <View style={styles.searchIcon}>
-                <AntDesign name="search1" size={26} color="black" />
-            </View>
-            <View style={styles.iconRight}>
-                <Pressable onPress={() => navigation.navigate("Cart")}>
-                    <AntDesign style={{ marginRight: 12}} name="shoppingcart" size={26} color="black" />
-                </Pressable>
-                <Pressable>
-                    <Entypo name="dots-three-vertical" size={26} color="black" />
-                </Pressable>
-            </View>
+          <View style={styles.searchIcon}>
+            <AntDesign name="search1" size={26} color="black" />
+          </View>
+          <View style={styles.iconRight}>
+            <Pressable onPress={() => navigation.navigate("Cart")}>
+              <AntDesign
+                style={{ marginRight: 12 }}
+                name="shoppingcart"
+                size={26}
+                color="black"
+              />
+            </Pressable>
+            <Pressable>
+              <Entypo name="dots-three-vertical" size={26} color="black" />
+            </Pressable>
+          </View>
         </View>
         <View style={styles.header}>
           <View style={styles.textBox}>
@@ -92,7 +97,7 @@ const HomePage = ({ navigation }) => {
             <AntDesign name="right" size={20} color="black" />
           </Pressable>
         </View>
-        <ProductElement />
+        <ProductElement onPress={() => navigation.navigate("DetailPage")} />
         <View style={styles.buttonAllContanier}>
           <Text style={{ fontFamily: "SansCasual" }}>Xem Thêm</Text>
           <AntDesign name="down" size={20} color="black" />
@@ -100,7 +105,7 @@ const HomePage = ({ navigation }) => {
       </ScrollView>
     </SafeAreaView>
   );
-}
+};
 export default HomePage;
 
 const styles = StyleSheet.create({
@@ -164,17 +169,15 @@ const styles = StyleSheet.create({
   },
   boxIcon: {
     marginTop: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginHorizontal: 30,
-},
-searchIcon: {
-
-},
-iconRight:{
-    flexDirection: 'row',
-    alignItems: 'flex-end'
-}
+  },
+  searchIcon: {},
+  iconRight: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+  },
   // tabView: {
   //   marginLeft: 26,
   //   marginTop: 18,
