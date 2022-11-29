@@ -28,7 +28,7 @@ const SignInScreen = ({ navigation }) => {
     setCfpassword("");
   };
 
-  const clikOnRegister = () => {
+  const clickOnRegister = () => {
 
     if (username == "" || email == "" || password == "" || cfpassword == "") {
       Alert.alert("Thông báo", "Thông tin đăng kí phải nhập đầy đủ!")
@@ -43,13 +43,14 @@ const SignInScreen = ({ navigation }) => {
         data: {
           username: username,
           email: email,
+          phone: '0123',
           password: password
         }
       }).then(result => {
         console.log("thành công");
-        navigation.navigate('Login');
+        navigation.navigate('Sign Up Screen');
       }).catch((err) => {
-        Alert.alert("Thông báo", err.response.data.message);
+        console.log("Thông báo", err.response.data);
       });
     }
   }
@@ -75,7 +76,7 @@ const SignInScreen = ({ navigation }) => {
   }
   return (
     <View style={styles.container}>
-      <View style={{ marginLeft: 20, marginTop:30 }}>
+      <View style={{ marginLeft: 20, marginTop: 30 }}>
         <BackIcon navigation={() => navigation.goBack()} />
       </View>
       <View style={styles.header}>
@@ -90,24 +91,22 @@ const SignInScreen = ({ navigation }) => {
         </View>
       </View>
       <View style={styles.content}>
-        <TextInput 
-          style={styles.input} 
+        <TextInput
+          style={styles.input}
           placeholder="Tên Tài Khoản"
           value={username}
           onChangeText={(value) => {
             setUsername(value);
           }}
-        >
-        </TextInput>
-        <TextInput 
-          style={styles.input} 
+        ></TextInput>
+        <TextInput
+          style={styles.input}
           placeholder="Nhập Email"
           value={email}
           onChangeText={(value) => {
             setEmail(value);
           }}
-          >
-          </TextInput>
+        ></TextInput>
 
         <View style={styles.inputContainer}>
           <TextInput
@@ -153,7 +152,7 @@ const SignInScreen = ({ navigation }) => {
         </View>
       </View>
       {/* <ButtonBot text="ĐĂNG KÝ"></ButtonBot> */}
-      <Pressable onPress={clikOnRegister}>
+      <Pressable onPress={clickOnRegister}>
         <View style={styles.btnStart}>
           <Text style={styles.textStart}>ĐĂNG KÝ</Text>
         </View>
@@ -272,7 +271,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#C8C23C",
     opacity: 0.81,
     marginBottom: 50,
-    marginHorizontal: 30
+    marginHorizontal: 30,
   },
   textStart: {
     color: "#FFFFFF",

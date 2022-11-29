@@ -6,14 +6,17 @@ import {
   Pressable,
   ImageBackground,
   Dimensions,
+  ScrollView,
 } from "react-native";
 import { useFonts } from "expo-font";
 import { AntDesign } from "@expo/vector-icons";
 import AppLoading from "expo-app-loading";
 import ITEMLIST from "../../screens/ITEMLIST";
 import themes from "../../../config/themes";
+import { useState } from "react";
 const w = Dimensions.get("screen").width;
 const ProductElement = ({ onPress }) => {
+  const [color, setColor] = useState("#B4B4B4");
   const [loaded] = useFonts({
     SansCasual: require("../../../assets/fonts/RecursiveSansCslSt-Regular.ttf"),
     SansCasualMedium: require("../../../assets/fonts/RecursiveSansCslSt-Med.ttf"),
@@ -25,9 +28,18 @@ const ProductElement = ({ onPress }) => {
   const renderItem = ({ item }) => {
     return (
       <Pressable style={styles.item} onPress={onPress}>
-        <ImageBackground style={styles.image} imageStyle={{ borderRadius: 15}} source={item.image} >
+        <ImageBackground
+          style={styles.image}
+          imageStyle={{ borderRadius: 15 }}
+          source={item.image}
+        >
           <Pressable style={styles.buttonHeart}>
-            <AntDesign name="heart" size={20} color="#B4B4B4" />
+            <AntDesign
+              name="heart"
+              size={20}
+              color={color}
+              onPress={() => setColor("red", )}
+            />
           </Pressable>
         </ImageBackground>
         <View style={styles.body}>
@@ -55,14 +67,20 @@ const ProductElement = ({ onPress }) => {
     );
   };
   return (
-    <FlatList
-      data={ITEMLIST}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-      numColumns={2}
-      showsHorizontalScrollIndicator={false}
-      key={(item) => item.id}
-    />
+    <ScrollView
+      decelerationRate="fast"
+      scrollEventThrottle={0}
+      style={{ marginBottom: 170 }}
+    >
+      <FlatList
+        data={ITEMLIST}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        numColumns={2}
+        showsHorizontalScrollIndicator={false}
+        key={(item) => item.id}
+      />
+    </ScrollView>
   );
 };
 export default ProductElement;

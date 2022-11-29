@@ -31,12 +31,14 @@ const AccountInfo = ({ navigation }) => {
                         </Pressable>
                     </View>
                     <View style={styles.headerInfo}>
-                        <View style={styles.avatar}> 
-                            <Image
-                                style={styles.avatarImage}
-                                source={require("../../../assets/images/blank-profile-picture.png") }
-                            />
-                        </View>
+                        <Pressable onPress={() => navigation.navigate("EditProfile")}>
+                            <View style={styles.avatar}> 
+                                <Image
+                                    style={styles.avatarImage}
+                                    source={require("../../../assets/images/blank-profile-picture.png") }
+                                />
+                            </View>
+                        </Pressable>
                         <View style={styles.info}>
                             <Text style={styles.name}>Admin</Text>
                             <View style={styles.rank}>
@@ -51,7 +53,7 @@ const AccountInfo = ({ navigation }) => {
 
             <View style={styles.block}>
                 <View style={styles.donMua}> 
-                    <Pressable>
+                    <Pressable onPress={() => navigation.navigate("Deliver")}>
                         <View style={styles.donMuaHeader}>
                             <View style={styles.donMuaHeaderLeft}>
                                 <MaterialCommunityIcons name="clipboard-text-outline" size={22} color="#05a" />

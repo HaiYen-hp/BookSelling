@@ -24,6 +24,7 @@ const ChangeMode = ({ navigation }) => {
     <View styles={styles.container}>
       <ImageBackground
         style={styles.img}
+        resizeMode={"cover"}
         source={require("../../../assets/images/alex-lvrs-ZRTd9_Fk6rc-unsplash.png")}
       >
         <Text style={styles.textHeader}> Chọn Chế Độ </Text>
@@ -43,17 +44,12 @@ const ChangeMode = ({ navigation }) => {
             <Text style={styles.iconDescMoon}>Tối</Text>
           </View>
         </View>
-        {/* <View style={styles.btnContainer}>
-          <Pressable onPress={() => navigation.navigate("Selected Screen")}>
-            <View style={styles.btnStart}>
-              <Text style={styles.textStart}>TIẾP TỤC</Text>
-            </View>
-          </Pressable>
-        </View> */}
-        <ButtonBot
-          text="TIẾP TỤC"
-          navigation={() => navigation.navigate("Selected Screen")}
-        ></ButtonBot>
+        <View style={{ marginTop: 195 }}>
+          <ButtonBot
+            text="TIẾP TỤC"
+            navigation={() => navigation.navigate("Selected Screen")}
+          ></ButtonBot>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -64,10 +60,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-  // img: {
-  //   width: 400,
-  //   height: 850,
-  // },
+  img: {
+    width: width,
+    height: height,
+  },
   textHeader: {
     color: "#FFFFFF",
     fontWeight: "600",
@@ -86,7 +82,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     marginRight: 70,
     marginTop: 65,
-    marginBottom: 180,
   },
   iconContainer: {
     flexDirection: "column",

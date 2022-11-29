@@ -27,8 +27,6 @@ const TabDescription = ({ onPress }) => {
                 Những người muốn hiểu về lịch sử tiến hóa và phát triển của loài người Những người ngưỡng mộ tác giả 
                 của cuốn sách là Yuvai Noah Harari Những người muốn tiếp cận với kho tàng kiến thức khổng lồ, 
                 đủ mọi lĩnh vực khoa học
-                
-                
             </Text>
             
         </View>

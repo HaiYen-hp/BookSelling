@@ -10,13 +10,12 @@ import {
   View,
 } from "react-native";
 import themes from "../../../config/themes";
-import TabContent from "./TabContent.js";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
-
+import TabDetail from "./TabDetail";
 const w = Dimensions.get("screen").width;
 
-const ListTab = ({ onPress, lisFooter, tabs, data }) => {
+const ListTabHPDetail = ({ onPress, lisFooter, tabs, data, index }) => {
   const [selected, setSelected] = useState(0);
 
   const onScroll = ({ nativeEvent }) => {
@@ -52,7 +51,6 @@ const ListTab = ({ onPress, lisFooter, tabs, data }) => {
         ))}
       </View>
       <ScrollView
-        horizontal
         pagingEnabled
         snapToAlignment="center"
         onScroll={onScroll}
@@ -60,28 +58,13 @@ const ListTab = ({ onPress, lisFooter, tabs, data }) => {
         scrollEventThrottle={0}
         showsHorizontalScrollIndicator={false}
       >
-        <TabContent
-          onPress={onPress}
-          lisFooterContent={lisFooter}
-          data={data}
-        />
-        <TabContent onPress={onPress} data={data} />
-        <TabContent onPress={onPress} data={data} />
-        {/* <TabContent
-          onPress={onPress}
-          lisFooter={
-            <TabContent
-              onPress={onPress}
-              lisFooter={<TabContent onPress={onPress} />}
-            />
-          }
-        /> */}
+        <TabDetail data={data} tabs={tabs} />
       </ScrollView>
     </View>
   );
 };
 
-export default ListTab;
+export default ListTabHPDetail;
 
 const styles = StyleSheet.create({
   title: {
