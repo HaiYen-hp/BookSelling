@@ -25,7 +25,6 @@ namespace APIBookSaling
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IUserServices, UserServices>();
-            builder.Services.AddScoped<ICustomerServices, CustomerServices>();
             builder.Services.AddScoped<IBookServices, BookServices>();
             builder.Services.AddScoped<ICartServices, CartServices>();
             builder.Services.AddScoped<IBillDetailServices, BillDetailServices>();
