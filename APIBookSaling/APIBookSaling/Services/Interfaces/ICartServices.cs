@@ -1,13 +1,15 @@
 ﻿using APIBookSaling.Dtos.CartsDto;
+using APIBookSaling.Entities;
 using APIBookSaling.Page;
 
 namespace APIBookSaling.Services.Interfaces
 {
     public interface ICartServices
     {
-        CartDto FindById(int id);
+        CartDto FindById();
         int Deleted(int id);
         void UpdateCart(List<int> idBook);
-        PageResultDto<CartDto> FindAll(FilterDto input);
+        PageResultDto<List<Cart>> FindAll(FilterDto input);
+
     }
 }

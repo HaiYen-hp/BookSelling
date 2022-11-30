@@ -11,6 +11,7 @@
         // gia quyen sach
         public float Price { get; set; }
         public string BookCode { get; set; }
-        public byte[] Image { get; set; }
+        //public byte[] Image { get; set; }
+        public IFormFile Image { get; set; }
     }
 }

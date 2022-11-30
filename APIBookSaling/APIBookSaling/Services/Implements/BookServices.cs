@@ -13,37 +13,71 @@ namespace APIBookSaling.Services.Implements
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BookServices(ILogger<BookServices> logger, ApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration)
+        public BookServices(ILogger<BookServices> logger, ApplicationDbContext dbContext, IMapper mapper, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             _logger = logger;
             _dbContext = dbContext;
             _mapper = mapper;
             _configuration = configuration;
+            _webHostEnvironment = webHostEnvironment;
         }
 
-        public BookDto CreateBook(FileUpLoad fileObj, BookDto input)
-        {
-            if (fileObj.file.Length > 0)
-            {
-                using (var ms = new MemoryStream())
-                {
-                    fileObj.file.CopyToAsync(ms);
-                    var fileBytes = ms.ToArray();
+        //public BookDto CreateBook(FileUpLoad fileObj, BookDto input)
+        //{
+        //    if (fileObj.file.Length > 0)
+        //    {
+        //        using (var ms = new MemoryStream())
+        //        {
+        //            fileObj.file.CopyToAsync(ms);
+        //            var fileBytes = ms.ToArray();
 
-                    _dbContext.books.Add(new Book()
-                    {
-                        BookName = input.BookName,
-                        Author = input.Author,
-                        TypeOfBook = input.TypeOfBook,
-                        BookCode = input.BookCode,
-                        Price = input.Price,
-                        Image = fileBytes,
-                    });
+        //            _dbContext.books.Add(new Book()
+        //            {
+        //                BookName = input.BookName,
+        //                Author = input.Author,
+        //                TypeOfBook = input.TypeOfBook,
+        //                BookCode = input.BookCode,
+        //                Price = input.Price,
+        //                Image = fileBytes,
+        //            });
+        //        }
+        //    }
+        //    _dbContext.SaveChanges();
+        //    return input;
+        //}
+
+        public void CreateBook(CreateBookDto input)
+        {
+            string pathImg = null;
+
+            if (input.Image != null)
+            {
+                string path = _webHostEnvironment.WebRootPath + "\\uploads\\";
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                using (FileStream fileStream = File.Create(path + input.Image.FileName))
+                {
+                    input.Image.CopyTo(fileStream);
+                    fileStream.Flush();
+                    pathImg = path + input.Image.FileName;
                 }
             }
+
+            _dbContext.books.Add(new Book()
+            {
+                BookName = input.BookName,
+                Author = input.Author,
+                TypeOfBook = input.TypeOfBook,
+                BookCode = input.BookCode,
+                Price = input.Price,
+                Image = pathImg
+
+            });
             _dbContext.SaveChanges();
-            return input;
         }
 
         public BookDto FindById(int id)
@@ -129,15 +163,14 @@ namespace APIBookSaling.Services.Implements
             };
         }
 
-
-        public byte[] GetImage(string sBase64String)
-        {
-            byte[] bytes = null;
-            if (!string.IsNullOrEmpty(sBase64String))
-            {
-                bytes = Convert.FromBase64String(sBase64String);
-            }
-            return bytes;
-        }
+        //public byte[] GetImage(string sBase64String)
+        //{
+        //    byte[] bytes = null;
+        //    if (!string.IsNullOrEmpty(sBase64String))
+        //    {
+        //        bytes = Convert.FromBase64String(sBase64String);
+        //    }
+        //    return bytes;
+        //}
     }
 }

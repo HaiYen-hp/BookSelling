@@ -13,7 +13,8 @@
         public float Price { get; set; }
         //code của sách
         public string BookCode { get; set; }
-        public byte[] Image { get; set; }
+        //public byte[] Image { get; set; }
+        public string Image { get; set; }
 
     }
 }

@@ -21,12 +21,10 @@ namespace APIBookSaling.Services.Implements
         private readonly IHttpContextAccessor _httpContext;
 
         public UserServices(
-            ILogger<CustomerServices> logger,
             ApplicationDbContext dbContext,
             IConfiguration configuration,
             IHttpContextAccessor httpContext)
         {
-            _logger = logger;
             _dbContext = dbContext;
             _configuration = configuration;
             _httpContext = httpContext;

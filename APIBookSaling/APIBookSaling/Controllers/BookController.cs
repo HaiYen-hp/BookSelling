@@ -17,7 +17,7 @@ namespace APIBookSaling.Controllers
 
         public BookController(
         IBookServices bookServices,
-        ILogger<CustomerController> logger) : base(logger)
+        ILogger<BookController> logger) : base(logger)
         {
             _bookServices = bookServices;
         }
@@ -82,13 +82,28 @@ namespace APIBookSaling.Controllers
             }
         }
 
+        //// use create FromBody
+        //[HttpPost("create-book")]
+        //public IActionResult CreateBook([FromQuery] FileUpLoad fileObj,[FromQuery] BookDto input)
+        //{
+        //    try
+        //    {
+        //        _bookServices.CreateBook(fileObj, input);
+        //        return Ok();
+        //    }
+        //    catch (UserFriendlyException ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
+
         // use create FromBody
         [HttpPost("create-book")]
-        public IActionResult CreateBook([FromQuery] FileUpLoad fileObj,[FromQuery] BookDto input)
+        public IActionResult CreateBook([FromForm] CreateBookDto input)
         {
             try
             {
-                _bookServices.CreateBook(fileObj, input);
+                _bookServices.CreateBook(input);
                 return Ok();
             }
             catch (UserFriendlyException ex)

@@ -14,17 +14,17 @@ namespace APIBookSaling.Controllers
 
         public CartController(
         ICartServices cartServices,
-        ILogger<CustomerController> logger) : base(logger)
+        ILogger<CartController> logger) : base(logger)
         {
             _cartServices = cartServices;
         }
         // GET api/<UserController>/5
         [HttpGet("find-cart/{id}")]
-        public IActionResult FindByIdSubject(int id)
+        public IActionResult FindById()
         {
             try
             {
-                var user = _cartServices.FindById(id);
+                var user = _cartServices.FindById();
                 return Ok(user);
             }
             catch (UserFriendlyException ex)
@@ -32,6 +32,7 @@ namespace APIBookSaling.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
         [HttpGet("find-cart")]
         public IActionResult FindAll(FilterDto input)
         {
@@ -46,27 +47,13 @@ namespace APIBookSaling.Controllers
             }
         }
 
-        // use create FromBody
-        [HttpPost("create-cart")]
-        public IActionResult CreateCustomer(CreateCartDto input)
-        {
-            try
-            {
-                _cartServices.CreateCart(input);
-                return Ok();
-            }
-            catch (UserFriendlyException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
         // PUT api/<UserController>/5
         [HttpPut("update-cart/{id}")]
-        public IActionResult UpdateCustomer(CreateCartDto input, int id)
+        public IActionResult UpdateCustomer(List<int> idBook)
         {
             try
             {
-                _cartServices.UpdateCart(input, id);
+                _cartServices.UpdateCart(idBook);
                 return Ok();
             }
             catch (UserFriendlyException ex)

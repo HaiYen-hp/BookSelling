@@ -37,11 +37,8 @@ namespace APIBookSaling.Services.Implements
             foreach (var cardBook in cardBookFind)
             {
                 var bookFind = _dbContext.books.FirstOrDefault(x => x.Id == cardBook.IdBook);
+                cartFind.IdBook.Add(bookFind);
             }
-            cartFind.Add(new Cart()
-            {
-                IdBook = bookFind
-            });
             var CartItem = _mapper.Map<CartDto>(cartFind);
             return CartItem;
         }
@@ -82,7 +79,7 @@ namespace APIBookSaling.Services.Implements
             _dbContext.SaveChanges();
         }
 
-        public PageResultDto<CartDto> FindAll(FilterDto input)
+        public PageResultDto<List<Cart>> FindAll(FilterDto input)
         {
             var cartQuery = _dbContext.carts.AsQueryable();
             //if (input.Keyword != null)
@@ -90,12 +87,25 @@ namespace APIBookSaling.Services.Implements
             //    cartQuery = cartQuery.Where(s => s. != null && s.Fullname.Contains(input.Keyword));
             //}
             int totalItem = cartQuery.Count();
-
-            cartQuery = cartQuery.Skip(input.PageSize * (input.PageIndex - 1)).Take(input.PageSize);
-            var CartItem = _mapper.Map<CartDto>(cartQuery);
-            return new PageResultDto<CartDto>
+            List<CartDto> ListCard = new List<CartDto>();
+            foreach (var item in cartQuery)
             {
-                Item = CartItem,
+                var cardBookFind = _dbContext.cardBook.AsQueryable();
+                var cartFind = _dbContext.carts.FirstOrDefault(c => c.Id == item.Id);
+                if (cartFind == null)
+                {
+                    throw new Exception("khong tim thay gio hang");
+                }
+                foreach (var cardBook in cardBookFind)
+                {
+                    var bookFind = _dbContext.books.FirstOrDefault(x => x.Id == cardBook.IdBook);
+                    cartFind.IdBook.Add(bookFind);
+                }
+            }
+            cartQuery = cartQuery.Skip(input.PageSize * (input.PageIndex - 1)).Take(input.PageSize);
+            return new PageResultDto<List<Cart>>
+            {
+                Item = cartQuery.ToList(),
                 TotalItem = totalItem
             };
         }

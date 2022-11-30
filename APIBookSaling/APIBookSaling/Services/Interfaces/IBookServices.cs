@@ -6,11 +6,12 @@ namespace APIBookSaling.Services.Interfaces
 {
     public interface IBookServices
     {
-        BookDto CreateBook(FileUpLoad fileObj, BookDto input);
+        //BookDto CreateBook(FileUpLoad fileObj, BookDto input);
         BookDto FindById(int id);
         int Deleted(int id);
         void UpdateBook(CreateBookDto input, int id);
         PageResultDto<List<BookDto>> FindAll(FilterDto input);
-        byte[] GetImage(string sBase64String);
+        //byte[] GetImage(string sBase64String);
+        void CreateBook(CreateBookDto input);
     }
 }

@@ -14,7 +14,7 @@ namespace APIBookSaling.Controllers
 
         public BillController(
         IBillServices billServices,
-        ILogger<CustomerController> logger) : base(logger)
+        ILogger<BillController> logger) : base(logger)
         {
             _billServices = billServices;
         }
@@ -48,11 +48,11 @@ namespace APIBookSaling.Controllers
 
         // use create FromBody
         [HttpPost("create-bill")]
-        public IActionResult CreateCustomer(int idCart, CreateBillDto input)
+        public IActionResult CreateBill(int idCart, CreateBillDto input, List<int> ListIdBook)
         {
             try
             {
-                _billServices.CreateBill(idCart, input);
+                _billServices.CreateBill(idCart, input, ListIdBook);
                 return Ok();
             }
             catch (UserFriendlyException ex)
