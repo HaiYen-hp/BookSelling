@@ -1,9 +1,10 @@
 ﻿using APIBookSaling.DbContexts;
+using APIBookSaling.Dtos.BillDto;
 using APIBookSaling.Dtos.BillDto.BillDetailsDto;
 using APIBookSaling.Entities;
 using APIBookSaling.Page;
 using APIBookSaling.Services.Interfaces;
-using AutoMapper;
+using APIBookSaling.Utils;
 
 namespace APIBookSaling.Services.Implements
 {
@@ -12,26 +13,23 @@ namespace APIBookSaling.Services.Implements
         private readonly ILogger _logger;
         private readonly ApplicationDbContext _dbContext;
         private readonly IHttpContextAccessor _httpContext;
-        private readonly IMapper _mapper;
 
-        public BillDetailServices(ILogger<BillDetailServices> logger, ApplicationDbContext dbContext, IHttpContextAccessor httpContext, IMapper mapper)
+        public BillDetailServices(ILogger<BillDetailServices> logger, ApplicationDbContext dbContext, IHttpContextAccessor httpContext)
         {
             _logger = logger;
             _dbContext = dbContext;
             _httpContext = httpContext;
-            _mapper = mapper;
         }
 
-        public BillDetailDto FindById(int id)
+        public BillDetail FindById(int id)
         {
             var billDetailQuery = _dbContext.billDetails.AsQueryable();
             var billDetailFind = billDetailQuery.FirstOrDefault(s => s.Id == id);
             if (billDetailFind == null)
             {
-                throw new Exception("khong tim thay chi tiet hoa don");
+                throw new Exception("khong tim thay hoa don");
             }
-            var billDetailItem = _mapper.Map<BillDetailDto>(billDetailFind);
-            return billDetailItem;
+            return billDetailFind;
         }
 
         public int Deleted(int id)
@@ -40,39 +38,41 @@ namespace APIBookSaling.Services.Implements
             var billDetailFind = billDetailQuery.FirstOrDefault(s => s.Id == id);
             if (billDetailFind == null)
             {
-                throw new Exception("khong tim thay chi tiet hoa don");
+                throw new Exception("khong tim thay hoa don");
             }
             _dbContext.billDetails.Remove(billDetailFind);
             _dbContext.SaveChanges();
             return 0;
         }
-
         public void UpdateBillDetail(CreateBillDetailDto input, int id)
         {
             var billDetailQuery = _dbContext.billDetails.AsQueryable();
             var billDetailFind = billDetailQuery.FirstOrDefault(s => s.Id == id);
             if (billDetailFind == null)
             {
-                throw new Exception("khong tim thay chi tiet hoa don");
+                throw new Exception("khong tim thay hoa don");
             }
+            billDetailFind.IdBook = input.IdBook;
             billDetailFind.TotalPrice = input.TotalPrice;
+            billDetailFind.BookName = input.BookName;
+            billDetailFind.Quantity = input.Quatity;
+            billDetailFind.CreateDate = input.CreateDate;
+            billDetailFind.CreateBy = input.CreateBy;
             _dbContext.SaveChanges();
         }
-
-        public PageResultDto<BillDetailDto> FindAll(FilterDto input)
+        public PageResultDto<List<BillDetail>> FindAll(FilterDto input)
         {
             var billDetailQuery = _dbContext.billDetails.AsQueryable();
-            //if (input.Keyword != null)
-            //{
-            //    billDetailQuery = billDetailQuery.Where(s => s.ListIdBill != null && s.ListIdBill.Contains(input.Keyword));
-            //}
+            if (input.Keyword != null)
+            {
+                billDetailQuery = billDetailQuery.Where(s => s.BookName != null && s.BookName.Contains(input.Keyword));
+            }
             int totalItem = billDetailQuery.Count();
 
             billDetailQuery = billDetailQuery.Skip(input.PageSize * (input.PageIndex - 1)).Take(input.PageSize);
-            var billDetailItem = _mapper.Map<BillDetailDto>(billDetailQuery);
-            return new PageResultDto<BillDetailDto>
+            return new PageResultDto<List<BillDetail>>
             {
-                Item = billDetailItem,
+                Item = billDetailQuery.ToList(),
                 TotalItem = totalItem
             };
         }

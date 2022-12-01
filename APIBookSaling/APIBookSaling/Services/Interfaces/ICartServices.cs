@@ -6,7 +6,7 @@ namespace APIBookSaling.Services.Interfaces
 {
     public interface ICartServices
     {
-        CartDto FindById();
+        CartDto Find();
         int Deleted(int id);
         void UpdateCart(List<int> idBook);
         PageResultDto<List<Cart>> FindAll(FilterDto input);

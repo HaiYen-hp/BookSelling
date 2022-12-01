@@ -3,17 +3,9 @@
     public class Bill
     {
         public int Id { get; set; }
-        public int BillDetailId { get; set; }
-        public int IdBook { get; set; }
-        // tổng giá
+        public int IdCard { get; set; }
+        public int IdUser { get; set; }
         public float TotalPrice { get; set; }
-        // tên quyển sách
-        public string BookName { get; set; }
-        // số lượng
-        public int Quatity { get; set; }
-        // ngày tạo
-        public DateTime CreateDate { get; set; }
-        // người tạo
-        public string CreateBy { get; set; }
+        public List<Book> IdBook { get; set; }
     }
 }

@@ -20,11 +20,11 @@ namespace APIBookSaling.Controllers
         }
         // GET api/<UserController>/5
         [HttpGet("find-cart/{id}")]
-        public IActionResult FindById()
+        public IActionResult Find()
         {
             try
             {
-                var user = _cartServices.FindById();
+                var user = _cartServices.Find();
                 return Ok(user);
             }
             catch (UserFriendlyException ex)

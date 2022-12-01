@@ -1,14 +1,15 @@
-﻿using APIBookSaling.Dtos.BillDto.BillDetailDto;
+﻿using APIBookSaling.Dtos.BillDto;
 using APIBookSaling.Dtos.BillDto.BillDetailsDto;
+using APIBookSaling.Entities;
 using APIBookSaling.Page;
 
 namespace APIBookSaling.Services.Interfaces
 {
     public interface IBillDetailServices
     {
-        BillDetailDto FindById(int id);
+        BillDetail FindById(int id);
         int Deleted(int id);
         void UpdateBillDetail(CreateBillDetailDto input, int id);
-        PageResultDto<BillDetailDto> FindAll(FilterDto input);
+        PageResultDto<List<BillDetail>> FindAll(FilterDto input);
     }
 }

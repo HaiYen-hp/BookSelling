@@ -1,15 +1,10 @@
-﻿namespace APIBookSaling.Dtos.BillDto
+﻿using APIBookSaling.Dtos.BooksDto;
+
+namespace APIBookSaling.Dtos.BillDto
 {
     public class BillDto
     {
-        public decimal TotalPrice { get; set; }
-        // tên quyển sách
-        public string BookName { get; set; }
-        // số lượng
-        public int Quatity { get; set; }
-        // ngày tạo
-        public DateTime CreateDate { get; set; }
-        // người tạo
-        public string CreateBy { get; set; }
+        public Decimal TotalPrice { get; set; }
+        public List<BookDto> Books { get; set; }
     }
 }

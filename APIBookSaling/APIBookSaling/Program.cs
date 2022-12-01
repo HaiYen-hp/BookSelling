@@ -27,8 +27,8 @@ namespace APIBookSaling
             builder.Services.AddScoped<IUserServices, UserServices>();
             builder.Services.AddScoped<IBookServices, BookServices>();
             builder.Services.AddScoped<ICartServices, CartServices>();
-            builder.Services.AddScoped<IBillDetailServices, BillDetailServices>();
             builder.Services.AddScoped<IBillServices, BillServices>();
+            builder.Services.AddScoped<IBillDetailServices, BillDetailServices>();
 
             builder.Services.AddDbContext<ApplicationDbContext>(options => {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));

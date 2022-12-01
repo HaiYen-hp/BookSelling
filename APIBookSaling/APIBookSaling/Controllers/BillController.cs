@@ -1,4 +1,5 @@
 ﻿using APIBookSaling.Dtos.BillDto;
+using APIBookSaling.Dtos.BillDto.BillDetailsDto;
 using APIBookSaling.Exceptions;
 using APIBookSaling.Page;
 using APIBookSaling.Services.Interfaces;
@@ -46,23 +47,9 @@ namespace APIBookSaling.Controllers
             }
         }
 
-        // use create FromBody
-        [HttpPost("create-bill")]
-        public IActionResult CreateBill(int idCart, CreateBillDto input, List<int> ListIdBook)
-        {
-            try
-            {
-                _billServices.CreateBill(idCart, input, ListIdBook);
-                return Ok();
-            }
-            catch (UserFriendlyException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
         // PUT api/<UserController>/5
         [HttpPut("update-bill/{id}")]
-        public IActionResult UpdateCustomer(CreateBillDto input, int id)
+        public IActionResult UpdateCustomer(CreateBillDetailDto input, int id)
         {
             try
             {

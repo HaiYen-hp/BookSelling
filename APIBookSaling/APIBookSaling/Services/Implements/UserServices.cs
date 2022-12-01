@@ -133,7 +133,6 @@ namespace APIBookSaling.Services.Implements
             };
         }
 
-
         public int Deleted(int id)
         {
             var userQuery = _dbContext.users.AsQueryable();

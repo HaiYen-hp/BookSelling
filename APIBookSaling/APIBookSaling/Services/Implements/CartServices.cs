@@ -24,19 +24,21 @@ namespace APIBookSaling.Services.Implements
             _httpContext = httpContext;
         }
 
-        public CartDto FindById()
+        // tìm giỏ hàng
+        public CartDto Find()
         {
             var userid = CommonUtils.GetCurrentUserId(_httpContext);
             var cartQuery = _dbContext.carts.AsQueryable();
-            var cardBookFind = _dbContext.cardBook.AsQueryable();
+            var cardDetailQuery = _dbContext.cardDetails.AsQueryable();
             var cartFind = cartQuery.FirstOrDefault(s => s.IdUser == userid);
             if (cartFind == null)
             {
                 throw new Exception("khong tim thay gio hang");
             }
-            foreach (var cardBook in cardBookFind)
+            foreach (var cardBook in cardDetailQuery)
             {
-                var bookFind = _dbContext.books.FirstOrDefault(x => x.Id == cardBook.IdBook);
+                var cardDetailFind = _dbContext.cardDetails.FirstOrDefault(d => d.IdCard == cartFind.Id && d.IdBook == cardBook.IdBook);
+                var bookFind = _dbContext.books.FirstOrDefault(x => x.Id == cardDetailFind.IdBook);
                 cartFind.IdBook.Add(bookFind);
             }
             var CartItem = _mapper.Map<CartDto>(cartFind);
@@ -70,7 +72,7 @@ namespace APIBookSaling.Services.Implements
             foreach(var item in idBook)
             {
                 var bookFind = bookQuery.FirstOrDefault(x => x.Id == item);
-                _dbContext.cardBook.Add(new CardBook()
+                _dbContext.cardDetails.Add(new CardDetail()
                 {
                     IdCard = cartFind.Id,
                     IdBook = bookFind.Id,
@@ -90,7 +92,7 @@ namespace APIBookSaling.Services.Implements
             List<CartDto> ListCard = new List<CartDto>();
             foreach (var item in cartQuery)
             {
-                var cardBookFind = _dbContext.cardBook.AsQueryable();
+                var cardBookFind = _dbContext.cardDetails.AsQueryable();
                 var cartFind = _dbContext.carts.FirstOrDefault(c => c.Id == item.Id);
                 if (cartFind == null)
                 {
