@@ -15,6 +15,6 @@
         public string BookCode { get; set; }
         //public byte[] Image { get; set; }
         public string Image { get; set; }
-
+        public int TotalLike { get; set; }
     }
 }
